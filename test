@@ -20,6 +20,9 @@ cd ..
 ls
 pwd
 
-cd ..
+cd bin
 ls
-pwd
+
+cd ..
+cd dev
+ls
