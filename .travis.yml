@@ -1,6 +1,6 @@
 sudo: false
 language: java
 install: true
-before_script: chmod -R a+rx *
+before_script: chmod -R a+rX *
 script: ./gradlew build
 jdk: oraclejdk8
