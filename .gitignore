@@ -1,6 +1,5 @@
 *.class
 
-
 # Package Files #
 *.jar
 *.war
@@ -16,6 +15,8 @@ hs_err_pid*
 #Regenerate the files on your own, better compatability.
 .classpath
 .project
+/.gradle
+/.settings
 *.iml*
 *.ipr*
 *.iws*
