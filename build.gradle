@@ -43,3 +43,6 @@ task genJavadoc(type: Jar, dependsOn: javadoc) {
 artifacts {
   archives genJavadoc
 }
+
+genJavadoc.onlyIf { project.hasProperty('runJavadoc') }
+javadoc.onlyIf { project.hasProperty('runJavadoc') }
