@@ -9,14 +9,14 @@
 hs_err_pid*
 
 *.DS_Store
-/bin/
-/build/
+/bin/*
+/build/*
 
 # Regenerate the files on your own, better compatability.
 .classpath
 .project
-/.gradle
-/.settings
+/.gradle/*
+/.settings/*
 *.iml*
 *.ipr*
 *.iws*
