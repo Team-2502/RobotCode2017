@@ -1,8 +1,6 @@
 sudo: false
 language: java
 install: true
-before_script: 
-  - chmod a+x ./gradlew
-  - chmod a+x /gradle/wrapper/gradle-wrapper.jar
+before_script: chmod -R a+rx *
 script: ./gradlew build
 jdk: oraclejdk8
