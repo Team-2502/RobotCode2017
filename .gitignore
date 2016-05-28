@@ -13,10 +13,16 @@ hs_err_pid*
 /build/*
 
 # Regenerate the files on your own, better compatability.
-.classpath
-.project
-/.gradle/*
+## Eclipse
+*.classpath
+*.project
 /.settings/*
+
+## Intellij Idea
+/.idea/*
 *.iml*
 *.ipr*
 *.iws*
+
+## Gradle
+/.gradle/*
