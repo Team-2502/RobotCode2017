@@ -163,7 +163,7 @@ JVM_OPTS[${#JVM_OPTS[*]}]="-Dorg.gradle.appname=$APP_BASE_NAME"
 
 cd gradle
 cd wrapper
-echo "$JAVACMD" "${JVM_OPTS[@]}" -classpath . org.gradle.wrapper.GradleWrapperMain "$@"
-exec "$JAVACMD" "${JVM_OPTS[@]}" -cp . org.gradle.wrapper.GradleWrapperMain "$@"
+echo "$JAVACMD" "${JVM_OPTS[@]}" -cp gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain "$@"
+exec "$JAVACMD" "${JVM_OPTS[@]}" -cp gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain "$@"
 
 # exec "$JAVACMD" "${JVM_OPTS[@]}" -classpath "$CLASSPATH" org.gradle.wrapper.GradleWrapperMain "$@"
