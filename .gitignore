@@ -12,7 +12,7 @@ hs_err_pid*
 /bin/
 /build/
 
-#Regenerate the files on your own, better compatability.
+# Regenerate the files on your own, better compatability.
 .classpath
 .project
 /.gradle
