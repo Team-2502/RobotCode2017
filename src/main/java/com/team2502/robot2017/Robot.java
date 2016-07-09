@@ -1,12 +1,13 @@
 package com.team2502.robot2017;
 
-import com.team2502.robot2017.commands.CommandAutonomous;
-import com.team2502.robot2017.subsystems.SubsystemDriveTrain;
+import com.team2502.robot2017.commands.AutonomousCommand;
+import com.team2502.robot2017.subsystems.DriveTrainSubsystem;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import logger.Log;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -17,9 +18,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot
 {
-    public static final SubsystemDriveTrain driveTrain = new SubsystemDriveTrain();
+    public static final DriveTrainSubsystem driveTrain = new DriveTrainSubsystem();
 
-    public static CommandAutonomous autonomousCommand;
+    public static AutonomousCommand autonomousCommand;
     SendableChooser chooser;
 
     /**
@@ -28,8 +29,9 @@ public class Robot extends IterativeRobot
      */
     public void robotInit()
     {
+        Log.createLogger();
         chooser = new SendableChooser();
-        chooser.addDefault("Default Auto", new CommandAutonomous());
+        chooser.addDefault("Default Auto", new AutonomousCommand());
         //        chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
     }
@@ -39,7 +41,9 @@ public class Robot extends IterativeRobot
      * You can use it to reset any subsystem information you want to clear when
      * the robot is disabled.
      */
-    public void disabledInit() {}
+    public void disabledInit()
+    {
+    }
 
     public void disabledPeriodic()
     {
@@ -57,7 +61,7 @@ public class Robot extends IterativeRobot
      */
     public void autonomousInit()
     {
-        autonomousCommand = (CommandAutonomous)chooser.getSelected();
+        autonomousCommand = (AutonomousCommand) chooser.getSelected();
         
 		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
         switch(autoSelected) {
@@ -71,7 +75,10 @@ public class Robot extends IterativeRobot
 		} */
 
         // schedule the autonomous command (example)
-        if(autonomousCommand != null) autonomousCommand.start();
+        if(autonomousCommand != null)
+        {
+            autonomousCommand.start();
+        }
     }
 
     /**
@@ -88,7 +95,10 @@ public class Robot extends IterativeRobot
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        if(autonomousCommand != null) autonomousCommand.cancel();
+        if(autonomousCommand != null)
+        {
+            autonomousCommand.cancel();
+        }
     }
 
     /**
