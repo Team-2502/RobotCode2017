@@ -2,7 +2,7 @@ package com.team2502.robot2017.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class CommandAutonomous extends Command
+public class AutonomousCommand extends Command
 {
     @Override
     protected void initialize()
