@@ -1,7 +1,7 @@
 *.class
 
 # Package Files #
-# DO NOT PUT *.jar
+# DO NOT PUT *.jar - Breaks Travis CI
 *.war
 *.ear
 
@@ -26,3 +26,4 @@ hs_err_pid*
 
 ## Gradle
 /.gradle/*
+/bin/
