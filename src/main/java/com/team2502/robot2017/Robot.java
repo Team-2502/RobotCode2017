@@ -16,6 +16,7 @@ import logger.Log;
  * creating this project, you must also update the manifest file in the resource
  * directory.
  */
+@SuppressWarnings({ "WeakerAccess" })
 public class Robot extends IterativeRobot
 {
     public static final DriveTrainSubsystem driveTrain = new DriveTrainSubsystem();
