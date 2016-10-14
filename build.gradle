@@ -25,6 +25,10 @@ gradlerio.robotClass = "com.team2502.robot2017.Robot"     //The class for the ma
 gradlerio.team = "2502"                                   //Your FRC team number (e.g. 5333 for team 'Can't C#', or 47 for Chief Delphi)
 //gradlerio.rioIP = "10.53.33.20"                         //Uncomment to specify the IP address of the RIO
 
+dependencies {
+    compile "org.jetbrains:annotations:15.0"
+}
+
 def robotManifest = {
   attributes 'Main-Class': 'edu.wpi.first.wpilibj.RobotBase'
   attributes 'Robot-Class': gradlerio.robotClass
