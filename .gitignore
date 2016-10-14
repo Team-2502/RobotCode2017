@@ -1,4 +1,5 @@
 *.class
+/JDK8/
 
 # Package Files #
 # DO NOT PUT *.jar - Breaks Travis CI
@@ -15,14 +16,14 @@ hs_err_pid*
 *.classpath
 *.project
 .settings/
+bin/
 
 ## Intellij Idea
 .idea/
+build/
 *.iml*
 *.ipr*
 *.iws*
 
 ## Gradle
-bin/
 .gradle/
-build/
