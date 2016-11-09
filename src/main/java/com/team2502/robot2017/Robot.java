@@ -2,27 +2,19 @@ package com.team2502.robot2017;
 
 import com.team2502.robot2017.commands.AutonomousCommand;
 import com.team2502.robot2017.subsystems.DriveTrainSubsystem;
+import com.team2502.robot2017.subsystems.PressureSensorSubsytem;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import logger.Log;
 
-/**
- * The VM is configured to automatically run this class, and to call the
- * functions corresponding to each mode, as described in the IterativeRobot
- * documentation. If you change the name of this class or the package after
- * creating this project, you must also update the manifest file in the resource
- * directory.
- */
 @SuppressWarnings({ "WeakerAccess" })
-public class Robot extends IterativeRobot
+public final class Robot extends IterativeRobot
 {
-    public static final DriveTrainSubsystem driveTrain = new DriveTrainSubsystem();
-
-    public static AutonomousCommand autonomousCommand;
-    SendableChooser chooser;
+    public static final DriveTrainSubsystem DRIVE_TRAIN = new DriveTrainSubsystem();
+    public static final PressureSensorSubsytem PRESSURE_SENSOR = new PressureSensorSubsytem();
+    public static final Compressor COMPRESSOR = new Compressor();
 
     /**
      * This function is run when the robot is first started up and should be
@@ -31,10 +23,7 @@ public class Robot extends IterativeRobot
     public void robotInit()
     {
         Log.createLogger();
-        chooser = new SendableChooser();
-        chooser.addDefault("Default Auto", new AutonomousCommand());
-        //        chooser.addObject("My Auto", new MyAutoCommand());
-        SmartDashboard.putData("Auto mode", chooser);
+        DashboardData.setup();
     }
 
     /**
@@ -42,13 +31,12 @@ public class Robot extends IterativeRobot
      * You can use it to reset any subsystem information you want to clear when
      * the robot is disabled.
      */
-    public void disabledInit()
-    {
-    }
+    public void disabledInit() {}
 
     public void disabledPeriodic()
     {
         Scheduler.getInstance().run();
+        DashboardData.update();
     }
 
     /**
@@ -62,24 +50,7 @@ public class Robot extends IterativeRobot
      */
     public void autonomousInit()
     {
-        autonomousCommand = (AutonomousCommand) chooser.getSelected();
-        
-		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-        switch(autoSelected) {
-		case "My Auto":
-			autonomousCommand = new MyAutoCommand();
-			break;
-		case "Default Auto":
-		default:
-			autonomousCommand = new ExampleCommand();
-			break;
-		} */
-
-        // schedule the autonomous command (example)
-        if(autonomousCommand != null)
-        {
-            autonomousCommand.start();
-        }
+        AutonomousCommand.startS();
     }
 
     /**
@@ -88,6 +59,7 @@ public class Robot extends IterativeRobot
     public void autonomousPeriodic()
     {
         Scheduler.getInstance().run();
+        DashboardData.update();
     }
 
     public void teleopInit()
@@ -96,10 +68,7 @@ public class Robot extends IterativeRobot
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        if(autonomousCommand != null)
-        {
-            autonomousCommand.cancel();
-        }
+        AutonomousCommand.cancelS();
     }
 
     /**
@@ -108,6 +77,7 @@ public class Robot extends IterativeRobot
     public void teleopPeriodic()
     {
         Scheduler.getInstance().run();
+        DashboardData.update();
     }
 
     /**
@@ -116,5 +86,6 @@ public class Robot extends IterativeRobot
     public void testPeriodic()
     {
         LiveWindow.run();
+        DashboardData.update();
     }
 }

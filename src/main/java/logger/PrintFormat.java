@@ -18,16 +18,22 @@ public class PrintFormat
         this.timeOrganizer = new int[] { 0, 0, 0, 0, 0, 0, 0 };
         for(String spl : timeFormat.split(":"))
         {
-            if(spl.contains("n")) { timeOrganizer[0] = spl.length(); } else if(spl.contains("q"))
+            if(spl.contains("n")) { timeOrganizer[0] = spl.length(); }
+            else if(spl.contains("q"))
             {
                 timeOrganizer[1] = spl.length();
-            } else if(spl.contains("M")) { timeOrganizer[2] = spl.length(); } else if(spl.contains("s"))
+            }
+            else if(spl.contains("M")) { timeOrganizer[2] = spl.length(); }
+            else if(spl.contains("s"))
             {
                 timeOrganizer[3] = spl.length();
-            } else if(spl.contains("m")) { timeOrganizer[4] = spl.length(); } else if(spl.contains("h"))
+            }
+            else if(spl.contains("m")) { timeOrganizer[4] = spl.length(); }
+            else if(spl.contains("h"))
             {
                 timeOrganizer[5] = spl.length();
-            } else if(spl.contains("d")) { timeOrganizer[6] = spl.length(); }
+            }
+            else if(spl.contains("d")) { timeOrganizer[6] = spl.length(); }
         }
         timer = new Timer(timeOrganizer[0] > 0 || timeOrganizer[1] > 0);
     }
@@ -55,7 +61,8 @@ public class PrintFormat
             lastTimes = new long[] { -1, -1, -1, -1, -1, -1, -1 };
             stringTimes = new String[7];
             this.nanoTime = nanoTime;
-            if(nanoTime) { startTime = System.nanoTime(); } else { startTime = System.currentTimeMillis(); }
+            if(nanoTime) { startTime = System.nanoTime(); }
+            else { startTime = System.currentTimeMillis(); }
         }
 
         @NotNull
@@ -65,7 +72,8 @@ public class PrintFormat
             for(int i = 0; i < timeOrganizer.length; ++i)
             {
                 if(timeOrganizer[i] == 0) { continue; }
-                if(times[i] == lastTimes[i]) { out.append(stringTimes[i]); } else
+                if(times[i] == lastTimes[i]) { out.append(stringTimes[i]); }
+                else
                 {
                     out.append(String.format(new StringBuilder("%0").append(timeOrganizer[i]).append("d").toString(), times[i]));
                 }
@@ -83,7 +91,8 @@ public class PrintFormat
             {
                 times[0] = System.nanoTime() - startTime;
                 times[1] = times[0] % 1000;
-            } else { times[2] = System.currentTimeMillis() - startTime; }
+            }
+            else { times[2] = System.currentTimeMillis() - startTime; }
             long thousand = times[2] / 1000;
             times[2] %= 1000;
             times[3] = thousand % 60;

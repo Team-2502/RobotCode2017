@@ -3,66 +3,58 @@ package com.team2502.robot2017.subsystems;
 import com.team2502.robot2017.OI;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+/**
+ * Example Implementation, Many changes needed.
+ */
 public class DriveTrainSubsystem extends Subsystem
 {
-    private double m_lastLeft;
-    private double m_lastRight;
+    private double lastLeft;
+    private double lastRight;
+
+    public DriveTrainSubsystem()
+    {
+        lastLeft = 0.0D;
+        lastRight = 0.0D;
+    }
 
     @Override
     protected void initDefaultCommand()
     {
-        m_lastLeft = 0.0D;
-        m_lastRight = 0.0D;
     }
 
     /**
      * Used to gradually increase the speed of the robot.
      *
-     * @param left Whether or not it is the left joystick
+     * @param isLeftSide Whether or not it is the left joystick/side
      * @return the speed of the robot
      */
-    private double getSpeed(boolean left)
+    private double getSpeed(boolean isLeftSide)
     {
-        double speed;
+        double joystickLevel = 0.0D;
         // Get the base speed of the robot
-        if(left)
-        {
-            speed = -OI.getInstance().JOYSTICK_DRIVE_LEFT.getY();
-        } else
-        {
-            speed = -OI.getInstance().JOYSTICK_DRIVE_RIGHT.getY();
-        }
+        if(isLeftSide) { joystickLevel = -OI.JOYSTICK_DRIVE_LEFT.getY(); }
+        else { joystickLevel = -OI.JOYSTICK_DRIVE_RIGHT.getY(); }
 
         // Sets the speed to 0 if the speed is less than 0.05 or larger than -0.05
-        if(Math.abs(speed) < 0.05D)
-        {
-            speed = 0.0D;
-        }
+        if(Math.abs(joystickLevel) < 0.05D) { joystickLevel = 0.0D; }
 
         // Only increase the speed by a small amount
-        if(left)
+        if(isLeftSide)
         {
-            double diff = speed - m_lastLeft;
-            if(diff > 0.1D)
-            {
-                speed = m_lastLeft + 0.1D;
-            } else if(diff < 0.1D)
-            {
-                speed = m_lastLeft - 0.1D;
-            }
-        } else
+            double diff = joystickLevel - lastLeft;
+            if(diff > 0.1D) { joystickLevel = lastLeft + 0.1D; }
+            else if(diff < 0.1D) { joystickLevel = lastLeft - 0.1D; }
+            lastLeft = joystickLevel;
+        }
+        else
         {
-            double diff = speed - m_lastRight;
-            if(diff > 0.1D)
-            {
-                speed = m_lastRight + 0.1D;
-            } else if(diff < 0.1D)
-            {
-                speed = m_lastRight - 0.1D;
-            }
+            double diff = joystickLevel - lastRight;
+            if(diff > 0.1D) { joystickLevel = lastRight + 0.1D; }
+            else if(diff < 0.1D) { joystickLevel = lastRight - 0.1D; }
+            lastRight = joystickLevel;
         }
 
-        return speed;
+        return joystickLevel;
     }
 
     private double getLeftSpeed()
@@ -77,7 +69,7 @@ public class DriveTrainSubsystem extends Subsystem
 
     public void drive()
     {
-        double leftSpeed  = getLeftSpeed();
+        double leftSpeed = getLeftSpeed();
         double rightSpeed = getRightSpeed();
     }
 }

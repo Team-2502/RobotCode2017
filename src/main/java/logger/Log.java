@@ -8,8 +8,8 @@ import java.io.*;
 @SuppressWarnings({ "WeakerAccess", "unused", "EmptyCatchBlock" })
 public class Log
 {
-    private static boolean m_debug;
-    private static boolean useLogFile;
+    private static boolean debug = false;
+    private static boolean useLogFile = false;
 
     @Nullable
     protected static BufferedWriter bw = null;
@@ -17,16 +17,14 @@ public class Log
     @Nullable
     protected static PrintFormat pf = null;
 
-    public static boolean isDebugMode() { return m_debug; }
+    public static boolean isDebugMode() { return debug; }
 
     public static void setDebugMode(boolean debug)
     {
-        boolean tmp = m_debug;
-        m_debug = debug;
-        if(tmp && !debug) { Log.debug("Logger disabling debug mode."); } else if(!tmp && debug)
-        {
-            Log.debug("Logger enabling debug mode.");
-        }
+        boolean tmp = Log.debug;
+        Log.debug = debug;
+        if(tmp == debug) { return; }
+        Log.debug(new StringBuilder(28).append("Logger ").append(tmp ? "dis" : "en").append("abling debug mode.").toString());
     }
 
     public static boolean usingLogFile() { return useLogFile; }
@@ -47,38 +45,34 @@ public class Log
         pf = new PrintFormat(format, timeFormat);
         try
         {
-            if(logDir.length() != 0)
+            if(!logDir.isEmpty())
             {
                 File f = new File(logDir);
                 //noinspection ResultOfMethodCallIgnored
                 f.mkdirs();
-                //noinspection StringBufferReplaceableByString
-                f = new File(new StringBuilder(logDir).append(logDir.endsWith("/") ? "" : "/").append("log_").append(System.currentTimeMillis() / 1000).append(".log").toString());
+                f = new File(new StringBuilder(logDir.length() + 17).append(logDir).append((logDir.charAt(logDir.length() - 1) == '/') ? "" : "/").append("log_").append(System.currentTimeMillis() / 1000).append(".log").toString());
                 if(!f.createNewFile()) { throw new IOException(); }
                 bw = new BufferedWriter(new FileWriter(f));
                 useLogFile = true;
             }
         } catch(IOException e) { warn("Unable to create Log File."); }
-        setDebugMode(debug || System.getProperty("debug") != null);
+        setDebugMode(debug || (System.getProperty("debug") != null));
     }
 
     protected static void close()
     {
-        if(bw == null) { return; }
-        try { bw.close(); } catch(IOException e) {}
+        try { bw.close(); } catch(NullPointerException | IOException e) {}
     }
 
     protected static void log(@NotNull("Passed a null value to parameter[0] at `logger.Log#log(logger.Log$LogType, java.lang.String)") LogType type,
                               @NotNull("Passed a null value to parameter[1] at `logger.Log#log(logger.Log.LogType, java.lang.String)") String msg, int depth)
     {
+        if((type == LogType.DEBUG) && !debug) { return; }
         if(pf == null) { createLogger(); }
         String out = pf.getPrintString(type.toString(), ClassGetter.getCallerClassName(depth), msg);
-        try { if(useLogFile && bw != null) { bw.write(out + "\n"); } } catch(IOException e) { useLogFile = false; }
-        if(type == LogType.DEBUG && !m_debug) { return; }
-        if(type.output instanceof LoggerPrintStream) { ((LoggerPrintStream) type.output).outputln(out); } else
-        {
-            type.output.println(out);
-        }
+        try { if(useLogFile) { bw.write(out + '\n'); } } catch(NullPointerException | IOException e) { useLogFile = false; }
+        if(type.output instanceof LoggerPrintStream) { ((LoggerPrintStream) type.output).outputln(out); }
+        else { type.output.println(out); }
         type.output.flush();
     }
 
@@ -186,7 +180,7 @@ public class Log
 
     public static void trace(@NotNull("Passed a null value to parameter[0] at `logger.Log#trace(java.lang.Exception, java.lang.String)`") Exception e, @NotNull("Passed a null value to parameter[1] at `logger.Log#trace(java.lang.Exception, java.lang.String)`") String msg)
     {
-        if(msg.length() != 0) { trace(msg); }
+        if(!msg.isEmpty()) { trace(msg); }
         trace(e.toString());
         trace(e.getStackTrace());
     }
@@ -238,16 +232,10 @@ public class Log
         @NotNull("Error getting the stacktrace at `logger.Log$ClassGetter#getCallerClassName(int)")
         public static String getCallerClassName(int depth)
         {
-            StackTraceElement[] stElements = Thread.currentThread().getStackTrace();
-            StackTraceElement element = stElements[BASE_DEPTH + depth];
-            if(element.getClassName().startsWith("kotlin.io."))
-            {
-                element = stElements[BASE_DEPTH + 2 + depth];
-            } else if(element.getClassName().startsWith("java.lang.Throwable"))
-            {
-                element = stElements[BASE_DEPTH + 4 + depth];
-            }
-
+            StackTraceElement[] elements = Thread.currentThread().getStackTrace();
+            StackTraceElement element = elements[BASE_DEPTH + depth];
+            if(element.getClassName().startsWith("kotlin.io.")) { element = elements[BASE_DEPTH + 2 + depth]; }
+            else if(element.getClassName().startsWith("java.lang.Throwable")) { element = elements[BASE_DEPTH + 4 + depth]; }
             return element.getClassName();
         }
 
@@ -257,15 +245,7 @@ public class Log
 
     static
     {
-        m_debug = false;
-        useLogFile = false;
-        bw = null;
-        pf = null;
-        Runtime.getRuntime().addShutdownHook(new Thread()
-        {
-            @Override
-            public void run() { close(); }
-        });
+        Runtime.getRuntime().addShutdownHook(new Thread(Log::close));
         System.setOut(new LoggerPrintStream(System.out));
         System.setErr(new LoggerPrintStream(System.err));
     }
