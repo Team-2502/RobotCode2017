@@ -1,6 +1,6 @@
 package com.team2502.robot2017;
 
-import com.team2502.robot2017.commands.AutonomousCommand;
+import com.team2502.robot2017.commands.autonomous.AutonomousCommand;
 import com.team2502.robot2017.subsystems.DriveTrainSubsystem;
 import com.team2502.robot2017.subsystems.PressureSensorSubsytem;
 import edu.wpi.first.wpilibj.Compressor;
@@ -50,6 +50,7 @@ public final class Robot extends IterativeRobot
      */
     public void autonomousInit()
     {
+        AutonomousCommand.autonomousInit();
         AutonomousCommand.startS();
     }
 

@@ -1,7 +1,7 @@
 package com.team2502.robot2017;
 
 import com.team2502.robot2017.chooser.TypeSendableChooser;
-import com.team2502.robot2017.commands.AutonomousCommand;
+import com.team2502.robot2017.commands.autonomous.AutonomousCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 @SuppressWarnings({ "WeakerAccess" })
@@ -11,7 +11,7 @@ public final class DashboardData
 
     public static TypeSendableChooser<AutonomousCommand> AUTONOMOUS_SELECTOR;
 
-    public static void update() { updatePressure(); }
+    public static void update(){ updatePressure(); }
 
     public static void setup()
     {

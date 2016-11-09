@@ -1,4 +1,4 @@
-package com.team2502.robot2017.commands;
+package com.team2502.robot2017.commands.autonomous;
 
 import com.team2502.robot2017.DashboardData;
 import edu.wpi.first.wpilibj.command.Command;
