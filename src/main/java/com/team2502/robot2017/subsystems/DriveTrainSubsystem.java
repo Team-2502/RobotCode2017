@@ -32,8 +32,7 @@ public class DriveTrainSubsystem extends Subsystem
     {
         double joystickLevel = 0.0D;
         // Get the base speed of the robot
-        if(isLeftSide) { joystickLevel = -OI.JOYSTICK_DRIVE_LEFT.getY(); }
-        else { joystickLevel = -OI.JOYSTICK_DRIVE_RIGHT.getY(); }
+        joystickLevel = isLeftSide ? -OI.JOYSTICK_DRIVE_LEFT.getY() : -OI.JOYSTICK_DRIVE_RIGHT.getY();
 
         // Sets the speed to 0 if the speed is less than 0.05 or larger than -0.05
         if(Math.abs(joystickLevel) < 0.05D) { joystickLevel = 0.0D; }
