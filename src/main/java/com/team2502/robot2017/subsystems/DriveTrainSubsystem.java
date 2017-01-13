@@ -94,10 +94,9 @@ public class DriveTrainSubsystem extends Subsystem
         drive.tankDrive(leftSpeed, rightSpeed, true);
     }
 
-    public void stop() {
-
+    public void stop()
+    {
         drive.tankDrive(0.0D, 0.0D);
-
         Timer.delay(0.3D);
     }
 }
