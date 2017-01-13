@@ -1,6 +1,11 @@
 package com.team2502.robot2017.subsystems;
 
 import com.team2502.robot2017.OI;
+import com.team2502.robot2017.RobotMap;
+import com.team2502.robot2017.command.DriveCommand;
+import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -11,15 +16,31 @@ public class DriveTrainSubsystem extends Subsystem
     private double lastLeft;
     private double lastRight;
 
+    private final CANTalon leftTalon0;
+    private final CANTalon leftTalon1;
+    private final CANTalon rightTalon0;
+    private final CANTalon rightTalon1;
+
+    private final RobotDrive drive;
+
     public DriveTrainSubsystem()
     {
         lastLeft = 0.0D;
         lastRight = 0.0D;
+
+        leftTalon0 = new CANTalon(RobotMap.Motor.LEFT_TALON_0);
+        leftTalon1 = new CANTalon(RobotMap.Motor.LEFT_TALON_1);
+        rightTalon0 = new CANTalon(RobotMap.Motor.RIGHT_TALON_0);
+        rightTalon1 = new CANTalon(RobotMap.Motor.RIGHT_TALON_1);
+
+        drive = new RobotDrive(leftTalon0, leftTalon1, rightTalon0, rightTalon1);
+        drive.setExpiration(0.1D);
     }
 
     @Override
     protected void initDefaultCommand()
     {
+        this.setDefaultCommand(new DriveCommand());
     }
 
     /**
@@ -70,5 +91,13 @@ public class DriveTrainSubsystem extends Subsystem
     {
         double leftSpeed = getLeftSpeed();
         double rightSpeed = getRightSpeed();
+        drive.tankDrive(leftSpeed, rightSpeed, true);
+    }
+
+    public void stop() {
+
+        drive.tankDrive(0.0D, 0.0D);
+
+        Timer.delay(0.3D);
     }
 }
