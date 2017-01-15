@@ -1,8 +1,8 @@
 package com.team2502.robot2017;
 
-import com.team2502.robot2017.commands.autonomous.AutonomousCommand;
-import com.team2502.robot2017.subsystems.DriveTrainSubsystem;
-import com.team2502.robot2017.subsystems.PressureSensorSubsytem;
+import com.team2502.robot2017.command.autonomous.AutonomousCommand;
+import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
+import com.team2502.robot2017.subsystem.PressureSensorSubsytem;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;

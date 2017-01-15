@@ -1,7 +1,8 @@
 package com.team2502.robot2017;
 
 import com.team2502.robot2017.chooser.TypeSendableChooser;
-import com.team2502.robot2017.commands.autonomous.AutonomousCommand;
+import com.team2502.robot2017.command.autonomous.AutonomousCommand;
+import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 @SuppressWarnings({ "WeakerAccess" })
@@ -10,23 +11,38 @@ public final class DashboardData
     private DashboardData() {}
 
     public static TypeSendableChooser<AutonomousCommand> AUTONOMOUS_SELECTOR;
+    public static TypeSendableChooser<DriveTrainSubsystem.DriveTypes> DRIVE_CONTROL_SELECTOR;
 
-    public static void update(){ updatePressure(); }
+    public static void update() { updatePressure(); }
 
     public static void setup()
     {
+        AUTONOMOUS_SELECTOR = new TypeSendableChooser<AutonomousCommand>();
+        AUTONOMOUS_SELECTOR.addDefaultT("Default Auto", new AutonomousCommand());
+
+        DRIVE_CONTROL_SELECTOR = new TypeSendableChooser<DriveTrainSubsystem.DriveTypes>();
+        DRIVE_CONTROL_SELECTOR.addDefaultT("Dual Stick Drive Control", DriveTrainSubsystem.DriveTypes.DUAL_STICK);
+        DRIVE_CONTROL_SELECTOR.addObjectT("Arcade Drive Control", DriveTrainSubsystem.DriveTypes.ARCADE);
+
         if(Enabler.AUTONOMOUS.enabler[0])
         {
-            AUTONOMOUS_SELECTOR = new TypeSendableChooser<AutonomousCommand>();
-            AUTONOMOUS_SELECTOR.addDefaultT("Default Auto", new AutonomousCommand());
             SmartDashboard.putData("Auto Mode", AUTONOMOUS_SELECTOR);
+        }
+
+        if(Enabler.DRIVE_CONTROL.enabler[0])
+        {
+            SmartDashboard.putData("Drive Control Mode", DRIVE_CONTROL_SELECTOR);
         }
     }
 
     public static AutonomousCommand getAutonomous()
     {
-        if(Enabler.AUTONOMOUS.enabler[0]) { return AUTONOMOUS_SELECTOR.getSelectedT(); }
-        return null;
+        return AUTONOMOUS_SELECTOR.getSelectedT();
+    }
+
+    public static DriveTrainSubsystem.DriveTypes getDriveType()
+    {
+        return DRIVE_CONTROL_SELECTOR.getSelectedT();
     }
 
     private static void updatePressure()
@@ -43,7 +59,8 @@ public final class DashboardData
     private enum Enabler
     {
         AUTONOMOUS(true),
-        PRESSURE(true, true, true, false, true);
+        PRESSURE(true, true, true, false, true),
+        DRIVE_CONTROL(true);
 
         public final boolean[] enabler;
 

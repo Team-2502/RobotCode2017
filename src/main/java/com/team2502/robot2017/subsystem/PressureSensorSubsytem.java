@@ -1,4 +1,4 @@
-package com.team2502.robot2017.subsystems;
+package com.team2502.robot2017.subsystem;
 
 import com.team2502.robot2017.RobotMap;
 import edu.wpi.first.wpilibj.AnalogInput;
