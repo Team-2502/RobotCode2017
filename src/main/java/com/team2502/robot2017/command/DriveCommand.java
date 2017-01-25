@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveCommand extends Command
 {
-    private DriveTrainSubsystem driveTrainSubsystem;
+    private final DriveTrainSubsystem driveTrainSubsystem;
 
     public DriveCommand()
     {

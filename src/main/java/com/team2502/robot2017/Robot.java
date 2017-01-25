@@ -2,7 +2,8 @@ package com.team2502.robot2017;
 
 import com.team2502.robot2017.command.autonomous.AutonomousCommand;
 import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
-import com.team2502.robot2017.subsystem.PressureSensorSubsytem;
+import com.team2502.robot2017.subsystem.PressureSensorSubsystem;
+import com.team2502.robot2017.subsystem.VisionSubsystem;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -13,7 +14,8 @@ import logger.Log;
 public final class Robot extends IterativeRobot
 {
     public static final DriveTrainSubsystem DRIVE_TRAIN = new DriveTrainSubsystem();
-    public static final PressureSensorSubsytem PRESSURE_SENSOR = new PressureSensorSubsytem();
+    public static final PressureSensorSubsystem PRESSURE_SENSOR = new PressureSensorSubsystem();
+    public static final VisionSubsystem VISION = new VisionSubsystem();
     public static final Compressor COMPRESSOR = new Compressor();
 
     /**
@@ -22,7 +24,7 @@ public final class Robot extends IterativeRobot
      */
     public void robotInit()
     {
-        Log.createLogger();
+        Log.createLogger(true);
         DashboardData.setup();
     }
 
@@ -37,6 +39,7 @@ public final class Robot extends IterativeRobot
     {
         Scheduler.getInstance().run();
         DashboardData.update();
+        DRIVE_TRAIN.stop();
     }
 
     /**
