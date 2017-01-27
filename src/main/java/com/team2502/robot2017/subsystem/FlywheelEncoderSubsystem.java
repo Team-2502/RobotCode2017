@@ -7,9 +7,6 @@ import edu.wpi.first.wpilibj.Encoder;
 
 public class FlywheelEncoderSubsystem extends Subsystem
 {
-    //sets up the velocity variable that is later assigned the velocity that the encoder reads.
-    private double velocity;
-    
     private final CANTalon flywheelTalon;
     private Encoder enc;
     @Override
@@ -29,7 +26,7 @@ public class FlywheelEncoderSubsystem extends Subsystem
         enc = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
         
         // influences getRate method, fiddle with it if needed
-        enc.setMaxPeriod(.1);
+        enc.setMaxPeriod(99999);
         enc.setMinRate(10);
         enc.setDistancePerPulse(5);
         
@@ -40,18 +37,22 @@ public class FlywheelEncoderSubsystem extends Subsystem
         // must be between 1 and 127
         enc.setSamplesToAverage(7);
         
-        // getting encoder values
-        // count is the count, reset when .reset is called
-        int count = enc.get();
-        double rate = enc.getRate();
-        
+            enc.get();
+            enc.getRate();
+            }
         // target value of rate should exist
+
+	public double getRate() {
+		// TODO Auto-generated method stub
+		enc.getRaw();
+		enc.getPeriod();
+		
+		return enc.get();
+		
+	}
+        
+       //flywheel_speed = .580
         
     }
 
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-
-    }
-
-}
+    
