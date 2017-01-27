@@ -65,6 +65,8 @@ public class DriveTrainSubsystem extends Subsystem
         rightSpeed = yLevel;
 
         double xLevel = -OI.JOYSTICK_DRIVE_RIGHT.getX();
+        // Should invert the left/right to be more intuitive while driving backwards.
+        if (yLevel < 0) { xLevel = -xLevel;}
         if(xLevel > 0.0D) { leftSpeed -= xLevel; }
         else if(xLevel < 0.0D) { rightSpeed += xLevel; }
 //        Log.debug("Y: " + yLevel);
@@ -72,9 +74,6 @@ public class DriveTrainSubsystem extends Subsystem
 //        Log.debug("L: " + leftSpeed);
 //        Log.debug("R: " + rightSpeed);
 //        Log.debug("\n\n");
-        
-//        // Should invert the left/right to be more intuitive while driving backwards.
-//        if (yLevel < 0) { xLevel = -xLevel;}
 
         // Sets the speed to 0 if the speed is less than 0.05 or larger than -0.05
         if(Math.abs(leftSpeed) < 0.05D) { leftSpeed = 0.0D; }
