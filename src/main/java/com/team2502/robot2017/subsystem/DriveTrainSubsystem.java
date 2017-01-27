@@ -72,13 +72,13 @@ public class DriveTrainSubsystem extends Subsystem
 //        Log.debug("L: " + leftSpeed);
 //        Log.debug("R: " + rightSpeed);
 //        Log.debug("\n\n");
+        
+//        // Should invert the left/right to be more intuitive while driving backwards.
+//        if (yLevel < 0) { xLevel = -xLevel;}
 
         // Sets the speed to 0 if the speed is less than 0.05 or larger than -0.05
         if(Math.abs(leftSpeed) < 0.05D) { leftSpeed = 0.0D; }
         if(Math.abs(rightSpeed) < 0.05D) { rightSpeed = 0.0D; }
-        
-        // Should invert the left/right to be more intuitive while driving backwards.
-        if (yLevel < 0) { xLevel = -xLevel;}
         
 
         return new Pair<Double, Double>(leftSpeed, rightSpeed);
