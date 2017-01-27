@@ -51,14 +51,15 @@ public final class DashboardData
             if(Enabler.PRESSURE.enabler[2]) { SmartDashboard.putBoolean("Is Compressor Enabled", Robot.COMPRESSOR.enabled()); }
             if(Enabler.PRESSURE.enabler[3]) { SmartDashboard.putBoolean("Is Compressor Low", Robot.COMPRESSOR.getPressureSwitchValue()); }
             if(Enabler.PRESSURE.enabler[4]) { SmartDashboard.putNumber("Current Air Compression Rate", Robot.COMPRESSOR.getCompressorCurrent()); }
-            if(Enabler.PRESSURE.enabler[5]) { SmartDashboard.putNumber("Current Encoder Speed", Robot.enc.getRate()); }
         }
+        
+        SmartDashboard.putNumber("Current Encoder Speed", Robot.enc.getSpeed());
     }
 
     private enum Enabler
     {
         AUTONOMOUS(true),
-        PRESSURE(true, true, true, false, true),
+        PRESSURE(true, true, true, false, true, true),
         DRIVE_CONTROL(true);
 
         public final boolean[] enabler;

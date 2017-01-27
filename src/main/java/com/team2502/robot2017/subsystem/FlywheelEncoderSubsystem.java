@@ -22,12 +22,12 @@ public class FlywheelEncoderSubsystem extends Subsystem
         // 0 and 1 are the port numbers for the 2 digital inputs
         // False tells the encoder to not invert counting direction
         // k4x means FPGA is used and 4x accuracy is obtained
-        // enc.reset();
+        enc.reset();
         enc = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
         
-        // influences getRate method, fiddle with it if needed
-        enc.setMaxPeriod(99999);
-        enc.setMinRate(10);
+        // influences getRate method, fiddle with it if needed.
+        enc.setMaxPeriod(1000);
+        enc.setMinRate(1);
         enc.setDistancePerPulse(5);
         
         // influences counting direction, change if the counting is weird
@@ -42,10 +42,10 @@ public class FlywheelEncoderSubsystem extends Subsystem
             }
         // target value of rate should exist
 
-	public double getRate() {
+	public double getSpeed() {
 		// TODO Auto-generated method stub
 		enc.getRaw();
-		enc.getPeriod();
+		enc.getRate();
 		
 		return enc.get();
 		
