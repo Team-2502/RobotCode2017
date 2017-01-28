@@ -22,7 +22,7 @@ public class FlywheelEncoderSubsystem extends Subsystem
         // 0 and 1 are the port numbers for the 2 digital inputs
         // False tells the encoder to not invert counting direction
         // k4x means FPGA is used and 4x accuracy is obtained
-        enc.reset();
+        
         enc = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
         
         // influences getRate method, fiddle with it if needed.
