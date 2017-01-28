@@ -53,7 +53,7 @@ public final class DashboardData
             if(Enabler.PRESSURE.enabler[4]) { SmartDashboard.putNumber("Current Air Compression Rate", Robot.COMPRESSOR.getCompressorCurrent()); }
         }
         
-        SmartDashboard.putNumber("Current Encoder Speed", Robot.enc.getSpeed());
+        SmartDashboard.putNumber("Current Encoder Speed", Robot.ENCODER.getSpeed());
     }
 
     private enum Enabler

@@ -18,7 +18,7 @@ public final class Robot extends IterativeRobot
     public static final PressureSensorSubsystem PRESSURE_SENSOR = new PressureSensorSubsystem();
     public static final VisionSubsystem VISION = new VisionSubsystem();
     public static final Compressor COMPRESSOR = new Compressor();
-    public static final FlywheelEncoderSubsystem enc = new FlywheelEncoderSubsystem();
+    public static final FlywheelEncoderSubsystem ENCODER = new FlywheelEncoderSubsystem();
 
     /**
      * This function is run when the robot is first started up and should be
