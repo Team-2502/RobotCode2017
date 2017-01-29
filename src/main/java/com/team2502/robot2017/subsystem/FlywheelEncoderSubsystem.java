@@ -8,9 +8,8 @@ import edu.wpi.first.wpilibj.CANTalon;
 
 public class FlywheelEncoderSubsystem extends Subsystem
 {
-	
+
 	public boolean isActive = false;
-	
     private final CANTalon flywheelTalon;
     
     @Override
@@ -22,21 +21,10 @@ public class FlywheelEncoderSubsystem extends Subsystem
     public FlywheelEncoderSubsystem()
     {
         flywheelTalon = new CANTalon(RobotMap.Motor.FLYWHEEL_TALON_0);
-        
-        // BEGIN ENCODER CODE
-        // 0 and 1 are the port numbers for the 2 digital inputs
-        // False tells the encoder to not invert counting direction
-        // k4x means FPGA is used and 4x accuracy is obtained
-        
-        // influences getRate method, fiddle with it if needed.  
-        // influences counting direction, change if the counting is weird
-        
-        // sets number of samples to average when determine the period
-        // must be between 1 and 127
-
     }
-        // target value of rate should exist
 
+    // getSpeed() returns the current velocity of the flywheel.
+    // This information is pulled from the CANTalon class, NOT THE ENCODER CLASS!
 	public int getSpeed()
 	{
 		return flywheelTalon.getEncVelocity();
@@ -44,6 +32,9 @@ public class FlywheelEncoderSubsystem extends Subsystem
 	
 	public void flywheelDrive()
 	{	
+		// Determines if the flywheel is already active.
+		// If active, turn off flywheel at button press.
+		// Else, turn on flywheel at button press.
 		if(OI.JOYSTICK_DRIVE_LEFT.getTrigger()) 
 		{
 			if(isActive) 
@@ -59,10 +50,7 @@ public class FlywheelEncoderSubsystem extends Subsystem
 		}
 	}
 	
-	public void stop() 
-	{
-		
-	}
+	public void stop() {}
 }
 
     
