@@ -1,20 +1,25 @@
 package com.team2502.robot2017.subsystem;
 
+import com.team2502.robot2017.OI;
 import com.team2502.robot2017.RobotMap;
+import com.team2502.robot2017.command.FlywheelCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.hal.CanTalonJNI;
 import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.Encoder;
 
 public class FlywheelEncoderSubsystem extends Subsystem
 {
+	
+	public boolean isActive = false;
+	
     private final CANTalon flywheelTalon;
+    
     @Override
-    protected void initDefaultCommand() {
-        // TODO Auto-generated method stub
+    protected void initDefaultCommand() 
+    {
+    	this.setDefaultCommand(new FlywheelCommand());
     }
     
-    public FlywheelEncoderSubsystem() 
+    public FlywheelEncoderSubsystem()
     {
         flywheelTalon = new CANTalon(RobotMap.Motor.FLYWHEEL_TALON_0);
         
@@ -32,15 +37,32 @@ public class FlywheelEncoderSubsystem extends Subsystem
     }
         // target value of rate should exist
 
-	public int getSpeed() 
+	public int getSpeed()
 	{
-//		enc.getRaw();
-//		enc.getRate();
 		return flywheelTalon.getEncVelocity();
+	} 
+	
+	public void flywheelDrive()
+	{	
+		if(OI.JOYSTICK_DRIVE_LEFT.getTrigger()) 
+		{
+			if(isActive) 
+			{
+				flywheelTalon.set(0); 
+				isActive = false; 
+			}
+			else 
+			{
+				flywheelTalon.set(0.5);
+				isActive = true;
+			}
+		}
 	}
-        
-       //flywheel_speed = .580
-        
-    }
+	
+	public void stop() 
+	{
+		
+	}
+}
 
     

@@ -6,26 +6,26 @@ import com.team2502.robot2017.subsystem.FlywheelEncoderSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class DriveCommand extends Command
+public class FlywheelCommand extends Command
 {
-    private final DriveTrainSubsystem driveTrainSubsystem;
+    private final FlywheelEncoderSubsystem flywheelEncoderSubsystem;
 
-    public DriveCommand()
+    public FlywheelCommand()
     {
-        requires(Robot.DRIVE_TRAIN);
-        driveTrainSubsystem = Robot.DRIVE_TRAIN;
+        requires(Robot.ENCODER);
+        flywheelEncoderSubsystem = Robot.ENCODER;
     }
 
     @Override
     protected void initialize()
     {
-
+        flywheelEncoderSubsystem.isActive = false;
     }
 
     @Override
     protected void execute()
     {
-        driveTrainSubsystem.drive();;
+        flywheelEncoderSubsystem.flywheelDrive();
     }
 
     @Override
@@ -37,12 +37,14 @@ public class DriveCommand extends Command
     @Override
     protected void end()
     {
-        driveTrainSubsystem.stop();
+        flywheelEncoderSubsystem.stop();
+        flywheelEncoderSubsystem.isActive = false;
     }
 
     @Override
     protected void interrupted()
     {
-        driveTrainSubsystem.stop();
+        flywheelEncoderSubsystem.stop();
+        flywheelEncoderSubsystem.isActive = false;
     }
 }

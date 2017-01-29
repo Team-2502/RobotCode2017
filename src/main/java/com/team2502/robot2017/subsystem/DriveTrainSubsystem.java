@@ -26,7 +26,7 @@ public class DriveTrainSubsystem extends Subsystem
     private final CANTalon rightTalon0;
     private final CANTalon rightTalon1;
     
-    private final CANTalon flywheelTalon;
+//    private final CANTalon flywheelTalon;
 
     private final RobotDrive drive;
 
@@ -40,7 +40,7 @@ public class DriveTrainSubsystem extends Subsystem
         rightTalon0 = new CANTalon(RobotMap.Motor.RIGHT_TALON_0);
         rightTalon1 = new CANTalon(RobotMap.Motor.RIGHT_TALON_1);
         
-        flywheelTalon = new CANTalon(RobotMap.Motor.FLYWHEEL_TALON_0);
+//        flywheelTalon = new CANTalon(RobotMap.Motor.FLYWHEEL_TALON_0);
 
         drive = new RobotDrive(leftTalon0, leftTalon1, rightTalon0, rightTalon1);
         drive.setExpiration(0.1D);
@@ -69,8 +69,10 @@ public class DriveTrainSubsystem extends Subsystem
         rightSpeed = yLevel;
 
         double xLevel = -OI.JOYSTICK_DRIVE_RIGHT.getX();
+        
         // Should invert the left/right to be more intuitive while driving backwards.
-        if (yLevel < 0) { xLevel = -xLevel;}
+        if(yLevel < 0) { xLevel = -xLevel;}
+        
         if(xLevel > 0.0D) { leftSpeed -= xLevel; }
         else if(xLevel < 0.0D) { rightSpeed += xLevel; }
 //        Log.debug("Y: " + yLevel);
@@ -126,8 +128,6 @@ public class DriveTrainSubsystem extends Subsystem
     {
         Pair<Double, Double> speed = (DashboardData.getDriveType() == DriveTypes.DUAL_STICK) ? getSpeed() : getSpeedArcade();
         drive.tankDrive(speed.left, speed.right, true);
-        
-        flywheelTalon.set(-OI.JOYSTICK_DRIVE_LEFT.getY());
     }
 
     public void stop()
