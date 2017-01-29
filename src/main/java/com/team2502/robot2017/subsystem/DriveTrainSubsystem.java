@@ -25,6 +25,8 @@ public class DriveTrainSubsystem extends Subsystem
     private final CANTalon leftTalon1;
     private final CANTalon rightTalon0;
     private final CANTalon rightTalon1;
+    
+    private final CANTalon flywheelTalon;
 
     private final RobotDrive drive;
 
@@ -37,6 +39,8 @@ public class DriveTrainSubsystem extends Subsystem
         leftTalon1 = new CANTalon(RobotMap.Motor.LEFT_TALON_1);
         rightTalon0 = new CANTalon(RobotMap.Motor.RIGHT_TALON_0);
         rightTalon1 = new CANTalon(RobotMap.Motor.RIGHT_TALON_1);
+        
+        flywheelTalon = new CANTalon(RobotMap.Motor.FLYWHEEL_TALON_0);
 
         drive = new RobotDrive(leftTalon0, leftTalon1, rightTalon0, rightTalon1);
         drive.setExpiration(0.1D);
@@ -122,6 +126,8 @@ public class DriveTrainSubsystem extends Subsystem
     {
         Pair<Double, Double> speed = (DashboardData.getDriveType() == DriveTypes.DUAL_STICK) ? getSpeed() : getSpeedArcade();
         drive.tankDrive(speed.left, speed.right, true);
+        
+        flywheelTalon.set(-OI.JOYSTICK_DRIVE_LEFT.getY());
     }
 
     public void stop()

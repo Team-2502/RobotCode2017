@@ -3,6 +3,8 @@ package com.team2502.robot2017;
 import com.team2502.robot2017.chooser.TypeSendableChooser;
 import com.team2502.robot2017.command.autonomous.AutonomousCommand;
 import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
+
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 @SuppressWarnings({ "WeakerAccess" })
@@ -53,7 +55,7 @@ public final class DashboardData
             if(Enabler.PRESSURE.enabler[4]) { SmartDashboard.putNumber("Current Air Compression Rate", Robot.COMPRESSOR.getCompressorCurrent()); }
         }
         
-        SmartDashboard.putNumber("Current Encoder Speed", Robot.ENCODER.getSpeed());
+        SmartDashboard.putNumber("Current Flywheel Speed", Robot.ENCODER.getSpeed());
     }
 
     private enum Enabler

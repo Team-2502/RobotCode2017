@@ -26,12 +26,13 @@ public class RobotMap
 
     public static final class Motor
     {
+    	
         private Motor() {}
 
-        public static final int LEFT_TALON_0 = 3;
-        public static final int LEFT_TALON_1 = 1;
-        public static final int RIGHT_TALON_0 = 4;
-        public static final int RIGHT_TALON_1 = 2;
+        public static final int LEFT_TALON_0 = 2;
+        public static final int LEFT_TALON_1 = 4;
+        public static final int RIGHT_TALON_0 = 1;
+        public static final int RIGHT_TALON_1 = 3;
         public static final int FLYWHEEL_TALON_0 = 5;
     }
 }
