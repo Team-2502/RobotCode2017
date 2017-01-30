@@ -19,7 +19,7 @@ public class RobotMap
         {
             private Button() {}
 
-            public static final int SWITCH_GEAR = UNDEFINED;
+            public static final int SWITCH_GEAR = 1;
         }
     }
 
@@ -44,7 +44,7 @@ public class RobotMap
     {
         private Solenoid() {}
 
-        public static final int LEFT_GEAR = UNDEFINED;
-        public static final int RIGHT_GEAR = UNDEFINED;
+        public static final int HIGH_GEAR = 0;
+        public static final int LOW_GEAR = 1;
     }
 }
