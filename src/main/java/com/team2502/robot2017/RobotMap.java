@@ -44,7 +44,6 @@ public class RobotMap
     {
         private Solenoid() {}
 
-        public static final int HIGH_GEAR = 0;
-        public static final int LOW_GEAR = 1;
+        public static final int GEAR_SWITCH = 0;
     }
 }
