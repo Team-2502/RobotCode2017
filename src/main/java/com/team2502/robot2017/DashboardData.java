@@ -56,6 +56,8 @@ public final class DashboardData
         }
         
         SmartDashboard.putNumber("Current Flywheel Speed", Robot.ENCODER.getSpeed());
+        SmartDashboard.putNumber("Encoder Position", Robot.ENCODER.getPosition());
+        SmartDashboard.putNumber("Motor Output", Robot.ENCODER.getMotorOutput());
     }
 
     private enum Enabler
