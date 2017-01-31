@@ -34,10 +34,10 @@ public class RobotMap
     {
         private Motor() {}
 
-        public static final int LEFT_TALON_0 = 6;
-        public static final int LEFT_TALON_1 = 5;
-        public static final int RIGHT_TALON_0 = 3;
-        public static final int RIGHT_TALON_1 = 2;
+        public static final int LEFT_TALON_0 = 4;
+        public static final int LEFT_TALON_1 = 2;
+        public static final int RIGHT_TALON_0 = 1;
+        public static final int RIGHT_TALON_1 = 3;
     }
 
     public static final class Solenoid
