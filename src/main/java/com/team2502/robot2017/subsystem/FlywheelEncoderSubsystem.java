@@ -13,6 +13,7 @@ public class FlywheelEncoderSubsystem extends Subsystem
 
 	public boolean isActive = false;
     private final CANTalon flywheelTalon;
+    private final CANTalon feederTalon; 
     
     @Override
     protected void initDefaultCommand() 
@@ -22,6 +23,7 @@ public class FlywheelEncoderSubsystem extends Subsystem
     	flywheelTalon.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	flywheelTalon.configEncoderCodesPerRev(256);
     	flywheelTalon.reverseSensor(false);
+    	feederTalon.disable();
     	
     	flywheelTalon.configNominalOutputVoltage(+0.0f, -0.0f);
     	flywheelTalon.configPeakOutputVoltage(+12.0f, -12.0f);
@@ -36,6 +38,7 @@ public class FlywheelEncoderSubsystem extends Subsystem
     public FlywheelEncoderSubsystem()
     {
         flywheelTalon = new CANTalon(RobotMap.Motor.FLYWHEEL_TALON_0);
+        feederTalon = new CANTalon(RobotMap.Motor.FEEDER_TALON_0);
     }
 
     // getSpeed() returns the current velocity of the flywheel.
@@ -67,6 +70,16 @@ public class FlywheelEncoderSubsystem extends Subsystem
 			{
 				flywheelTalon.set(targetSpeed);
 				isActive = true;
+			}
+		}
+		if(OI.JOYSTICK_FUNCTION.getTrigger()){
+			if(isActive)
+			{
+				feederTalon.set(0);
+			}
+			else 
+			{
+				feederTalon.set(1.0);
 			}
 		}
 	}

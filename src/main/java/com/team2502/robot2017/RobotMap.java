@@ -34,5 +34,6 @@ public class RobotMap
         public static final int RIGHT_TALON_0 = 1;
         public static final int RIGHT_TALON_1 = 3;
         public static final int FLYWHEEL_TALON_0 = 5;
+        public static final int FEEDER_TALON_0 = 6; 
     }
 }
