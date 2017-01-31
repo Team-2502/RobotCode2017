@@ -19,7 +19,8 @@ public class FlywheelCommand extends Command
     @Override
     protected void initialize()
     {
-        flywheelEncoderSubsystem.isActive = false;
+        flywheelEncoderSubsystem.isActiveFlywheel = false;
+        flywheelEncoderSubsystem.isActiveFeeder = false;
     }
 
     @Override
@@ -38,13 +39,15 @@ public class FlywheelCommand extends Command
     protected void end()
     {
         flywheelEncoderSubsystem.stop();
-        flywheelEncoderSubsystem.isActive = false;
+        flywheelEncoderSubsystem.isActiveFlywheel = false;
+        flywheelEncoderSubsystem.isActiveFeeder = false;
     }
 
     @Override
     protected void interrupted()
     {
         flywheelEncoderSubsystem.stop();
-        flywheelEncoderSubsystem.isActive = false;
+        flywheelEncoderSubsystem.isActiveFlywheel = false;
+        flywheelEncoderSubsystem.isActiveFeeder = false;
     }
 }

@@ -11,9 +11,12 @@ import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 public class FlywheelEncoderSubsystem extends Subsystem
 {
 
-	public boolean isActive = false;
+	public boolean isActiveFlywheel = false;
+	public boolean isActiveFeeder = false;
     private final CANTalon flywheelTalon;
-    private final CANTalon feederTalon; 
+    private final CANTalon feederTalon1; 
+    private final CANTalon feederTalon2; 
+    
     
     @Override
     protected void initDefaultCommand() 
@@ -23,7 +26,8 @@ public class FlywheelEncoderSubsystem extends Subsystem
     	flywheelTalon.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	flywheelTalon.configEncoderCodesPerRev(256);
     	flywheelTalon.reverseSensor(false);
-    	feederTalon.disable();
+    	feederTalon1.disable();
+    	feederTalon2.disable();
     	
     	flywheelTalon.configNominalOutputVoltage(+0.0f, -0.0f);
     	flywheelTalon.configPeakOutputVoltage(+12.0f, -12.0f);
@@ -38,7 +42,8 @@ public class FlywheelEncoderSubsystem extends Subsystem
     public FlywheelEncoderSubsystem()
     {
         flywheelTalon = new CANTalon(RobotMap.Motor.FLYWHEEL_TALON_0);
-        feederTalon = new CANTalon(RobotMap.Motor.FEEDER_TALON_0);
+        feederTalon1 = new CANTalon(RobotMap.Motor.FEEDER_TALON_0);
+        feederTalon2 = new CANTalon(RobotMap.Motor.FEEDER_TALON_1);
     }
 
     // getSpeed() returns the current velocity of the flywheel.
@@ -61,25 +66,31 @@ public class FlywheelEncoderSubsystem extends Subsystem
 		if(OI.JOYSTICK_DRIVE_LEFT.getTrigger()) 
 		{
 			
-			if(isActive) 
+			if(isActiveFlywheel) 
 			{
 				flywheelTalon.set(0); 
-				isActive = false; 
+				isActiveFlywheel = false; 
 			}
 			else 
 			{
 				flywheelTalon.set(targetSpeed);
-				isActive = true;
+				isActiveFlywheel = true;
 			}
 		}
 		if(OI.JOYSTICK_FUNCTION.getTrigger()){
-			if(isActive)
-			{
-				feederTalon.set(0);
+			if(isActiveFeeder)
+			{	
+				feederTalon1.set(0);
+				feederTalon2.set(0);
+				isActiveFeeder = false;
+			
 			}
 			else 
-			{
-				feederTalon.set(1.0);
+			{	feederTalon1.enable();
+				feederTalon2.enable();
+				feederTalon1.set(1.0);
+				feederTalon2.set(1.0);
+				isActiveFeeder = true;
 			}
 		}
 	}
