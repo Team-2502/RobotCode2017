@@ -39,8 +39,6 @@ public class DriveTrainSubsystem extends Subsystem
         leftTalon1 = new CANTalon(RobotMap.Motor.LEFT_TALON_1);
         rightTalon0 = new CANTalon(RobotMap.Motor.RIGHT_TALON_0);
         rightTalon1 = new CANTalon(RobotMap.Motor.RIGHT_TALON_1);
-        
-//        flywheelTalon = new CANTalon(RobotMap.Motor.FLYWHEEL_TALON_0);
 
         drive = new RobotDrive(leftTalon0, leftTalon1, rightTalon0, rightTalon1);
         drive.setExpiration(0.1D);

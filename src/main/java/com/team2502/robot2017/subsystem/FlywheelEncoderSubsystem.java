@@ -18,6 +18,9 @@ public class FlywheelEncoderSubsystem extends Subsystem
     private final CANTalon feederTalon2; 
     
     
+    double targetSpeed = 2000;
+    double error = 0;
+    
     @Override
     protected void initDefaultCommand() 
     {
@@ -33,7 +36,7 @@ public class FlywheelEncoderSubsystem extends Subsystem
     	flywheelTalon.configPeakOutputVoltage(+12.0f, -12.0f);
     	
     	flywheelTalon.setProfile(0);
-    	flywheelTalon.setF(0.1498);
+    	flywheelTalon.setF(0.1199);
     	flywheelTalon.setP(0);
     	flywheelTalon.setI(0);
     	flywheelTalon.setD(0);
@@ -54,10 +57,21 @@ public class FlywheelEncoderSubsystem extends Subsystem
 	
 	public double getMotorOutput() { return flywheelTalon.getOutputVoltage() / flywheelTalon.getBusVoltage(); }
 	
+	public double getTargetSpeed() { return targetSpeed; }
+	
+	public double getError() { return flywheelTalon.getClosedLoopError(); }
+	
+	public double getTopError()
+	{
+		double newError = getError();
+		
+		if(newError > error) { error = newError; }
+		
+		return error;
+	}
+	
 	public void flywheelDrive()
 	{	
-		double motorOutput = flywheelTalon.getOutputVoltage() / flywheelTalon.getBusVoltage();
-		double targetSpeed = 2000;
      	flywheelTalon.changeControlMode(TalonControlMode.Speed);
 		
 		// Determines if the flywheel is already active.
