@@ -18,7 +18,7 @@ public class FlywheelEncoderSubsystem extends Subsystem
     private final CANTalon feederTalon2; 
     
     
-    double targetSpeed = 2000;
+    double targetSpeed = 5000;
     double error = 0;
     
     @Override
@@ -29,8 +29,6 @@ public class FlywheelEncoderSubsystem extends Subsystem
     	flywheelTalon.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	flywheelTalon.configEncoderCodesPerRev(256);
     	flywheelTalon.reverseSensor(false);
-    	feederTalon1.disable();
-    	feederTalon2.disable();
     	
     	flywheelTalon.configNominalOutputVoltage(+0.0f, -0.0f);
     	flywheelTalon.configPeakOutputVoltage(+12.0f, -12.0f);
@@ -91,21 +89,17 @@ public class FlywheelEncoderSubsystem extends Subsystem
 				isActiveFlywheel = true;
 			}
 		}
-		if(OI.JOYSTICK_FUNCTION.getTrigger()){
-			if(isActiveFeeder)
-			{	
-				feederTalon1.set(0);
-				feederTalon2.set(0);
-				isActiveFeeder = false;
-			
-			}
-			else 
-			{	feederTalon1.enable();
-				feederTalon2.enable();
-				feederTalon1.set(1.0);
-				feederTalon2.set(1.0);
-				isActiveFeeder = true;
-			}
+		
+		if(OI.JOYSTICK_FUNCTION.getTrigger())
+		{	
+		    feederTalon1.set(1);
+		    feederTalon2.set(-1);
+		}
+		
+		else
+		{
+			feederTalon1.set(0);
+			feederTalon2.set(0);
 		}
 	}
 	
