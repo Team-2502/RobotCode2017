@@ -1,0 +1,76 @@
+package com.team2502.robot2017;
+
+import com.team2502.robot2017.chooser.TypeSendableChooser;
+import com.team2502.robot2017.command.autonomous.AutonomousCommand;
+import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+@SuppressWarnings({ "WeakerAccess" })
+public final class DashboardData
+{
+    private DashboardData() {}
+
+    public static final TypeSendableChooser<AutonomousCommand> AUTONOMOUS_SELECTOR = new TypeSendableChooser<AutonomousCommand>();
+    public static final TypeSendableChooser<DriveTrainSubsystem.DriveTypes> DRIVE_CONTROL_SELECTOR = new TypeSendableChooser<DriveTrainSubsystem.DriveTypes>();
+
+    public static void update() { updatePressure(); }
+
+    public static void setup()
+    {
+        AUTONOMOUS_SELECTOR.addDefaultT("Default Auto", new AutonomousCommand());
+
+        DRIVE_CONTROL_SELECTOR.addDefaultT("Arcade Drive Control", DriveTrainSubsystem.DriveTypes.ARCADE);
+        DRIVE_CONTROL_SELECTOR.addObjectT("Dual Stick Drive Control", DriveTrainSubsystem.DriveTypes.DUAL_STICK);
+
+        if(Enabler.AUTONOMOUS.enabler[0])
+        {
+            SmartDashboard.putData("Auto Mode", AUTONOMOUS_SELECTOR);
+        }
+
+        if(Enabler.DRIVE_CONTROL.enabler[0])
+        {
+            SmartDashboard.putData("Drive Control Mode", DRIVE_CONTROL_SELECTOR);
+        }
+    }
+
+    public static AutonomousCommand getAutonomous()
+    {
+        return AUTONOMOUS_SELECTOR.getSelectedT();
+    }
+
+    public static DriveTrainSubsystem.DriveTypes getDriveType()
+    {
+        return DRIVE_CONTROL_SELECTOR.getSelectedT();
+    }
+
+    private static void updatePressure()
+    {
+        SmartDashboard.putNumber("Current Flywheel Speed", Robot.ENCODER.getSpeed());
+        SmartDashboard.putNumber("Target Speed", Robot.ENCODER.getTargetSpeed());
+        SmartDashboard.putNumber("Loop Error", Robot.ENCODER.getError());
+        SmartDashboard.putNumber("Highest Error Encountered", Robot.ENCODER.getTopError());
+        SmartDashboard.putNumber("Encoder Position", Robot.ENCODER.getPosition());
+        SmartDashboard.putNumber("Motor Output", Robot.ENCODER.getMotorOutput());
+
+        if(Enabler.PRESSURE.enabler[0])
+        {
+            if(Enabler.PRESSURE.enabler[1]) { SmartDashboard.putNumber("Current Tank Pressure", Robot.PRESSURE_SENSOR.getPressure()); }
+            if(Enabler.PRESSURE.enabler[2]) { SmartDashboard.putBoolean("Is Compressor Enabled", Robot.COMPRESSOR.enabled()); }
+            if(Enabler.PRESSURE.enabler[3]) { SmartDashboard.putBoolean("Is Compressor Low", Robot.COMPRESSOR.getPressureSwitchValue()); }
+            if(Enabler.PRESSURE.enabler[4]) { SmartDashboard.putNumber("Current Air Compression Rate", Robot.COMPRESSOR.getCompressorCurrent()); }
+        }
+
+    }
+
+    private enum Enabler
+    {
+        AUTONOMOUS(true),
+        PRESSURE(true, true, true, false, true),
+        DRIVE_CONTROL(true);
+
+        public final boolean[] enabler;
+
+        Enabler(boolean... enabler) { this.enabler = enabler; }
+    }
+}
