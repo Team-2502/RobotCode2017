@@ -52,6 +52,8 @@ public class DriveTrainSubsystem extends Subsystem
 
     private Pair<Double, Double> getSpeedArcade()
     {
+        double leftSpeed;
+        double rightSpeed;
         // Get the base speed of the robot
         double yLevel = -OI.JOYSTICK_DRIVE_RIGHT.getY();
 
@@ -61,25 +63,25 @@ public class DriveTrainSubsystem extends Subsystem
 //        else if(diff < 0.1D) { yLevel = lastRight - 0.1D; }
 //        lastRight = yLevel;
 
-        double leftSpeed = yLevel;
-        double rightSpeed = yLevel;
+        leftSpeed = yLevel;
+        rightSpeed = yLevel;
 
         double xLevel = -OI.JOYSTICK_DRIVE_RIGHT.getX();
-        if(yLevel < 0.0D) { xLevel *= -1; }
-
+        
+        // Should invert the left/right to be more intuitive while driving backwards.
+        if(yLevel < 0) { xLevel = -xLevel;}
+        
         if(xLevel > 0.0D) { leftSpeed -= xLevel; }
         else if(xLevel < 0.0D) { rightSpeed += xLevel; }
-        
-//        Log.info("X: " + xLevel);
-//        Log.info("Y: " + yLevel);
-//        Log.info("L: " + leftSpeed);
-//        Log.info("R: " + rightSpeed);
-//        System.out.println("\n");
+//        Log.debug("Y: " + yLevel);
+//        Log.debug("X: " + xLevel);
+//        Log.debug("L: " + leftSpeed);
+//        Log.debug("R: " + rightSpeed);
+//        Log.debug("\n\n");
 
-        // Sets the speed to 0 if the speed is less than 0.05 and larger than -0.05
-        if(Math.abs(leftSpeed) > 1.0D) { leftSpeed = 1.0D; }
-        if(Math.abs(rightSpeed) > 1.0D) { rightSpeed = 1.0D; }
-
+        // Sets the speed to 0 if the speed is less than 0.05 or larger than -0.05
+        if(Math.abs(leftSpeed) < 0.05D) { leftSpeed = 0.0D; }
+        if(Math.abs(rightSpeed) < 0.05D) { rightSpeed = 0.0D; }
 
         return new Pair<Double, Double>(leftSpeed, rightSpeed);
     }
@@ -87,6 +89,8 @@ public class DriveTrainSubsystem extends Subsystem
     /**
      * Used to gradually increase the speed of the robot.
      *
+
+     * @param isLeftSide Whether or not it is the left joystick/side
      * @return the speed of the robot
      */
     private Pair<Double, Double> getSpeed()

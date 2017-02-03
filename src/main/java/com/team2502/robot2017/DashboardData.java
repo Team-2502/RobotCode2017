@@ -3,6 +3,7 @@ package com.team2502.robot2017;
 import com.team2502.robot2017.chooser.TypeSendableChooser;
 import com.team2502.robot2017.command.autonomous.AutonomousCommand;
 import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 @SuppressWarnings({ "WeakerAccess" })
@@ -45,6 +46,13 @@ public final class DashboardData
 
     private static void updatePressure()
     {
+        SmartDashboard.putNumber("Current Flywheel Speed", Robot.ENCODER.getSpeed());
+        SmartDashboard.putNumber("Target Speed", Robot.ENCODER.getTargetSpeed());
+        SmartDashboard.putNumber("Loop Error", Robot.ENCODER.getError());
+        SmartDashboard.putNumber("Highest Error Encountered", Robot.ENCODER.getTopError());
+        SmartDashboard.putNumber("Encoder Position", Robot.ENCODER.getPosition());
+        SmartDashboard.putNumber("Motor Output", Robot.ENCODER.getMotorOutput());
+
         if(Enabler.PRESSURE.enabler[0])
         {
             if(Enabler.PRESSURE.enabler[1]) { SmartDashboard.putNumber("Current Tank Pressure", Robot.PRESSURE_SENSOR.getPressure()); }
@@ -52,6 +60,7 @@ public final class DashboardData
             if(Enabler.PRESSURE.enabler[3]) { SmartDashboard.putBoolean("Is Compressor Low", Robot.COMPRESSOR.getPressureSwitchValue()); }
             if(Enabler.PRESSURE.enabler[4]) { SmartDashboard.putNumber("Current Air Compression Rate", Robot.COMPRESSOR.getCompressorCurrent()); }
         }
+
     }
 
     private enum Enabler

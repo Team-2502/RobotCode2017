@@ -9,6 +9,9 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import com.team2502.robot2017.subsystem.FlywheelEncoderSubsystem;
+import com.team2502.robot2017.subsystem.DistanceSensorSubsystem;
+import logger.Log;
 
 @SuppressWarnings({ "WeakerAccess" })
 public final class Robot extends IterativeRobot
@@ -23,6 +26,8 @@ public final class Robot extends IterativeRobot
     public static final PressureSensorSubsystem PRESSURE_SENSOR = new PressureSensorSubsystem();
     public static final VisionSubsystem VISION = new VisionSubsystem();
     public static final Compressor COMPRESSOR = new Compressor();
+    public static final FlywheelEncoderSubsystem ENCODER = new FlywheelEncoderSubsystem();
+    public static final DistanceSensorSubsystem DISTANCE_SENSOR = new DistanceSensorSubsystem();
     public static DriveTrainGearSwitchSubsystem DRIVE_TRAIN_GEAR_SWITCH;
 
     /**
@@ -31,6 +36,7 @@ public final class Robot extends IterativeRobot
      */
     public void robotInit()
     {
+        Log.createLogger(true);
         DashboardData.setup();
         OI.init();
     }
