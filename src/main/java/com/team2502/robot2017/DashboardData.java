@@ -46,12 +46,11 @@ public final class DashboardData
 
     private static void updatePressure()
     {
-        SmartDashboard.putNumber("Current Flywheel Speed", Robot.ENCODER.getSpeed());
-        SmartDashboard.putNumber("Target Speed", Robot.ENCODER.getTargetSpeed());
-        SmartDashboard.putNumber("Loop Error", Robot.ENCODER.getError());
-        SmartDashboard.putNumber("Highest Error Encountered", Robot.ENCODER.getTopError());
-        SmartDashboard.putNumber("Encoder Position", Robot.ENCODER.getPosition());
-        SmartDashboard.putNumber("Motor Output", Robot.ENCODER.getMotorOutput());
+        SmartDashboard.putNumber("FW: Current Flywheel Speed", Robot.ENCODER.getSpeed());
+        SmartDashboard.putNumber("FW: Target Speed", Robot.ENCODER.getTargetSpeed());
+        SmartDashboard.putNumber("FW: Loop Error", Robot.ENCODER.getError());
+        SmartDashboard.putNumber("FW: Highest Error Encountered", Robot.ENCODER.getTopError());
+        SmartDashboard.putNumber("FW: Motor Output", Robot.ENCODER.getMotorOutput());
 
         if(Enabler.PRESSURE.enabler[0])
         {
@@ -60,7 +59,6 @@ public final class DashboardData
             if(Enabler.PRESSURE.enabler[3]) { SmartDashboard.putBoolean("Is Compressor Low", Robot.COMPRESSOR.getPressureSwitchValue()); }
             if(Enabler.PRESSURE.enabler[4]) { SmartDashboard.putNumber("Current Air Compression Rate", Robot.COMPRESSOR.getCompressorCurrent()); }
         }
-
     }
 
     private enum Enabler
