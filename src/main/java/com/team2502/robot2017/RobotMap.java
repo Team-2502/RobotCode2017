@@ -22,6 +22,7 @@ public class RobotMap
 
         public static final int PRESSURE_SENSOR = 0;
         public static final double ENC = 0;
+		public static final int DISTANCE_SENSOR = 1;
     }
 
     public static final class Motor

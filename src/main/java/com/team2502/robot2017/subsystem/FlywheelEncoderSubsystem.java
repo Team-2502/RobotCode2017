@@ -35,7 +35,7 @@ public class FlywheelEncoderSubsystem extends Subsystem
     	
     	flywheelTalon.setProfile(0);
     	flywheelTalon.setF(0.1199);
-    	flywheelTalon.setP(0);
+    	flywheelTalon.setP(0.075);
     	flywheelTalon.setI(0);
     	flywheelTalon.setD(0);
     }
@@ -53,7 +53,7 @@ public class FlywheelEncoderSubsystem extends Subsystem
 	
 	public int getPosition() { return flywheelTalon.getEncPosition(); }
 	
-	public double getMotorOutput() { return flywheelTalon.getOutputVoltage() / flywheelTalon.getBusVoltage(); }
+	public double getMotorOutput() { return (flywheelTalon.getOutputVoltage() / flywheelTalon.getBusVoltage()); }
 	
 	public double getTargetSpeed() { return targetSpeed; }
 	
@@ -90,12 +90,21 @@ public class FlywheelEncoderSubsystem extends Subsystem
 			}
 		}
 		
+		if(OI.JOYSTICK_FUNCTION.getRawButton(12))
+		{
+			targetSpeed = (targetSpeed - 10); 
+		}
+		
+		if(OI.JOYSTICK_FUNCTION.getRawButton(11))
+		{
+			targetSpeed = (targetSpeed + 10);
+		}
+		
 		if(OI.JOYSTICK_FUNCTION.getTrigger())
 		{	
 		    feederTalon1.set(1);
 		    feederTalon2.set(-1);
 		}
-		
 		else
 		{
 			feederTalon1.set(0);
