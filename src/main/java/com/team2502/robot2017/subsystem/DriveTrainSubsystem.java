@@ -65,18 +65,20 @@ public class DriveTrainSubsystem extends Subsystem
         double rightSpeed = yLevel;
 
         double xLevel = -OI.JOYSTICK_DRIVE_RIGHT.getX();
-        if(yLevel < 0.0D) { xLevel = -xLevel; }
+        if(yLevel < 0.0D) { xLevel *= -1; }
+
         if(xLevel > 0.0D) { leftSpeed -= xLevel; }
         else if(xLevel < 0.0D) { rightSpeed += xLevel; }
-//        Log.debug("Y: " + yLevel);
-//        Log.debug("X: " + xLevel);
-//        Log.debug("L: " + leftSpeed);
-//        Log.debug("R: " + rightSpeed);
-//        Log.debug("\n\n");
+        
+//        Log.info("X: " + xLevel);
+//        Log.info("Y: " + yLevel);
+//        Log.info("L: " + leftSpeed);
+//        Log.info("R: " + rightSpeed);
+//        System.out.println("\n");
 
-        // Sets the speed to 0 if the speed is less than 0.05 or larger than -0.05
-        if(Math.abs(leftSpeed) < 0.05D) { leftSpeed = 0.0D; }
-        if(Math.abs(rightSpeed) < 0.05D) { rightSpeed = 0.0D; }
+        // Sets the speed to 0 if the speed is less than 0.05 and larger than -0.05
+        if(Math.abs(leftSpeed) > 1.0D) { leftSpeed = 1.0D; }
+        if(Math.abs(rightSpeed) > 1.0D) { rightSpeed = 1.0D; }
 
 
         return new Pair<Double, Double>(leftSpeed, rightSpeed);

@@ -19,4 +19,6 @@ public final class OI
     {
         SWITCH_GEAR_BUTTON.whenPressed(new SwitchDriveTrainGearCommand());
     }
+
+    public static void init() {}
 }

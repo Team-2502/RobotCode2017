@@ -1,23 +1,21 @@
 package com.team2502.robot2017.subsystem;
 
 import com.team2502.robot2017.RobotMap;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+@SuppressWarnings("WeakerAccess")
 public class DriveTrainGearSwitchSubsystem extends Subsystem
 {
-
-    private final Solenoid leftGear;
-    private final Solenoid rightGear;
+    private final Solenoid switcher;
 
     // TODO: Change name to `lowGear` if applicable.
     private boolean highGear;
 
     public DriveTrainGearSwitchSubsystem()
     {
-        leftGear = new Solenoid(RobotMap.Solenoid.LEFT_GEAR);
-        rightGear = new Solenoid(RobotMap.Solenoid.RIGHT_GEAR);
-
+        switcher = new Solenoid(RobotMap.Solenoid.GEAR_SWITCH);
         highGear = false;
     }
 
@@ -37,9 +35,7 @@ public class DriveTrainGearSwitchSubsystem extends Subsystem
 
     public void setGear(boolean highGear)
     {
-        this.highGear = highGear;
-        leftGear.set(highGear);
-        rightGear.set(highGear);
+        switcher.set(this.highGear = highGear);
     }
 
     public boolean getGear()

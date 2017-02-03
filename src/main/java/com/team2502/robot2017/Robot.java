@@ -9,16 +9,21 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import logger.Log;
 
 @SuppressWarnings({ "WeakerAccess" })
 public final class Robot extends IterativeRobot
 {
+    static
+    {
+        /* I don't know why but this prevents problems. */
+        DRIVE_TRAIN_GEAR_SWITCH = new DriveTrainGearSwitchSubsystem();
+    }
+
     public static final DriveTrainSubsystem DRIVE_TRAIN = new DriveTrainSubsystem();
     public static final PressureSensorSubsystem PRESSURE_SENSOR = new PressureSensorSubsystem();
     public static final VisionSubsystem VISION = new VisionSubsystem();
     public static final Compressor COMPRESSOR = new Compressor();
-    public static final DriveTrainGearSwitchSubsystem DRIVE_TRAIN_GEAR_SWITCH = new DriveTrainGearSwitchSubsystem();
+    public static DriveTrainGearSwitchSubsystem DRIVE_TRAIN_GEAR_SWITCH;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -26,8 +31,8 @@ public final class Robot extends IterativeRobot
      */
     public void robotInit()
     {
-        Log.createLogger(true);
         DashboardData.setup();
+        OI.init();
     }
 
     /**
