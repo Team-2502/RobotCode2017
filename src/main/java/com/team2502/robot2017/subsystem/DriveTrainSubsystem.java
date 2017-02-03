@@ -2,10 +2,12 @@ package com.team2502.robot2017.subsystem;
 
 import com.team2502.robot2017.DashboardData;
 import com.team2502.robot2017.OI;
+import com.team2502.robot2017.Robot;
 import com.team2502.robot2017.RobotMap;
 import com.team2502.robot2017.command.DriveCommand;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import javafx.beans.NamedArg;
@@ -25,8 +27,6 @@ public class DriveTrainSubsystem extends Subsystem
     private final CANTalon leftTalon1;
     private final CANTalon rightTalon0;
     private final CANTalon rightTalon1;
-    
-//    private final CANTalon flywheelTalon;
 
     private final RobotDrive drive;
 
@@ -82,7 +82,6 @@ public class DriveTrainSubsystem extends Subsystem
         // Sets the speed to 0 if the speed is less than 0.05 or larger than -0.05
         if(Math.abs(leftSpeed) < 0.05D) { leftSpeed = 0.0D; }
         if(Math.abs(rightSpeed) < 0.05D) { rightSpeed = 0.0D; }
-        
 
         return new Pair<Double, Double>(leftSpeed, rightSpeed);
     }
@@ -90,6 +89,7 @@ public class DriveTrainSubsystem extends Subsystem
     /**
      * Used to gradually increase the speed of the robot.
      *
+
      * @param isLeftSide Whether or not it is the left joystick/side
      * @return the speed of the robot
      */
@@ -130,6 +130,8 @@ public class DriveTrainSubsystem extends Subsystem
 
     public void stop()
     {
+        lastLeft = 0.0D;
+        lastRight = 0.0D;
         drive.tankDrive(0.0D, 0.0D);
         Timer.delay(0.3D);
     }

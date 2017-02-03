@@ -1,6 +1,7 @@
 package com.team2502.robot2017;
 
 import com.team2502.robot2017.command.autonomous.AutonomousCommand;
+import com.team2502.robot2017.subsystem.DriveTrainGearSwitchSubsystem;
 import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
 import com.team2502.robot2017.subsystem.PressureSensorSubsystem;
 import com.team2502.robot2017.subsystem.VisionSubsystem;
@@ -15,12 +16,19 @@ import logger.Log;
 @SuppressWarnings({ "WeakerAccess" })
 public final class Robot extends IterativeRobot
 {
+    static
+    {
+        /* I don't know why but this prevents problems. */
+        DRIVE_TRAIN_GEAR_SWITCH = new DriveTrainGearSwitchSubsystem();
+    }
+
     public static final DriveTrainSubsystem DRIVE_TRAIN = new DriveTrainSubsystem();
     public static final PressureSensorSubsystem PRESSURE_SENSOR = new PressureSensorSubsystem();
     public static final VisionSubsystem VISION = new VisionSubsystem();
     public static final Compressor COMPRESSOR = new Compressor();
     public static final FlywheelEncoderSubsystem ENCODER = new FlywheelEncoderSubsystem();
     public static final DistanceSensorSubsystem DISTANCE_SENSOR = new DistanceSensorSubsystem();
+    public static DriveTrainGearSwitchSubsystem DRIVE_TRAIN_GEAR_SWITCH;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -30,6 +38,7 @@ public final class Robot extends IterativeRobot
     {
         Log.createLogger(true);
         DashboardData.setup();
+        OI.init();
     }
 
     /**
