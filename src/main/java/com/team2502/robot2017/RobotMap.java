@@ -43,6 +43,7 @@ public class RobotMap
         public static final int FLYWHEEL_TALON_0 = 5;
         public static final int FEEDER_TALON_0 = 6; 
         public static final int FEEDER_TALON_1 = 7;
+        public static final int ACTIVE_INTAKE = 8; 
     }
 
     public static final class Solenoid

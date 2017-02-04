@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import com.team2502.robot2017.subsystem.FlywheelEncoderSubsystem;
+import com.team2502.robot2017.subsystem.ActiveIntakeSubsystem;
 import com.team2502.robot2017.subsystem.DistanceSensorSubsystem;
 import logger.Log;
 
@@ -28,6 +29,7 @@ public final class Robot extends IterativeRobot
     public static final Compressor COMPRESSOR = new Compressor();
     public static final FlywheelEncoderSubsystem ENCODER = new FlywheelEncoderSubsystem();
     public static final DistanceSensorSubsystem DISTANCE_SENSOR = new DistanceSensorSubsystem();
+    public static final ActiveIntakeSubsystem ACTIVE = new ActiveIntakeSubsystem();
     public static DriveTrainGearSwitchSubsystem DRIVE_TRAIN_GEAR_SWITCH;
 
     /**
