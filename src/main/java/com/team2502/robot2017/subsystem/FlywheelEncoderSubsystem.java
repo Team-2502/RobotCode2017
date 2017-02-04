@@ -17,7 +17,6 @@ public class FlywheelEncoderSubsystem extends Subsystem
     private final CANTalon feederTalon1; 
     private final CANTalon feederTalon2; 
     
-    
     double targetSpeed = 2150;
     double error = 0;
     
@@ -34,8 +33,8 @@ public class FlywheelEncoderSubsystem extends Subsystem
     	flywheelTalon.configPeakOutputVoltage(+12.0f, -12.0f);
     	
     	flywheelTalon.setProfile(0);
-    	flywheelTalon.setF(0.1599);
-    	flywheelTalon.setP(0.1421);
+    	flywheelTalon.setF(0.217659);
+    	flywheelTalon.setP(0.213125);
     	flywheelTalon.setI(0);
     	flywheelTalon.setD(0);
     }
