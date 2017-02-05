@@ -18,7 +18,7 @@ public class FlywheelEncoderSubsystem extends Subsystem
     private final CANTalon feederTalon2; 
     
     
-    double targetSpeed = 2700;
+    double targetSpeed = 2150;
     double error = 0;
     
     @Override
