@@ -17,7 +17,7 @@ public class FlywheelEncoderSubsystem extends Subsystem
     private final CANTalon feederTalon1; 
     private final CANTalon feederTalon2;  
     
-    double targetSpeed = 2150;
+    double targetSpeed = 1670;
     double error = 0;
     
     @Override
@@ -33,9 +33,9 @@ public class FlywheelEncoderSubsystem extends Subsystem
     	flywheelTalon.configPeakOutputVoltage(+12.0f, -12.0f);
     	
     	flywheelTalon.setProfile(0);
-    	flywheelTalon.setF(0.217659);
-    	flywheelTalon.setP(0.213125);
-    	flywheelTalon.setI(0);
+    	flywheelTalon.setF(0.21765900);
+    	flywheelTalon.setP(0.21312500);
+    	flywheelTalon.setI(0.00213125);
     	flywheelTalon.setD(0);
     }
     
@@ -74,7 +74,7 @@ public class FlywheelEncoderSubsystem extends Subsystem
 		// Determines if the flywheel is already active.
 		// If active, turn off flywheel at button press.
 		// Else, turn on flywheel at button press.
-		if(OI.JOYSTICK_DRIVE_LEFT.getTrigger()) 
+		if(OI.JOYSTICK_FUNCTION.getRawButton(5)) 
 		{
 			
 			if(isActiveFlywheel) 
