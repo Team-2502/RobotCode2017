@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 
-public class FlywheelEncoderSubsystem extends Subsystem
+public class ShooterSubsystem extends Subsystem
 {
 
 	public boolean isActiveFlywheel = false;
@@ -39,7 +39,7 @@ public class FlywheelEncoderSubsystem extends Subsystem
     	flywheelTalon.setD(0);
     }
     
-    public FlywheelEncoderSubsystem()
+    public ShooterSubsystem()
     {
         flywheelTalon = new CANTalon(RobotMap.Motor.FLYWHEEL_TALON_0);
         feederTalon1 = new CANTalon(RobotMap.Motor.FEEDER_TALON_0);
