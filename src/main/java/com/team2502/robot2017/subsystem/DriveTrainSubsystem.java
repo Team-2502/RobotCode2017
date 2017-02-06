@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.Utility;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import javafx.beans.NamedArg;
 import logger.Log;
@@ -89,7 +90,6 @@ public class DriveTrainSubsystem extends Subsystem
     /**
      * Used to gradually increase the speed of the robot.
      *
-
      * @param isLeftSide Whether or not it is the left joystick/side
      * @return the speed of the robot
      */
@@ -127,7 +127,16 @@ public class DriveTrainSubsystem extends Subsystem
         Pair<Double, Double> speed = (DashboardData.getDriveType() == DriveTypes.DUAL_STICK) ? getSpeed() : getSpeedArcade();
         drive.tankDrive(speed.left, speed.right, true);
     }
-
+    
+    public void driveS()
+    {
+    	
+    	 leftTalon0.set(.1);
+    	 leftTalon1.set(.1);
+    	 rightTalon0.set(.1);
+    	 rightTalon1.set(.1);
+    
+    }
     public void stop()
     {
         lastLeft = 0.0D;

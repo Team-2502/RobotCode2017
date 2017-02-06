@@ -4,7 +4,10 @@ import com.team2502.robot2017.DashboardData;
 import com.team2502.robot2017.Robot;
 import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
 import com.team2502.robot2017.subsystem.VisionSubsystem;
+
+import edu.wpi.first.wpilibj.Utility;
 import edu.wpi.first.wpilibj.command.Command;
+import com.team2502.robot2017.command.DriveStraightCommand;
 
 public class AutonomousCommand extends Command
 {
@@ -23,16 +26,33 @@ public class AutonomousCommand extends Command
     protected void initialize() {}
 
     @Override
-    protected void execute() {}
+    protected void execute() 
+    {
+    	{
+    		// TODO Auto-generated method stub
+    		long millisecondsToRun = 1000; // This should run 1000ms = 1 s.
+        	long initTime = Utility.getFPGATime();
+        	while (Utility.getFPGATime() - initTime <= millisecondsToRun)
+        	{
+    		driveTrainSubsystem.driveS();
+        	}
+    	}
+    }
 
     @Override
     protected boolean isFinished() { return true; }
 
     @Override
-    protected void end() { driveTrainSubsystem.stop(); }
+    protected void end() 
+    { 
+    	driveTrainSubsystem.stop(); 
+    }
 
     @Override
-    protected void interrupted() { driveTrainSubsystem.stop(); }
+    protected void interrupted() 
+    { 
+    	driveTrainSubsystem.stop(); 
+    }
 
     private static AutonomousCommand instance;
 
