@@ -13,12 +13,16 @@ public class ShooterSubsystem extends Subsystem
 
 	public boolean isActiveFlywheel = false;
 	public boolean isActiveFeeder = false;
+	
     private final CANTalon flywheelTalon;
     private final CANTalon feederTalon1; 
     private final CANTalon feederTalon2;  
     
     double targetSpeed = 1670;
     double error = 0;
+    
+    boolean triggerPressed = false;
+    boolean shooterMode = false;
     
     @Override
     protected void initDefaultCommand() 
@@ -72,19 +76,31 @@ public class ShooterSubsystem extends Subsystem
 		// Determines if the flywheel is already active.
 		// If active, turn off flywheel at button press.
 		// Else, turn on flywheel at button press.
-		if(OI.JOYSTICK_FUNCTION.getRawButton(5)) 
-		{
-			if(isActiveFlywheel)
-			{
-				flywheelTalon.set(0); 
-				isActiveFlywheel = false; 
-			}
-			else 
-			{
-				flywheelTalon.set(targetSpeed);
-				isActiveFlywheel = true;
-			}
-		}		
+     	
+     	if(OI.JOYSTICK_FUNCTION.getRawButton(5) && !triggerPressed)
+     	{
+     		shooterMode = !shooterMode;
+     	}
+     	triggerPressed = OI.JOYSTICK_FUNCTION.getRawButton(5);
+     	
+     	if(shooterMode) { flywheelTalon.set(targetSpeed); }
+     	else { flywheelTalon.set(0); }
+     	
+     	/*OLD TOGGLE MODE FOR SHOOTER WHEEL*/
+//    	
+//		if(OI.JOYSTICK_FUNCTION.getRawButton(5)) 
+//		{
+//			if(isActiveFlywheel)
+//			{
+//				flywheelTalon.set(0); 
+//				isActiveFlywheel = false; 
+//			}
+//			else 
+//			{
+//				flywheelTalon.set(targetSpeed);
+//				isActiveFlywheel = true;
+//			}
+//		}	
 		
 		if(OI.JOYSTICK_FUNCTION.getRawButton(12))
 		{
