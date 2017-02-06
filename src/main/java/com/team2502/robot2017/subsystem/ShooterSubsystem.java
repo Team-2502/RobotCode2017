@@ -35,7 +35,7 @@ public class ShooterSubsystem extends Subsystem
     	flywheelTalon.setProfile(0);
     	flywheelTalon.setF(0.21765900);
     	flywheelTalon.setP(0.21312500);
-    	flywheelTalon.setI(0.00213125);
+    	flywheelTalon.setI(0);
     	flywheelTalon.setD(0);
     }
     
@@ -49,8 +49,6 @@ public class ShooterSubsystem extends Subsystem
     // getSpeed() returns the current velocity of the flywheel.
     // This information is pulled from the CANTalon class, NOT THE ENCODER CLASS!
 	public int getSpeed() { return flywheelTalon.getEncVelocity(); } 
-	
-	public int getPosition() { return flywheelTalon.getEncPosition(); }
 	
 	public double getMotorOutput() { return (flywheelTalon.getOutputVoltage() / flywheelTalon.getBusVoltage()); }
 	
@@ -76,8 +74,7 @@ public class ShooterSubsystem extends Subsystem
 		// Else, turn on flywheel at button press.
 		if(OI.JOYSTICK_FUNCTION.getRawButton(5)) 
 		{
-			
-			if(isActiveFlywheel) 
+			if(isActiveFlywheel)
 			{
 				flywheelTalon.set(0); 
 				isActiveFlywheel = false; 
@@ -87,7 +84,7 @@ public class ShooterSubsystem extends Subsystem
 				flywheelTalon.set(targetSpeed);
 				isActiveFlywheel = true;
 			}
-		}
+		}		
 		
 		if(OI.JOYSTICK_FUNCTION.getRawButton(12))
 		{
@@ -99,7 +96,7 @@ public class ShooterSubsystem extends Subsystem
 			targetSpeed = (targetSpeed + 10);
 		}
 		
-		if(OI.JOYSTICK_FUNCTION.getTrigger())
+		if(OI.JOYSTICK_FUNCTION.getTrigger() && (Math.abs(flywheelTalon.getEncVelocity()) > 1650))
 		{	
 		    feederTalon1.set(1);
 		    feederTalon2.set(-1);
