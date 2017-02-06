@@ -131,10 +131,10 @@ public class DriveTrainSubsystem extends Subsystem
     public void driveS()
     {
     	
-    	 leftTalon0.set(.1);
-    	 leftTalon1.set(.1);
-    	 rightTalon0.set(.1);
-    	 rightTalon1.set(.1);
+    	 leftTalon0.set(1);
+    	 leftTalon1.set(1);
+    	 rightTalon0.set(1);
+    	 rightTalon1.set(1);
     
     }
     public void stop()
