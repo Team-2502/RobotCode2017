@@ -35,6 +35,8 @@ public class DriveTrainSubsystem extends Subsystem
     public int millisecondsToRunS = 1000; 
     public int millisecondsToRunTL = 1000;
     public int millisecondsToRunTR = 1000; 
+    
+    public int m = 1000;
 
     public DriveTrainSubsystem()
     {
@@ -137,6 +139,10 @@ public class DriveTrainSubsystem extends Subsystem
     {   // This should run 1000ms = 1 s.
     	long initTime = Utility.getFPGATime();
     	while (Utility.getFPGATime() - initTime <= millisecondsToRunS)
+    	{
+    		m = m-1; 
+    	} 
+    	if(m >= 0)
     	{
     	 leftTalon0.set(1);
     	 leftTalon1.set(1);

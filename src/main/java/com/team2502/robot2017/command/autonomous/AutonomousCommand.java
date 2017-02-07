@@ -7,12 +7,12 @@ import com.team2502.robot2017.subsystem.VisionSubsystem;
 
 import edu.wpi.first.wpilibj.Utility;
 import edu.wpi.first.wpilibj.command.Command;
-import com.team2502.robot2017.command.DriveStraightCommand;
+
 
 public class AutonomousCommand extends Command
 {
     private final DriveTrainSubsystem driveTrainSubsystem;
-    private final VisionSubsystem visionSubsystem;
+
     
     public int m = 1000;
     public int L = 1000;
@@ -22,33 +22,35 @@ public class AutonomousCommand extends Command
         requires(Robot.DRIVE_TRAIN);
         requires(Robot.VISION);
         driveTrainSubsystem = Robot.DRIVE_TRAIN;
-        visionSubsystem = Robot.VISION;
+   
         
     }
 
     @Override
-    protected void initialize() {}
+    protected void initialize() {
+    	AutonomousCommand.startS();
+    }
 
     @Override
-    protected void execute() 
-    {  long millisecondsToRun0 = 1000;
-    	long initTime = Utility.getFPGATime();
-	   while (Utility.getFPGATime() - initTime <= millisecondsToRun0)
-	{
+    protected void execute() {
+//    {  long millisecondsToRun0 = 1000;
+//    	long initTime = Utility.getFPGATime();
+//	   while (Utility.getFPGATime() - initTime <= millisecondsToRun0)
+//	{
     	driveTrainSubsystem.driveS();
-    	m = m-1; 
+//    	m = m-1;
     	
-	} 
-	if (m == 0) 
-	{	long millisecondsToRun1 = 1000;
-	long initTime0 = Utility.getFPGATime();
-   while (Utility.getFPGATime() - initTime0 <= millisecondsToRun1)
-   {
-		driveTrainSubsystem.driveTL();
-		L = L-1; 
-   }
-	} if (L==0)
-	  driveTrainSubsystem.driveTR();
+//	} 
+//	if (m == 0) 
+//	{	long millisecondsToRun1 = 1000;
+//	long initTime0 = Utility.getFPGATime();
+//   while (Utility.getFPGATime() - initTime0 <= millisecondsToRun1)
+//   {
+//		driveTrainSubsystem.driveTL();
+//		L = L-1; 
+//   }
+//	} if (L==0)
+//	  driveTrainSubsystem.driveTR();
     }
 
     @Override
