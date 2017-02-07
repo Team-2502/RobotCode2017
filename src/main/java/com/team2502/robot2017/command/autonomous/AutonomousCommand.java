@@ -3,6 +3,7 @@ package com.team2502.robot2017.command.autonomous;
 import com.team2502.robot2017.DashboardData;
 import com.team2502.robot2017.Robot;
 import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
+import com.team2502.robot2017.subsystem.ShooterSubsystem;
 import com.team2502.robot2017.subsystem.VisionSubsystem;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -10,13 +11,17 @@ public class AutonomousCommand extends Command
 {
     private final DriveTrainSubsystem driveTrainSubsystem;
     private final VisionSubsystem visionSubsystem;
+    private final ShooterSubsystem shooterSubsystem;
 
     public AutonomousCommand()
     {
         requires(Robot.DRIVE_TRAIN);
         requires(Robot.VISION);
+        requires(Robot.SHOOTER);
+        
         driveTrainSubsystem = Robot.DRIVE_TRAIN;
         visionSubsystem = Robot.VISION;
+        shooterSubsystem = Robot.SHOOTER;
     }
 
     @Override
@@ -29,10 +34,18 @@ public class AutonomousCommand extends Command
     protected boolean isFinished() { return true; }
 
     @Override
-    protected void end() { driveTrainSubsystem.stop(); }
+    protected void end() 
+    {
+    	driveTrainSubsystem.stop();
+    	shooterSubsystem.stop();
+    }
 
     @Override
-    protected void interrupted() { driveTrainSubsystem.stop(); }
+    protected void interrupted() 
+    {
+    	driveTrainSubsystem.stop();
+    	shooterSubsystem.stop();
+    }
 
     private static AutonomousCommand instance;
 

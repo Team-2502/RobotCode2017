@@ -2,17 +2,13 @@ package com.team2502.robot2017.subsystem;
 
 import com.team2502.robot2017.DashboardData;
 import com.team2502.robot2017.OI;
-import com.team2502.robot2017.Robot;
 import com.team2502.robot2017.RobotMap;
 import com.team2502.robot2017.command.DriveCommand;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import javafx.beans.NamedArg;
-import logger.Log;
-
 import java.io.Serializable;
 
 /**
@@ -48,6 +44,18 @@ public class DriveTrainSubsystem extends Subsystem
     protected void initDefaultCommand()
     {
         this.setDefaultCommand(new DriveCommand());
+        
+        leftTalon0.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+    	leftTalon0.configEncoderCodesPerRev(256);
+    	leftTalon0.reverseSensor(false);
+    	leftTalon0.configNominalOutputVoltage(+0.0f, -0.0f);
+    	leftTalon0.configPeakOutputVoltage(+12.0f, -12.0f);
+    	
+    	rightTalon0.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+    	rightTalon0.configEncoderCodesPerRev(256);
+    	rightTalon0.reverseSensor(false);
+    	rightTalon0.configNominalOutputVoltage(+0.0f, -0.0f);
+    	rightTalon0.configPeakOutputVoltage(+12.0f, -12.0f);
     }
 
     private Pair<Double, Double> getSpeedArcade()
