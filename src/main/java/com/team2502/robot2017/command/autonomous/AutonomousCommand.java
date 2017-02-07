@@ -28,15 +28,10 @@ public class AutonomousCommand extends Command
     @Override
     protected void execute() 
     {
-    	{
-    		// TODO Auto-generated method stub
-    		long millisecondsToRun = 1000; // This should run 1000ms = 1 s.
-        	long initTime = Utility.getFPGATime();
-        	while (Utility.getFPGATime() - initTime <= millisecondsToRun)
-        	{
-    		driveTrainSubsystem.driveS();
-        	}
-    	}
+    	driveTrainSubsystem.driveS();
+    	driveTrainSubsystem.driveTL();
+    	driveTrainSubsystem.driveTR();
+    	
     }
 
     @Override
