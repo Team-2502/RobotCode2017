@@ -13,6 +13,9 @@ public class AutonomousCommand extends Command
 {
     private final DriveTrainSubsystem driveTrainSubsystem;
     private final VisionSubsystem visionSubsystem;
+    
+    public int m = 1000;
+    public int L = 1000;
 
     public AutonomousCommand()
     {
@@ -20,6 +23,7 @@ public class AutonomousCommand extends Command
         requires(Robot.VISION);
         driveTrainSubsystem = Robot.DRIVE_TRAIN;
         visionSubsystem = Robot.VISION;
+        
     }
 
     @Override
@@ -27,11 +31,24 @@ public class AutonomousCommand extends Command
 
     @Override
     protected void execute() 
-    {
+    {  long millisecondsToRun0 = 1000;
+    	long initTime = Utility.getFPGATime();
+	   while (Utility.getFPGATime() - initTime <= millisecondsToRun0)
+	{
     	driveTrainSubsystem.driveS();
-    	driveTrainSubsystem.driveTL();
-    	driveTrainSubsystem.driveTR();
+    	m = m-1; 
     	
+	} 
+	if (m == 0) 
+	{	long millisecondsToRun1 = 1000;
+	long initTime0 = Utility.getFPGATime();
+   while (Utility.getFPGATime() - initTime0 <= millisecondsToRun1)
+   {
+		driveTrainSubsystem.driveTL();
+		L = L-1; 
+   }
+	} if (L==0)
+	  driveTrainSubsystem.driveTR();
     }
 
     @Override

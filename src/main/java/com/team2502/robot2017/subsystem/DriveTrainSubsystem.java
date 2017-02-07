@@ -31,9 +31,10 @@ public class DriveTrainSubsystem extends Subsystem
     private final CANTalon rightTalon1;
 
     private final RobotDrive drive;
-
     
-    
+    public int millisecondsToRunS = 1000; 
+    public int millisecondsToRunTL = 1000;
+    public int millisecondsToRunTR = 1000; 
 
     public DriveTrainSubsystem()
     {
@@ -133,8 +134,7 @@ public class DriveTrainSubsystem extends Subsystem
     }
     
     public void driveS()
-    {	
-    	long millisecondsToRunS = 1000; // This should run 1000ms = 1 s.
+    {   // This should run 1000ms = 1 s.
     	long initTime = Utility.getFPGATime();
     	while (Utility.getFPGATime() - initTime <= millisecondsToRunS)
     	{
@@ -148,25 +148,25 @@ public class DriveTrainSubsystem extends Subsystem
     
     public void driveTL()
     {
-    	long millisecondsToRunTL = 500; // This should run 1000ms = 1 s.
+         // This should run 1000ms = 1 s.
     	long initTime = Utility.getFPGATime();
     	while (Utility.getFPGATime() - initTime <= millisecondsToRunTL)
     	{
     	 leftTalon0.set(1);
     	 leftTalon1.set(1);
-    	 rightTalon0.set(0);
-    	 rightTalon1.set(0);
+    	 rightTalon0.set(-1);
+    	 rightTalon1.set(-1);
     	}
     }
     
     public void driveTR()
     {
-    	long millisecondsToRunTR = 1000; // This should run 1000ms = 1 s.
+    	// This should run 1000ms = 1 s.
     	long initTime = Utility.getFPGATime();
     	while (Utility.getFPGATime() - initTime <= millisecondsToRunTR)
     	{
-    	 leftTalon0.set(0);
-    	 leftTalon1.set(0);
+    	 leftTalon0.set(-1);
+    	 leftTalon1.set(-1);
     	 rightTalon0.set(1);
     	 rightTalon1.set(1);
     	}
