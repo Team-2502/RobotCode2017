@@ -1,5 +1,6 @@
 package com.team2502.robot2017.subsystem;
 
+import com.sun.org.apache.xpath.internal.operations.Variable;
 import com.team2502.robot2017.DashboardData;
 import com.team2502.robot2017.OI;
 import com.team2502.robot2017.Robot;
@@ -30,6 +31,9 @@ public class DriveTrainSubsystem extends Subsystem
     private final CANTalon rightTalon1;
 
     private final RobotDrive drive;
+
+    
+    
 
     public DriveTrainSubsystem()
     {
@@ -129,14 +133,45 @@ public class DriveTrainSubsystem extends Subsystem
     }
     
     public void driveS()
-    {
-    	
+    {	
+    	long millisecondsToRunS = 1000; // This should run 1000ms = 1 s.
+    	long initTime = Utility.getFPGATime();
+    	while (Utility.getFPGATime() - initTime <= millisecondsToRunS)
+    	{
     	 leftTalon0.set(1);
     	 leftTalon1.set(1);
     	 rightTalon0.set(1);
     	 rightTalon1.set(1);
+    	}
     
     }
+    
+    public void driveTL()
+    {
+    	long millisecondsToRunTL = 500; // This should run 1000ms = 1 s.
+    	long initTime = Utility.getFPGATime();
+    	while (Utility.getFPGATime() - initTime <= millisecondsToRunTL)
+    	{
+    	 leftTalon0.set(1);
+    	 leftTalon1.set(1);
+    	 rightTalon0.set(0);
+    	 rightTalon1.set(0);
+    	}
+    }
+    
+    public void driveTR()
+    {
+    	long millisecondsToRunTR = 1000; // This should run 1000ms = 1 s.
+    	long initTime = Utility.getFPGATime();
+    	while (Utility.getFPGATime() - initTime <= millisecondsToRunTR)
+    	{
+    	 leftTalon0.set(0);
+    	 leftTalon1.set(0);
+    	 rightTalon0.set(1);
+    	 rightTalon1.set(1);
+    	}
+    }
+    
     public void stop()
     {
         lastLeft = 0.0D;

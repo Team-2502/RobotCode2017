@@ -1,5 +1,6 @@
 package com.team2502.robot2017.command;
 
+
 import com.team2502.robot2017.Robot;
 import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
 
@@ -32,9 +33,9 @@ public class DriveStraightCommand extends Command
 	protected void execute() 
 	{
 		// TODO Auto-generated method stub
-		long millisecondsToRun = 1000; // This should run 1000ms = 1 s.
+		long millisecondsToRunS = 1000; // This should run 1000ms = 1 s.
     	long initTime = Utility.getFPGATime();
-    	while (Utility.getFPGATime() - initTime <= millisecondsToRun)
+    	while (Utility.getFPGATime() - initTime <= millisecondsToRunS)
     	{
 		driveTrainSubsystem.driveS();
     	}
