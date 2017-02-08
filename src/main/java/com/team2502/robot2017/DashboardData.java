@@ -52,13 +52,18 @@ public final class DashboardData
         SmartDashboard.putNumber("FW: Highest Error Encountered", Robot.ENCODER.getTopError());
         SmartDashboard.putNumber("FW: Motor Output", Robot.ENCODER.getMotorOutput());
 
+ SmartDashboard.putNumber("Current Distance", Robot.DISTANCE_SENSOR.getSensorDistance());
+        
         if(Enabler.PRESSURE.enabler[0])
         {
             if(Enabler.PRESSURE.enabler[1]) { SmartDashboard.putNumber("Current Tank Pressure", Robot.PRESSURE_SENSOR.getPressure()); }
             if(Enabler.PRESSURE.enabler[2]) { SmartDashboard.putBoolean("Is Compressor Enabled", Robot.COMPRESSOR.enabled()); }
             if(Enabler.PRESSURE.enabler[3]) { SmartDashboard.putBoolean("Is Compressor Low", Robot.COMPRESSOR.getPressureSwitchValue()); }
             if(Enabler.PRESSURE.enabler[4]) { SmartDashboard.putNumber("Current Air Compression Rate", Robot.COMPRESSOR.getCompressorCurrent()); }
+            
+            
         }
+        
     }
 
     private enum Enabler
