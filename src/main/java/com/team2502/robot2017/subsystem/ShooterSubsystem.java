@@ -71,12 +71,11 @@ public class ShooterSubsystem extends Subsystem
 	
 	public void flywheelDrive()
 	{	
+		/* This line initializes the flywheel talon so that the speed 
+		   we give it is in RPM, not a scale of -1 to 1. */
      	flywheelTalon.changeControlMode(TalonControlMode.Speed);
-		
-		// Determines if the flywheel is already active.
-		// If active, turn off flywheel at button press.
-		// Else, turn on flywheel at button press.
      	
+     	// Toggle mode for flywheel. It is bound to button 5 on the Function stick.
      	if(OI.JOYSTICK_FUNCTION.getRawButton(5) && !triggerPressed)
      	{
      		shooterMode = !shooterMode;
@@ -102,6 +101,7 @@ public class ShooterSubsystem extends Subsystem
 //			}
 //		}	
 		
+     	// Used to narrow down the target speed, without having to push code a billion times.
 		if(OI.JOYSTICK_FUNCTION.getRawButton(12))
 		{
 			targetSpeed = (targetSpeed - 10); 
@@ -112,6 +112,8 @@ public class ShooterSubsystem extends Subsystem
 			targetSpeed = (targetSpeed + 10);
 		}
 		
+		
+		// Control for turning on/off the feeding mechanism.
 		if(OI.JOYSTICK_FUNCTION.getTrigger() && (Math.abs(flywheelTalon.getEncVelocity()) > 1650))
 		{	
 		    feederTalon1.set(1);
