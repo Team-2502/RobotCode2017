@@ -7,6 +7,7 @@ import com.team2502.robot2017.Robot;
 import com.team2502.robot2017.RobotMap;
 import com.team2502.robot2017.command.DriveCommand;
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.CANTalon.TrajectoryPoint;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Timer;
@@ -136,10 +137,10 @@ public class DriveTrainSubsystem extends Subsystem
     
     public void drive(double x, double y, double z)
     {
-    	leftTalon0.set(x);
-		leftTalon1.set(x);
-		rightTalon0.set(y);
-		rightTalon1.set(y);
+    	leftTalon0.setPosition(x);
+		leftTalon1.setPosition(x);
+		rightTalon0.setPosition(y);
+		rightTalon1.setPosition(y);
 		Timer.delay(z);
     	leftTalon0.set(0.0D);
 		leftTalon1.set(0.0D);

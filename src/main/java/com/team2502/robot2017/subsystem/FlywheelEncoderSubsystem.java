@@ -3,6 +3,8 @@ package com.team2502.robot2017.subsystem;
 import com.team2502.robot2017.OI;
 import com.team2502.robot2017.RobotMap;
 import com.team2502.robot2017.command.FlywheelCommand;
+import com.team2502.robot2017.command.autonomous.AutonomousCommand;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
@@ -93,11 +95,13 @@ public class FlywheelEncoderSubsystem extends Subsystem
 		if(OI.JOYSTICK_FUNCTION.getRawButton(12))
 		{
 			targetSpeed = (targetSpeed - 10); 
+			
 		}
 		
 		if(OI.JOYSTICK_FUNCTION.getRawButton(11))
 		{
 			targetSpeed = (targetSpeed + 10);
+			
 		}
 		
 		if(OI.JOYSTICK_FUNCTION.getTrigger())

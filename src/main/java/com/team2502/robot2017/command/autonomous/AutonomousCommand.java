@@ -1,6 +1,7 @@
 package com.team2502.robot2017.command.autonomous;
 
 import com.team2502.robot2017.DashboardData;
+import com.team2502.robot2017.OI;
 import com.team2502.robot2017.Robot;
 import com.team2502.robot2017.RobotMap;
 import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
@@ -21,6 +22,7 @@ public class AutonomousCommand extends Command
     
     public int m = 1000;
     public int L = 1000;
+    public static double TimeStraight = 5;
 
     public AutonomousCommand()
     {
@@ -38,21 +40,22 @@ public class AutonomousCommand extends Command
     public void initialize() {
     	
     	//AutonomousCommand.startS();
+    	
 
     }
+    
 
     @Override
     public void execute()
-    {  
-   	 	
-   	 	driveTrainSubsystem.drive( 1, -1, 5);
-   	 	Timer.delay(5D);
-   	 	driveTrainSubsystem.drive(1, 0, 5);
-   	 	Timer.delay(5D);
-   	 	driveTrainSubsystem.drive(0, -1, 5);
-   	 	driveTrainSubsystem.stopDriveS();
-   	 	AutonomousCommand.cancelS();
-   	 	
+    {  	
+	//These are test functions all will get renamed and made better/move what we want. 
+   	driveTrainSubsystem.drive( 100, -100, TimeStraight);
+   	Timer.delay(5D);
+   	driveTrainSubsystem.drive(1000, 0, 5);
+   	Timer.delay(5D);
+   	driveTrainSubsystem.drive(0, -1000, 5);
+   	driveTrainSubsystem.stopDriveS();
+   	AutonomousCommand.cancelS(); 	
     }
 
     @Override
@@ -92,5 +95,10 @@ public class AutonomousCommand extends Command
     public static AutonomousCommand getInstance()
     {
     	return instance;
+    }
+    
+    public double getTimerStraight()
+    {
+    	return TimeStraight;
     }
 }

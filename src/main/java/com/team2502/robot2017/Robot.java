@@ -28,6 +28,9 @@ public final class Robot extends IterativeRobot
     public static final Compressor COMPRESSOR = new Compressor();
     public static final FlywheelEncoderSubsystem ENCODER = new FlywheelEncoderSubsystem();
     public static final DistanceSensorSubsystem DISTANCE_SENSOR = new DistanceSensorSubsystem();
+    
+    public static final AutonomousCommand AUTO = new AutonomousCommand();
+    
     public static DriveTrainGearSwitchSubsystem DRIVE_TRAIN_GEAR_SWITCH;
 
     /**
@@ -75,7 +78,17 @@ public final class Robot extends IterativeRobot
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic()
+    {	
+    	if(OI.JOYSTICK_FUNCTION.getRawButton(12))
     {
+    	AutonomousCommand.TimeStraight = (AutonomousCommand.TimeStraight - .1);
+    }
+	
+	if(OI.JOYSTICK_FUNCTION.getRawButton(11))
+	{
+		
+		AutonomousCommand.TimeStraight = (AutonomousCommand.TimeStraight + .1);
+	}
         Scheduler.getInstance().run();
         DashboardData.update();
     }
