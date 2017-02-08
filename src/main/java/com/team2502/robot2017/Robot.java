@@ -68,6 +68,7 @@ public final class Robot extends IterativeRobot
     {
         AutonomousCommand.autonomousInit();
         AutonomousCommand.startS();
+        
     }
 
     /**

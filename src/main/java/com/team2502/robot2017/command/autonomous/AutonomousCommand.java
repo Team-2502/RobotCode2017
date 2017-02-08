@@ -2,17 +2,22 @@ package com.team2502.robot2017.command.autonomous;
 
 import com.team2502.robot2017.DashboardData;
 import com.team2502.robot2017.Robot;
+import com.team2502.robot2017.RobotMap;
 import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
-import com.team2502.robot2017.subsystem.VisionSubsystem;
 
-import edu.wpi.first.wpilibj.Utility;
+import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 
 public class AutonomousCommand extends Command
 {
     private final DriveTrainSubsystem driveTrainSubsystem;
-
+    private final CANTalon leftTalon0;
+    private final CANTalon leftTalon1;
+    private final CANTalon rightTalon0;
+    private final CANTalon rightTalon1;
     
     public int m = 1000;
     public int L = 1000;
@@ -20,50 +25,51 @@ public class AutonomousCommand extends Command
     public AutonomousCommand()
     {
         requires(Robot.DRIVE_TRAIN);
-        requires(Robot.VISION);
         driveTrainSubsystem = Robot.DRIVE_TRAIN;
-   
         
+        leftTalon0 = new CANTalon(RobotMap.Motor.LEFT_TALON_0);
+        leftTalon1 = new CANTalon(RobotMap.Motor.LEFT_TALON_1);
+        rightTalon0 = new CANTalon(RobotMap.Motor.RIGHT_TALON_0);
+        rightTalon1 = new CANTalon(RobotMap.Motor.RIGHT_TALON_1);
+   
     }
 
     @Override
-    protected void initialize() {
-    	AutonomousCommand.startS();
-    }
-
-    @Override
-    protected void execute() {
-//    {  long millisecondsToRun0 = 1000;
-//    	long initTime = Utility.getFPGATime();
-//	   while (Utility.getFPGATime() - initTime <= millisecondsToRun0)
-//	{
-    	driveTrainSubsystem.driveS();
-//    	m = m-1;
+    public void initialize() {
     	
-//	} 
-//	if (m == 0) 
-//	{	long millisecondsToRun1 = 1000;
-//	long initTime0 = Utility.getFPGATime();
-//   while (Utility.getFPGATime() - initTime0 <= millisecondsToRun1)
-//   {
-//		driveTrainSubsystem.driveTL();
-//		L = L-1; 
-//   }
-//	} if (L==0)
-//	  driveTrainSubsystem.driveTR();
+    	//AutonomousCommand.startS();
+
     }
 
     @Override
-    protected boolean isFinished() { return true; }
+    public void execute()
+    {  
+   	 	
+   	 	driveTrainSubsystem.drive( 1, -1, 5);
+   	 	Timer.delay(5D);
+   	 	driveTrainSubsystem.drive(1, 0, 5);
+   	 	Timer.delay(5D);
+   	 	driveTrainSubsystem.drive(0, -1, 5);
+   	 	driveTrainSubsystem.stopDriveS();
+   	 	AutonomousCommand.cancelS();
+   	 	
+    }
 
     @Override
-    protected void end() 
+    public boolean isFinished() { return false; }
+
+    @Override
+    public void end() 
     { 
+    	leftTalon0.set(0);
+      	leftTalon1.set(0);
+      	rightTalon0.set(0);
+      	rightTalon1.set(0);
     	driveTrainSubsystem.stop(); 
     }
 
     @Override
-    protected void interrupted() 
+    public void interrupted() 
     { 
     	driveTrainSubsystem.stop(); 
     }
@@ -73,12 +79,18 @@ public class AutonomousCommand extends Command
     public static void autonomousInit() { instance = DashboardData.getAutonomous(); }
 
     public static void startS()
-    {
-        if(instance != null) { instance.start(); }
+    { 
+//        if(instance != null) { instance.start(); }
+        Scheduler.getInstance().add(instance);
     }
 
     public static void cancelS()
     {
         if(instance != null) { instance.cancel(); }
+    }
+    
+    public static AutonomousCommand getInstance()
+    {
+    	return instance;
     }
 }
