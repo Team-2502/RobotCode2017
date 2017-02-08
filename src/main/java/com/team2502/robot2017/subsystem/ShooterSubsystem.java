@@ -15,8 +15,8 @@ public class ShooterSubsystem extends Subsystem
 	public boolean isActiveFeeder = false;
 	
     private final CANTalon flywheelTalon;
-    private final CANTalon feederTalon1; 
-    private final CANTalon feederTalon2;  
+    private final CANTalon feederTalon1; //coleson
+    private final CANTalon feederTalon2;  //banebot
     
     double targetSpeed = 1670;
     double error = 0;
@@ -116,6 +116,11 @@ public class ShooterSubsystem extends Subsystem
 		{	
 		    feederTalon1.set(1);
 		    feederTalon2.set(-1);
+		}
+		else if(OI.JOYSTICK_FUNCTION.getTrigger() && !(Math.abs(flywheelTalon.getEncVelocity()) > 1650))
+		{
+			feederTalon1.set(1);
+			feederTalon2.set(0);
 		}
 		else
 		{
