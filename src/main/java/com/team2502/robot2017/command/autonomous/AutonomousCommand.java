@@ -44,9 +44,7 @@ public class AutonomousCommand extends Command
     	leftTalon0.setVoltageRampRate(6);
     	leftTalon1.setVoltageRampRate(6);
     	rightTalon0.setVoltageRampRate(6);
-    	rightTalon1.setVoltageRampRate(6);
-    	
-    		
+    	rightTalon1.setVoltageRampRate(6);	
     }
     
 
@@ -54,12 +52,12 @@ public class AutonomousCommand extends Command
     public void execute()
     {  	
 	//These are test functions all will get renamed and made better/move what we want. 
-   	driveTrainSubsystem.drive( 1, -1,5.77 + 43902/9999900 );
+   	driveTrainSubsystem.driveA( 1, -1);
    	Timer.delay(10D);
 //   	DriveTrainGearSwitchSubsystem.setGear(true);
 //   	Timer.delay(1D);
-   	driveTrainSubsystem.drive( 1, -1, 5 + 4.7625/17.98);
-   	Timer.delay(10D);
+//   	driveTrainSubsystem.driveA( 1, -1, 5 + 4.7625/17.98);
+//   	Timer.delay(10D);
    	driveTrainSubsystem.stopDriveS();
    	AutonomousCommand.cancelS(); 	
     }

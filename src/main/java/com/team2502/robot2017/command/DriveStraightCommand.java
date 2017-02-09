@@ -33,7 +33,7 @@ public class DriveStraightCommand extends Command
 	protected void execute() 
 	{
 		
-		driveTrainSubsystem.drive(0.2,0.2,5);
+		driveTrainSubsystem.driveA(0.2,0.2);
     	
 	}
 

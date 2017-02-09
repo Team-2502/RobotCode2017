@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Utility;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import javafx.beans.NamedArg;
 import logger.Log;
 
@@ -135,17 +136,15 @@ public class DriveTrainSubsystem extends Subsystem
         drive.tankDrive(speed.left, speed.right, true);
     }
     
-    public void drive(double x, double y, double z)
+    public void driveA(double x, double y) //double z
     {
     	leftTalon0.set(x);
 		leftTalon1.set(x);
 		rightTalon0.set(y);
 		rightTalon1.set(y);
-		Timer.delay(z);
-    	leftTalon0.set(0.0D);
-		leftTalon1.set(0.0D);
-		rightTalon0.set(0.0D);
-		rightTalon1.set(0.0D);
+		Timer.delay(5.77 + 43902/9999900);
+		stopDriveS();
+		SmartDashboard.putNumber("Autonomous", Robot.AUTO.getTimerStraight()); 
     }
     
     public void stopDriveS()
