@@ -79,16 +79,7 @@ public final class Robot extends IterativeRobot
      */
     public void autonomousPeriodic()
     {	
-    	if(OI.JOYSTICK_FUNCTION.getRawButton(12))
-    {
-    	AutonomousCommand.TimeStraight = (AutonomousCommand.TimeStraight - .1);
-    }
-	
-	if(OI.JOYSTICK_FUNCTION.getRawButton(11))
-	{
-		
-		AutonomousCommand.TimeStraight = (AutonomousCommand.TimeStraight + .1);
-	}
+    
         Scheduler.getInstance().run();
         DashboardData.update();
     }

@@ -137,10 +137,10 @@ public class DriveTrainSubsystem extends Subsystem
     
     public void drive(double x, double y, double z)
     {
-    	leftTalon0.setPosition(x);
-		leftTalon1.setPosition(x);
-		rightTalon0.setPosition(y);
-		rightTalon1.setPosition(y);
+    	leftTalon0.set(x);
+		leftTalon1.set(x);
+		rightTalon0.set(y);
+		rightTalon1.set(y);
 		Timer.delay(z);
     	leftTalon0.set(0.0D);
 		leftTalon1.set(0.0D);

@@ -114,7 +114,18 @@ public class FlywheelEncoderSubsystem extends Subsystem
 			feederTalon1.set(0);
 			feederTalon2.set(0);
 		}
+		if(OI.JOYSTICK_FUNCTION.getRawButton(12))
+	    {
+	    	AutonomousCommand.TimeStraight = (AutonomousCommand.TimeStraight - .1);
+	    }
+		
+		if(OI.JOYSTICK_FUNCTION.getRawButton(11))
+		{
+			
+			AutonomousCommand.TimeStraight = (AutonomousCommand.TimeStraight + .1);
+		}
 	}
+	
 	
 	public void stop() {}
 }

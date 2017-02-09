@@ -8,10 +8,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 @SuppressWarnings("WeakerAccess")
 public class DriveTrainGearSwitchSubsystem extends Subsystem
 {
-    private final Solenoid switcher;
+    private static Solenoid switcher;
 
     // TODO: Change name to `lowGear` if applicable.
-    private boolean highGear;
+    private static boolean highGear;
 
     public DriveTrainGearSwitchSubsystem()
     {
@@ -33,9 +33,9 @@ public class DriveTrainGearSwitchSubsystem extends Subsystem
 //        DriveTrainSubsystem#drive();
     }
 
-    public void setGear(boolean highGear)
+    public static void setGear(boolean newHighGear)
     {
-        switcher.set(this.highGear = highGear);
+        switcher.set(highGear = newHighGear);
     }
 
     public boolean getGear()

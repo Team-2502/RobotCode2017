@@ -4,6 +4,7 @@ import com.team2502.robot2017.DashboardData;
 import com.team2502.robot2017.OI;
 import com.team2502.robot2017.Robot;
 import com.team2502.robot2017.RobotMap;
+import com.team2502.robot2017.subsystem.DriveTrainGearSwitchSubsystem;
 import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
 
 import edu.wpi.first.wpilibj.CANTalon;
@@ -40,8 +41,12 @@ public class AutonomousCommand extends Command
     public void initialize() {
     	
     	//AutonomousCommand.startS();
+    	leftTalon0.setVoltageRampRate(6);
+    	leftTalon1.setVoltageRampRate(6);
+    	rightTalon0.setVoltageRampRate(6);
+    	rightTalon1.setVoltageRampRate(6);
     	
-
+    		
     }
     
 
@@ -49,11 +54,12 @@ public class AutonomousCommand extends Command
     public void execute()
     {  	
 	//These are test functions all will get renamed and made better/move what we want. 
-   	driveTrainSubsystem.drive( 100, -100, TimeStraight);
-   	Timer.delay(5D);
-   	driveTrainSubsystem.drive(1000, 0, 5);
-   	Timer.delay(5D);
-   	driveTrainSubsystem.drive(0, -1000, 5);
+   	driveTrainSubsystem.drive( 1, -1,5.77 + 43902/9999900 );
+   	Timer.delay(10D);
+//   	DriveTrainGearSwitchSubsystem.setGear(true);
+//   	Timer.delay(1D);
+   	driveTrainSubsystem.drive( 1, -1, 5 + 4.7625/17.98);
+   	Timer.delay(10D);
    	driveTrainSubsystem.stopDriveS();
    	AutonomousCommand.cancelS(); 	
     }
