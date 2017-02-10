@@ -165,7 +165,7 @@ public class DriveTrainSubsystem extends Subsystem
 
     private static final double DELAY_TIME = 5.77D + 43902.0D / 9999900.0D;
 
-    public void driveStraight(double x, double y) // double z
+    public void runMotors(double x, double y) // double z
     {
         leftTalon0.set(x);
         leftTalon1.set(x);

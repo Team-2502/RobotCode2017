@@ -115,7 +115,7 @@ public class DriveStraight extends Command implements PIDOutput
     protected void execute()
     {
 
-        driveTrain.driveStraight(realSpeed, -realSpeed);
+        driveTrain.runMotors(realSpeed, -realSpeed);
         System.out.println("Normal Straight");
 
         realSpeed += .08;
@@ -177,7 +177,7 @@ public class DriveStraight extends Command implements PIDOutput
         // if (System.currentTimeMillis() - startTime > 5000 &&
         // s.getSensorDistance(Sensor.FrontShort) < 1.3 &&
         // s.getSensorDistance(Sensor.FrontShort) > .8) return true;
-        dt.stop();
+
         return done && System.currentTimeMillis() - startTime > minTime * 1000;
 
     }
@@ -197,6 +197,7 @@ public class DriveStraight extends Command implements PIDOutput
     @Override
     protected void interrupted()
     {
+        dt.stopDriveS();
     }
 
     @Override
