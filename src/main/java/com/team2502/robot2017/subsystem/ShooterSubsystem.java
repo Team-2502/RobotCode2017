@@ -8,18 +8,20 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 
-public class FlywheelEncoderSubsystem extends Subsystem
+public class ShooterSubsystem extends Subsystem
 {
 
 	public boolean isActiveFlywheel = false;
 	public boolean isActiveFeeder = false;
+	
     private final CANTalon flywheelTalon;
     private final CANTalon feederTalon1; 
-    private final CANTalon feederTalon2; 
-    
-    
-    double targetSpeed = 2150;
+    private final CANTalon feederTalon2;  
+    double targetSpeed = 1670;
     double error = 0;
+    
+    boolean triggerPressed = false;
+    boolean shooterMode = false;
     
     @Override
     protected void initDefaultCommand() 
@@ -34,13 +36,13 @@ public class FlywheelEncoderSubsystem extends Subsystem
     	flywheelTalon.configPeakOutputVoltage(+12.0f, -12.0f);
     	
     	flywheelTalon.setProfile(0);
-    	flywheelTalon.setF(0.1199);
-    	flywheelTalon.setP(0.1421);
+    	flywheelTalon.setF(0.21765900);
+    	flywheelTalon.setP(0.21312500);
     	flywheelTalon.setI(0);
     	flywheelTalon.setD(0);
     }
     
-    public FlywheelEncoderSubsystem()
+    public ShooterSubsystem()
     {
         flywheelTalon = new CANTalon(RobotMap.Motor.FLYWHEEL_TALON_0);
         feederTalon1 = new CANTalon(RobotMap.Motor.FEEDER_TALON_0);
@@ -50,8 +52,6 @@ public class FlywheelEncoderSubsystem extends Subsystem
     // getSpeed() returns the current velocity of the flywheel.
     // This information is pulled from the CANTalon class, NOT THE ENCODER CLASS!
 	public int getSpeed() { return flywheelTalon.getEncVelocity(); } 
-	
-	public int getPosition() { return flywheelTalon.getEncPosition(); }
 	
 	public double getMotorOutput() { return (flywheelTalon.getOutputVoltage() / flywheelTalon.getBusVoltage()); }
 	
@@ -75,20 +75,31 @@ public class FlywheelEncoderSubsystem extends Subsystem
 		// Determines if the flywheel is already active.
 		// If active, turn off flywheel at button press.
 		// Else, turn on flywheel at button press.
-		if(OI.JOYSTICK_DRIVE_LEFT.getTrigger()) 
-		{
-			
-			if(isActiveFlywheel) 
-			{
-				flywheelTalon.set(0); 
-				isActiveFlywheel = false; 
-			}
-			else 
-			{
-				flywheelTalon.set(targetSpeed);
-				isActiveFlywheel = true;
-			}
-		}
+     	
+     	if(OI.JOYSTICK_FUNCTION.getRawButton(5) && !triggerPressed)
+     	{
+     		shooterMode = !shooterMode;
+     	}
+     	triggerPressed = OI.JOYSTICK_FUNCTION.getRawButton(5);
+     	
+     	if(shooterMode) { flywheelTalon.set(targetSpeed); }
+     	else { flywheelTalon.set(0); }
+     	
+     	/*OLD TOGGLE MODE FOR SHOOTER WHEEL*/
+//    	
+//		if(OI.JOYSTICK_FUNCTION.getRawButton(5)) 
+//		{
+//			if(isActiveFlywheel)
+//			{
+//				flywheelTalon.set(0); 
+//				isActiveFlywheel = false; 
+//			}
+//			else 
+//			{
+//				flywheelTalon.set(targetSpeed);
+//				isActiveFlywheel = true;
+//			}
+//		}	
 		
 		if(OI.JOYSTICK_FUNCTION.getRawButton(12))
 		{
@@ -100,7 +111,7 @@ public class FlywheelEncoderSubsystem extends Subsystem
 			targetSpeed = (targetSpeed + 10);
 		}
 		
-		if(OI.JOYSTICK_FUNCTION.getTrigger())
+		if(OI.JOYSTICK_FUNCTION.getTrigger() && (Math.abs(flywheelTalon.getEncVelocity()) > 1650))
 		{	
 		    feederTalon1.set(1);
 		    feederTalon2.set(-1);
