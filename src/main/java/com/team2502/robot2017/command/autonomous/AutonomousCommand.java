@@ -33,24 +33,7 @@ public class AutonomousCommand extends Command
 
     @Override
     protected void execute() {
-//    {  long millisecondsToRun0 = 1000;
-//    	long initTime = Utility.getFPGATime();
-//	   while (Utility.getFPGATime() - initTime <= millisecondsToRun0)
-//	{
     	driveTrainSubsystem.driveS();
-//    	m = m-1;
-    	
-//	} 
-//	if (m == 0) 
-//	{	long millisecondsToRun1 = 1000;
-//	long initTime0 = Utility.getFPGATime();
-//   while (Utility.getFPGATime() - initTime0 <= millisecondsToRun1)
-//   {
-//		driveTrainSubsystem.driveTL();
-//		L = L-1; 
-//   }
-//	} if (L==0)
-//	  driveTrainSubsystem.driveTR();
     }
 
     @Override

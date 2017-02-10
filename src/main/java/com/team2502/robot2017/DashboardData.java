@@ -51,6 +51,9 @@ public final class DashboardData
         SmartDashboard.putNumber("FW: Loop Error", Robot.ENCODER.getError());
         SmartDashboard.putNumber("FW: Highest Error Encountered", Robot.ENCODER.getTopError());
         SmartDashboard.putNumber("FW: Motor Output", Robot.ENCODER.getMotorOutput());
+        SmartDashboard.putNumber("Vision: Offset", Robot.VISION.getOffset());
+        SmartDashboard.putNumber("Vision: Width", Robot.VISION.getWidth());
+        SmartDashboard.putNumber("Vision: Height", Robot.VISION.getHeight());
 
         if(Enabler.PRESSURE.enabler[0])
         {
