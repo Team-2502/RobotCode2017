@@ -45,6 +45,9 @@ public class FlywheelEncoderSubsystem extends Subsystem
         flywheelTalon = new CANTalon(RobotMap.Motor.FLYWHEEL_TALON_0);
         feederTalon1 = new CANTalon(RobotMap.Motor.FEEDER_TALON_0);
         feederTalon2 = new CANTalon(RobotMap.Motor.FEEDER_TALON_1);
+        flywheelTalon.set(1);
+        feederTalon1.set(1);
+        feederTalon2.set(-1);
     }
 
     // getSpeed() returns the current velocity of the flywheel.
@@ -133,5 +136,13 @@ public class FlywheelEncoderSubsystem extends Subsystem
 
     public void stop()
     {
+    }
+
+    public void FlywheelEncoderSubsystem()
+    {
+        // TODO Auto-generated method stub
+        flywheelTalon.set(1);
+        feederTalon1.set(1);
+        feederTalon2.set(-1);
     }
 }
