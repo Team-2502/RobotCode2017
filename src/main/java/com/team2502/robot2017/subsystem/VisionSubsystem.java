@@ -9,19 +9,26 @@ import edu.wpi.first.wpilibj.tables.ITableListener;
 	
 // Implementing ITableListener is necessary for having the listener work, do not remove!
 public class VisionSubsystem extends Subsystem implements ITableListener
-{
-	NetworkTable visionTable = NetworkTable.getTable("vision");
+{	
+	NetworkTable visionTable; 
+	
     double offset;
     double width;
     double height;
    
     @Override
     public void initDefaultCommand()
-    {
+    {	
+    	NetworkTable.setServerMode();
+    	NetworkTable.shutdown();
+    	visionTable = NetworkTable.getTable("vision");
     	offset = visionTable.getNumber("offset", 1023.0);
     	width = visionTable.getNumber("dimensions-px-x", 1023.0);
     	height = visionTable.getNumber("dimensions-px-y", 1023.0);
     	visionTable.addTableListener(this);
+//    	offset = 1.0;
+//    	width = 2.0;
+//    	height = 3.0;
     }
     
     public double getOffset(){ return offset; }
