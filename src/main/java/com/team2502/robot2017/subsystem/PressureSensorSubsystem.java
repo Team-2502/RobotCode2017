@@ -6,14 +6,27 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class PressureSensorSubsystem extends Subsystem
 {
+    private static final double INPUT_VOLTAGE = 5.0D;
     private AnalogInput pressureSensor;
 
-    public PressureSensorSubsystem() { pressureSensor = new AnalogInput(RobotMap.Electrical.PRESSURE_SENSOR); }
+    public PressureSensorSubsystem()
+    {
+        pressureSensor = new AnalogInput(RobotMap.Electrical.PRESSURE_SENSOR);
+    }
 
     @Override
-    protected void initDefaultCommand() {}
+    protected void initDefaultCommand()
+    {
+        /* NO-OP */
+    }
 
-    private static final double INPUT_VOLTAGE = 5.0D;
-
-    public double getPressure() { return (250.0D * (pressureSensor.getAverageVoltage() / INPUT_VOLTAGE)) - 25.0D; }
+    /**
+     * Calculates the current pressure based on an algorithm.
+     *
+     * @return Current Pressure
+     */
+    public double getPressure()
+    {
+        return (250.0D * (pressureSensor.getAverageVoltage() / INPUT_VOLTAGE)) - 25.0D;
+    }
 }

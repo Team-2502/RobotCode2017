@@ -1,6 +1,5 @@
 package com.team2502.robot2017.command.autonomous;
 
-import com.team2502.robot2017.DashboardData;
 import com.team2502.robot2017.Robot;
 import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
 import com.team2502.robot2017.subsystem.ShooterSubsystem;
@@ -18,7 +17,7 @@ public class AutonomousCommand extends Command
         requires(Robot.DRIVE_TRAIN);
         requires(Robot.VISION);
         requires(Robot.SHOOTER);
-        
+
         driveTrainSubsystem = Robot.DRIVE_TRAIN;
         visionSubsystem = Robot.VISION;
         shooterSubsystem = Robot.SHOOTER;
@@ -34,30 +33,16 @@ public class AutonomousCommand extends Command
     protected boolean isFinished() { return true; }
 
     @Override
-    protected void end() 
+    protected void end()
     {
-    	driveTrainSubsystem.stop();
-    	shooterSubsystem.stop();
+        driveTrainSubsystem.stop();
+        shooterSubsystem.stop();
     }
 
     @Override
-    protected void interrupted() 
+    protected void interrupted()
     {
-    	driveTrainSubsystem.stop();
-    	shooterSubsystem.stop();
-    }
-
-    private static AutonomousCommand instance;
-
-    public static void autonomousInit() { instance = DashboardData.getAutonomous(); }
-
-    public static void startS()
-    {
-        if(instance != null) { instance.start(); }
-    }
-
-    public static void cancelS()
-    {
-        if(instance != null) { instance.cancel(); }
+        driveTrainSubsystem.stop();
+        shooterSubsystem.stop();
     }
 }
