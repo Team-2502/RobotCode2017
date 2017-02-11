@@ -3,21 +3,35 @@ package com.team2502.robot2017.chooser;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import org.jetbrains.annotations.Nullable;
 
+
+@SuppressWarnings({ "unchecked", "SameParameterValue", "SpellCheckingInspection" })
 public class TypeSendableChooser<T> extends SendableChooser
 {
     public void addObjectT(String name, T object)
     {
-        this.addObject(name, object);
+        super.addObject(name, object);
     }
 
     public void addDefaultT(String name, T object)
     {
-        this.addDefault(name, object);
+        super.addDefault(name, object);
     }
 
     @Nullable
     public T getSelectedT()
     {
         return (T) getSelected();
+    }
+
+    @Override
+    public void addObject(String name, Object object)
+    {
+        throw new UnsupportedOperationException("Use `com.team2502.robot2017.chooser.TypeSendableChooser#addObjectT");
+    }
+
+    @Override
+    public void addDefault(String name, Object object)
+    {
+        throw new UnsupportedOperationException("Use `com.team2502.robot2017.chooser.TypeSendableChooser#addDefaultT");
     }
 }
