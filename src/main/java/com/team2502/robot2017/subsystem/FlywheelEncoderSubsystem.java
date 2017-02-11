@@ -97,7 +97,7 @@ public class FlywheelEncoderSubsystem extends Subsystem
         // Determines if the flywheel is already active.
         // If active, turn off flywheel at button press.
         // Else, turn on flywheel at button press.
-        if (OI.JOYSTICK_DRIVE_LEFT.getTrigger())
+        if (OI.JOYSTICK_FUNCTION.getRawButton(5))
         {
 
             if (isActiveFlywheel)
