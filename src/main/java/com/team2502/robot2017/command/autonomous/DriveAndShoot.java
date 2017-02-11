@@ -1,5 +1,7 @@
 package com.team2502.robot2017.command.autonomous;
 
+import com.team2502.robot2017.command.DriveTimeCommand;
+import com.team2502.robot2017.command.DriveTimeFlywheelCommand;
 import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
 import com.team2502.robot2017.subsystem.FlywheelEncoderSubsystem;
 
@@ -29,13 +31,13 @@ public class DriveAndShoot extends CommandGroup
     {
         if (Active = true)
         {
-            addSequential(new DriveTime(1.2));
+            addSequential(new DriveTimeCommand(1.2));
             Timer.delay(1.2D);
             Active = false;
         }
         if (Active = false)
         {
-            addSequential(new DriveTimeFlywheel(1.2));
+            addSequential(new DriveTimeFlywheelCommand(1.2));
             done = true;
 
         }
@@ -53,13 +55,13 @@ public class DriveAndShoot extends CommandGroup
     { // TODO Auto-generated method stub
         if (Active = true)
         {
-            addSequential(new DriveTime(1.2));
+            addSequential(new DriveTimeCommand(1.2));
             Timer.delay(1.2D);
             Active = false;
         }
         if (Active = false)
         {
-            addSequential(new DriveTimeFlywheel(1.2));
+            addSequential(new DriveTimeFlywheelCommand(1.2));
             done = true;
 
         }
@@ -68,14 +70,7 @@ public class DriveAndShoot extends CommandGroup
     @Override
     protected boolean isFinished()
     {
-        // TODO Auto-generated method stub
-        if (done = true)
-        {
-            return true;
-        } else
-        {
-            return false;
-        }
+        return done;
 
     }
 
