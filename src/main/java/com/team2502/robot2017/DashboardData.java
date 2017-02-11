@@ -49,6 +49,7 @@ public final class DashboardData
         SmartDashboard.putNumber("Vision: Offset", Robot.VISION.getOffset());
         SmartDashboard.putNumber("Vision: Width", Robot.VISION.getWidth());
         SmartDashboard.putNumber("Vision: Height", Robot.VISION.getHeight());
+        
         SmartDashboard.putNumber("FW: Current Flywheel Speed", Robot.SHOOTER.getSpeed());
         SmartDashboard.putNumber("FW: Target Speed", Robot.SHOOTER.getTargetSpeed());
         SmartDashboard.putNumber("FW: Loop Error", Robot.SHOOTER.getError());

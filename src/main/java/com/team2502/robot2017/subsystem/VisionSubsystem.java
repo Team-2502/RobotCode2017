@@ -26,9 +26,6 @@ public class VisionSubsystem extends Subsystem implements ITableListener
     	width = visionTable.getNumber("dimensions-px-x", 1023.0);
     	height = visionTable.getNumber("dimensions-px-y", 1023.0);
     	visionTable.addTableListener(this);
-//    	offset = 1.0;
-//    	width = 2.0;
-//    	height = 3.0;
     }
     
     public double getOffset(){ return offset; }
