@@ -3,7 +3,6 @@ package com.team2502.robot2017.command;
 import com.team2502.robot2017.Robot;
 import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
 import com.team2502.robot2017.subsystem.FlywheelEncoderSubsystem;
-
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
@@ -15,32 +14,27 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 /**
  *
  */
-public class DriveStraight extends Command implements PIDOutput
+public class DriveStraightCommand extends Command implements PIDOutput
 {
 
-    protected DriveTrainSubsystem dt = Robot.DRIVE_TRAIN;
-    protected double angle;
-
-    protected PIDController turnController;
-    protected double rotateToAngleRate;
+    protected static final double kI = 0.00;
+    protected static final double kD = 0.00;
+    protected static final double kF = 0.00;
+    protected static final double kToleranceDegrees = 1.0f;
 
     /* The following PID Controller coefficients will need to be tuned */
     /* to match the dynamics of your drive system. Note that the */
     /* SmartDashboard in Test mode has support for helping you tune */
     /* controllers by displaying a form where you can enter new P, I, */
     /* and D constants and test the mechanism. */
-
     protected static double kP = 0.04;
-    protected static final double kI = 0.00;
-    protected static final double kD = 0.00;
-    protected static final double kF = 0.00;
-
-    protected static final double kToleranceDegrees = 1.0f;
-
+    protected DriveTrainSubsystem dt = Robot.DRIVE_TRAIN;
+    protected double angle;
+    protected PIDController turnController;
+    protected double rotateToAngleRate;
     protected double startTime;
 
     protected FlywheelEncoderSubsystem e;
-    private DriveTrainSubsystem driveTrain;
     protected Encoder sensor;
     protected double sensorLimit;
     protected double speed = 1;
@@ -51,11 +45,11 @@ public class DriveStraight extends Command implements PIDOutput
     protected double realSpeed = 0;
     protected double minTime = 1;
     protected boolean done = false;
-
     protected boolean insideRange = true;
     protected int insideRangeCounter = 0;
+    private DriveTrainSubsystem driveTrain;
 
-    public DriveStraight(double angle, double speed)
+    public DriveStraightCommand(double angle, double speed)
     {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -68,33 +62,33 @@ public class DriveStraight extends Command implements PIDOutput
 
     }
 
-    public DriveStraight(double angle, double speed, boolean change)
+    public DriveStraightCommand(double angle, double speed, boolean change)
     {
         this(angle, speed);
         this.change = change;
     }
 
-    public DriveStraight(double angle, double speed, double extraTime)
+    public DriveStraightCommand(double angle, double speed, double extraTime)
     {
         this(angle, speed);
         this.extraTime = extraTime;
     }
 
-    public DriveStraight(double angle, double speed, boolean change, double extraTime)
+    public DriveStraightCommand(double angle, double speed, boolean change, double extraTime)
     {
         this(angle, speed);
         this.extraTime = extraTime;
         this.change = change;
     }
 
-    public DriveStraight(double angle, double speed, double extraTime, double minTime)
+    public DriveStraightCommand(double angle, double speed, double extraTime, double minTime)
     {
         this(angle, speed);
         this.extraTime = extraTime;
         this.minTime = minTime;
     }
 
-    public DriveStraight(double angle, double speed, boolean change, double extraTime, double minTime)
+    public DriveStraightCommand(double angle, double speed, boolean change, double extraTime, double minTime)
     {
         this(angle, speed);
         this.extraTime = extraTime;
@@ -120,7 +114,7 @@ public class DriveStraight extends Command implements PIDOutput
 
         realSpeed += .08;
 
-        if (realSpeed > speed)
+        if(realSpeed > speed)
         {
             realSpeed = speed;
         }
@@ -138,7 +132,7 @@ public class DriveStraight extends Command implements PIDOutput
         // }
 
         System.out.println("In Range: " + insideRange);
-        if (insideRange)
+        if(insideRange)
         {
 
         }
@@ -150,7 +144,7 @@ public class DriveStraight extends Command implements PIDOutput
         // insideRange = false;
         // }
 
-        if (counter > 2)
+        if(counter > 2)
         {
             done = true;
         }

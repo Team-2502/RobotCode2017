@@ -2,7 +2,7 @@ package com.team2502.robot2017;
 
 import com.team2502.robot2017.command.autonomous.AutoCommandG;
 import com.team2502.robot2017.command.autonomous.AutonomousCommand;
-import com.team2502.robot2017.command.autonomous.DriveTimeFlywheel;
+import com.team2502.robot2017.command.DriveTimeFlywheelCommand;
 import com.team2502.robot2017.subsystem.DistanceSensorSubsystem;
 import com.team2502.robot2017.subsystem.DriveTrainGearSwitchSubsystem;
 import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
@@ -31,7 +31,7 @@ public final class Robot extends IterativeRobot
     public static final Compressor COMPRESSOR = new Compressor();
     public static final FlywheelEncoderSubsystem ENCODER = new FlywheelEncoderSubsystem();
     public static final DistanceSensorSubsystem DISTANCE_SENSOR = new DistanceSensorSubsystem();
-    public static final DriveTimeFlywheel DRIVETIMEFL = new DriveTimeFlywheel(1.2);
+    public static final DriveTimeFlywheelCommand DRIVETIMEFL = new DriveTimeFlywheelCommand(1.2);
     public static final AutonomousCommand AUTO = new AutonomousCommand();
 
     public static DriveTrainGearSwitchSubsystem DRIVE_TRAIN_GEAR_SWITCH;

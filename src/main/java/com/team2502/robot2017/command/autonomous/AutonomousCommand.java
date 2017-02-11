@@ -4,12 +4,12 @@ import com.team2502.robot2017.DashboardData;
 import com.team2502.robot2017.Robot;
 import com.team2502.robot2017.RobotMap;
 import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
-
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
+@Deprecated
 public class AutonomousCommand extends Command
 {
     public final DriveTrainSubsystem driveTrainSubsystem;
@@ -98,7 +98,7 @@ public class AutonomousCommand extends Command
 
     public static void cancelS()
     {
-        if (instance != null)
+        if(instance != null)
         {
             instance.cancel();
         }
