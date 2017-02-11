@@ -1,14 +1,13 @@
 package com.team2502.robot2017;
 
 import com.team2502.robot2017.command.autonomous.AutoCommandG;
-import com.team2502.robot2017.command.autonomous.AutonomousCommand;
 import com.team2502.robot2017.command.DriveTimeFlywheelCommand;
-import com.team2502.robot2017.subsystem.DistanceSensorSubsystem;
+//import com.team2502.robot2017.subsystem.DistanceSensorSubsystem;
 import com.team2502.robot2017.subsystem.DriveTrainGearSwitchSubsystem;
 import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
 import com.team2502.robot2017.subsystem.FlywheelEncoderSubsystem;
 import com.team2502.robot2017.subsystem.PressureSensorSubsystem;
-import com.team2502.robot2017.subsystem.VisionSubsystem;
+//import com.team2502.robot2017.subsystem.VisionSubsystem;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -27,12 +26,12 @@ public final class Robot extends IterativeRobot
 
     public static final DriveTrainSubsystem DRIVE_TRAIN = new DriveTrainSubsystem();
     public static final PressureSensorSubsystem PRESSURE_SENSOR = new PressureSensorSubsystem();
-    public static final VisionSubsystem VISION = new VisionSubsystem();
+//    public static final VisionSubsystem VISION = new VisionSubsystem();
     public static final Compressor COMPRESSOR = new Compressor();
     public static final FlywheelEncoderSubsystem ENCODER = new FlywheelEncoderSubsystem();
-    public static final DistanceSensorSubsystem DISTANCE_SENSOR = new DistanceSensorSubsystem();
+//    public static final DistanceSensorSubsystem DISTANCE_SENSOR = new DistanceSensorSubsystem();
     public static final DriveTimeFlywheelCommand DRIVETIMEFL = new DriveTimeFlywheelCommand(1.2);
-    public static final AutonomousCommand AUTO = new AutonomousCommand();
+    public static final AutoCommandG AUTO = new AutoCommandG();
 
     public static DriveTrainGearSwitchSubsystem DRIVE_TRAIN_GEAR_SWITCH;
 
@@ -80,8 +79,8 @@ public final class Robot extends IterativeRobot
     @Override
     public void autonomousInit()
     {
-        AutonomousCommand.autonomousInit();
-        AutonomousCommand.startS();
+//        AutonomousCommand.autonomousInit();
+//        AutonomousCommand.startS();
         Scheduler.getInstance().add(new AutoCommandG());
 
     }
@@ -103,7 +102,7 @@ public final class Robot extends IterativeRobot
         // teleop starts running. If you want the autonomous to
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        AutonomousCommand.cancelS();
+//        AutonomousCommand.cancelS();
     }
 
     /**

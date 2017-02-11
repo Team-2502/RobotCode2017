@@ -5,7 +5,7 @@ public class RobotMap
 {
     private RobotMap() {}
 
-    private static final int UNDEFINED = -1;
+//    private static final int UNDEFINED = -1;
 
     public static final class Joystick
     {
