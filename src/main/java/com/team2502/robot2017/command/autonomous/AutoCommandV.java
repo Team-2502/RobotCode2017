@@ -26,7 +26,6 @@ public class AutoCommandV extends Command
 		rightSpeed = -0.5;
 	}
 
-	
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub
@@ -40,8 +39,6 @@ public class AutoCommandV extends Command
 		
 	}
 
-    	
-    
 	@Override
 	protected void execute()
     {
