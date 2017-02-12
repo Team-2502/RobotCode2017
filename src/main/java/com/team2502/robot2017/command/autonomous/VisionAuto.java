@@ -28,7 +28,7 @@ public class VisionAuto extends Command
 
 	@Override
 	protected void initialize() {
-		// TODO Auto-generated method stub
+		inFrontOfGear = true;
 		
 	}
 
@@ -62,14 +62,17 @@ public class VisionAuto extends Command
     			{
     				inFrontOfGear = true;
     			}
+    		} else 
+    		{ //if it's 1023
+    			dt.runMotors(0D, 0D);
     		}
     		
     			
 		}
     }
+	
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
 		return inFrontOfGear;
 	}
 	
