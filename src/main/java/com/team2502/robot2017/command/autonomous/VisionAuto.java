@@ -17,7 +17,7 @@ public class VisionAuto extends Command
 	public double offset;
 	public double leftSpeed;
 	public double rightSpeed;
-    public boolean inFrontOfGear = false;
+    public boolean inFrontOfGear;
 
 	public VisionAuto() 
 	{
@@ -35,7 +35,7 @@ public class VisionAuto extends Command
 
 	@Override
 	protected void interrupted() {
-		// TODO Auto-generated method stub
+		dt.runMotors(0D, 0D);
 		
 	}
 
@@ -44,13 +44,15 @@ public class VisionAuto extends Command
     {
 		while(!inFrontOfGear){
     		offset = VisionSubsystem.getOffset();
-    		if(!(offset == 1023) && (offset > 5 || offset < -5)){
+    		
+    		if(!(offset == 1023) && !(offset > 5 && offset < -5)){ //if not 1023 and not -5 < x < 5
+    			
     			offset = offset/100;
     			leftSpeed += offset;
     			rightSpeed += offset;
     			dt.runMotors(leftSpeed, rightSpeed);
     		}
-			else if(offset > -5 || offset < 5)
+			else if(offset > -5 && offset < 5) // if -5 < x < 5
     		{
     			leftSpeed = 0.5;
     			rightSpeed = -0.5;
@@ -61,7 +63,7 @@ public class VisionAuto extends Command
     				inFrontOfGear = true;
     			}
     		}
-    		// change in front of gear somewhere
+    		
     			
 		}
     }
