@@ -25,7 +25,7 @@ public class ShooterSubsystem extends Subsystem
     boolean shooterMode = false;
     
     @Override
-    protected void initDefaultCommand() 
+    protected void initDefaultCommand()
     {
     	this.setDefaultCommand(new FlywheelCommand());
     	
@@ -39,8 +39,8 @@ public class ShooterSubsystem extends Subsystem
     	flywheelTalon.setProfile(0);
     	flywheelTalon.setF(0.21765900);
     	flywheelTalon.setP(0.21312500);
-    	flywheelTalon.setI(0);
-    	flywheelTalon.setD(0);
+    	flywheelTalon.setI(0.000028);
+    	flywheelTalon.setD(21);
     }
     
     public ShooterSubsystem()

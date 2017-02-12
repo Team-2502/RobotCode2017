@@ -49,7 +49,6 @@ public final class DashboardData
         SmartDashboard.putNumber("FW: Current Flywheel Speed", Robot.SHOOTER.getSpeed());
         SmartDashboard.putNumber("FW: Target Speed", Robot.SHOOTER.getTargetSpeed());
         SmartDashboard.putNumber("FW: Loop Error", Robot.SHOOTER.getError());
-        SmartDashboard.putNumber("FW: Highest Error Encountered", Robot.SHOOTER.getTopError());
         SmartDashboard.putNumber("FW: Motor Output", Robot.SHOOTER.getMotorOutput());
 
         if(Enabler.PRESSURE.enabler[0])
