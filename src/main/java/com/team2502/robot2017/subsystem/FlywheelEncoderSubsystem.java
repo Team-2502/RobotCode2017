@@ -18,7 +18,7 @@ public class FlywheelEncoderSubsystem extends Subsystem
     private final CANTalon feederTalon1;
     private final CANTalon feederTalon2;
 
-    double targetSpeed = 2150;
+    double targetSpeed = 2500;
     double error = 0;
 
     @Override
@@ -35,7 +35,7 @@ public class FlywheelEncoderSubsystem extends Subsystem
 
         flywheelTalon.setProfile(0);
         flywheelTalon.setF(0.1199);
-        flywheelTalon.setP(0.1421);
+        flywheelTalon.setP(0.2842);
         flywheelTalon.setI(0);
         flywheelTalon.setD(0);
     }

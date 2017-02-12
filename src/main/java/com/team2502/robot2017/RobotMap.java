@@ -48,8 +48,13 @@ public class RobotMap
 
     public static final class Solenoid
     {
-        private Solenoid() {}
 
         public static final int GEAR_SWITCH = 0;
+        public static final int ISAACS_SPECIAL_SOLENOID0 = 0;
+        public static final int ISAACS_SPECIAL_SOLENOID1 = 0;
+        public static final int ISAACS_SPECIAL_SOLENOID2 = 0;
+        public static final int ISAACS_SPECIAL_SOLENOID3 = 0;
+
+         private Solenoid() {}
     }
 }
