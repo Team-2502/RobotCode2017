@@ -1,9 +1,7 @@
 package com.team2502.robot2017.command;
 
 import com.team2502.robot2017.Robot;
-import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
 import com.team2502.robot2017.subsystem.ShooterSubsystem;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 public class FlywheelCommand extends Command
@@ -19,8 +17,8 @@ public class FlywheelCommand extends Command
     @Override
     protected void initialize()
     {
-        shooterSubsystem.isActiveFlywheel = false;
-        shooterSubsystem.isActiveFeeder = false;
+        shooterSubsystem.isFlywheelActive = false;
+        shooterSubsystem.isFeederActive = false;
     }
 
     @Override
@@ -39,15 +37,11 @@ public class FlywheelCommand extends Command
     protected void end()
     {
         shooterSubsystem.stop();
-        shooterSubsystem.isActiveFlywheel = false;
-        shooterSubsystem.isActiveFeeder = false;
     }
 
     @Override
     protected void interrupted()
     {
         shooterSubsystem.stop();
-        shooterSubsystem.isActiveFlywheel = false;
-        shooterSubsystem.isActiveFeeder = false;
     }
 }

@@ -4,6 +4,7 @@ import com.team2502.robot2017.Robot;
 import com.team2502.robot2017.subsystem.ActiveIntakeSubsystem;
 import edu.wpi.first.wpilibj.command.Command;
 
+// TODO: Add proper implementation
 public class ActiveCommand extends Command
 {
     private final ActiveIntakeSubsystem activeIntakeSubsystem;

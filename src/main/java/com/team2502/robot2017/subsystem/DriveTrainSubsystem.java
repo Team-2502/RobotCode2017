@@ -5,10 +5,12 @@ import com.team2502.robot2017.OI;
 import com.team2502.robot2017.RobotMap;
 import com.team2502.robot2017.command.DriveCommand;
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import logger.Log;
+
 import java.io.Serializable;
 
 /**
@@ -16,15 +18,15 @@ import java.io.Serializable;
  */
 public class DriveTrainSubsystem extends Subsystem
 {
-    private double lastLeft;
-    private double lastRight;
+    private static final Pair<Double, Double> SPEED_CONTAINER = new Pair<Double, Double>();
 
     private final CANTalon leftTalon0;
     private final CANTalon leftTalon1;
     private final CANTalon rightTalon0;
     private final CANTalon rightTalon1;
-
     private final RobotDrive drive;
+    private double lastLeft;
+    private double lastRight;
 
     public DriveTrainSubsystem()
     {
@@ -44,68 +46,73 @@ public class DriveTrainSubsystem extends Subsystem
     protected void initDefaultCommand()
     {
         this.setDefaultCommand(new DriveCommand());
-        
+
         leftTalon0.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-    	leftTalon0.configEncoderCodesPerRev(256);
-    	leftTalon0.reverseSensor(false);
-    	leftTalon0.configNominalOutputVoltage(+0.0f, -0.0f);
-    	leftTalon0.configPeakOutputVoltage(+12.0f, -12.0f);
-    	
-    	rightTalon0.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-    	rightTalon0.configEncoderCodesPerRev(256);
-    	rightTalon0.reverseSensor(false);
-    	rightTalon0.configNominalOutputVoltage(+0.0f, -0.0f);
-    	rightTalon0.configPeakOutputVoltage(+12.0f, -12.0f);
+        leftTalon0.configEncoderCodesPerRev(256);
+        leftTalon0.reverseSensor(false);
+        leftTalon0.configNominalOutputVoltage(0.0D, -0.0D);
+        leftTalon0.configPeakOutputVoltage(12.0D, -12.0D);
+
+        rightTalon0.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+        rightTalon0.configEncoderCodesPerRev(256);
+        rightTalon0.reverseSensor(false);
+        rightTalon0.configNominalOutputVoltage(0.0D, -0.0D);
+        rightTalon0.configPeakOutputVoltage(12.0D, -12.0D);
     }
 
-    private Pair<Double, Double> getSpeedArcade()
+    private static void debugSpeed(String format, Object... args)
     {
-        double leftSpeed;
-        double rightSpeed;
+        Log.debug(String.format(format, args));
+    }
+
+    private int logCounter = 0;
+
+    @SuppressWarnings({ "SuspiciousNameCombination", "PointlessBooleanExpression", "ConstantConditions" })
+    private Pair<Double, Double> getSpeedArcade(Pair<Double, Double> out)
+    {
         // Get the base speed of the robot
         double yLevel = -OI.JOYSTICK_DRIVE_RIGHT.getY();
 
-//        // Only increase the speed by a small amount
-//        double diff = yLevel - lastRight;
-//        if(diff > 0.1D) { yLevel = lastRight + 0.1D; }
-//        else if(diff < 0.1D) { yLevel = lastRight - 0.1D; }
-//        lastRight = yLevel;
-
-        leftSpeed = yLevel;
-        rightSpeed = yLevel;
+        double leftSpeed = yLevel;
+        double rightSpeed = yLevel;
 
         double xLevel = -OI.JOYSTICK_DRIVE_RIGHT.getX();
-        
+
         // Should invert the left/right to be more intuitive while driving backwards.
-        if(yLevel < 0) { xLevel = -xLevel;}
-        
+        if(yLevel < 0.0D) { xLevel = -xLevel;}
+
         if(xLevel > 0.0D) { leftSpeed -= xLevel; }
         else if(xLevel < 0.0D) { rightSpeed += xLevel; }
-//        Log.debug("Y: " + yLevel);
-//        Log.debug("X: " + xLevel);
-//        Log.debug("L: " + leftSpeed);
-//        Log.debug("R: " + rightSpeed);
-//        Log.debug("\n\n");
+
+        if(logCounter++ % 10 == 0 && false)
+        {
+            debugSpeed("X: %d&nY: %d%nL: %d%nR: %d%n%n", yLevel, xLevel, leftSpeed, rightSpeed);
+        }
 
         // Sets the speed to 0 if the speed is less than 0.05 or larger than -0.05
         if(Math.abs(leftSpeed) < 0.05D) { leftSpeed = 0.0D; }
         if(Math.abs(rightSpeed) < 0.05D) { rightSpeed = 0.0D; }
 
-        return new Pair<Double, Double>(leftSpeed, rightSpeed);
+        out.left = leftSpeed;
+        out.right = rightSpeed;
+        return out;
+    }
+
+    private Pair<Double, Double> getSpeedArcade()
+    {
+        return getSpeedArcade(SPEED_CONTAINER);
     }
 
     /**
      * Used to gradually increase the speed of the robot.
      *
-
-     * @param isLeftSide Whether or not it is the left joystick/side
+     * @param out The object to store the data in
      * @return the speed of the robot
      */
-    private Pair<Double, Double> getSpeed()
+    private Pair<Double, Double> getSpeed(Pair<Double, Double> out)
     {
-        double joystickLevel = 0.0D;
         // Get the base speed of the robot
-        joystickLevel = -OI.JOYSTICK_DRIVE_LEFT.getY();
+        double joystickLevel = -OI.JOYSTICK_DRIVE_LEFT.getY();
 
         // Only increase the speed by a small amount
         double diff = joystickLevel - lastLeft;
@@ -113,7 +120,7 @@ public class DriveTrainSubsystem extends Subsystem
         else if(diff < 0.1D) { joystickLevel = lastLeft - 0.1D; }
         lastLeft = joystickLevel;
 
-        Pair<Double, Double> out = new Pair<Double, Double>(joystickLevel, 0.0D);
+        out.left = joystickLevel;
 
         joystickLevel = -OI.JOYSTICK_DRIVE_RIGHT.getY();
 
@@ -128,6 +135,11 @@ public class DriveTrainSubsystem extends Subsystem
         out.right = joystickLevel;
 
         return out;
+    }
+
+    private Pair<Double, Double> getSpeed()
+    {
+        return getSpeed(SPEED_CONTAINER);
     }
 
     public void drive()
@@ -150,6 +162,7 @@ public class DriveTrainSubsystem extends Subsystem
         ARCADE;
     }
 
+    @SuppressWarnings("WeakerAccess")
     public static class Pair<L, R> implements Serializable
     {
         public L left;

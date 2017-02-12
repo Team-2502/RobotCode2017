@@ -1,28 +1,15 @@
 package com.team2502.robot2017;
 
-import com.team2502.robot2017.command.autonomous.AutonomousCommand;
-import com.team2502.robot2017.subsystem.DriveTrainGearSwitchSubsystem;
-import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
-import com.team2502.robot2017.subsystem.PressureSensorSubsystem;
-import com.team2502.robot2017.subsystem.VisionSubsystem;
+import com.team2502.robot2017.subsystem.*;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import com.team2502.robot2017.subsystem.ShooterSubsystem;
-import com.team2502.robot2017.subsystem.ActiveIntakeSubsystem;
-import com.team2502.robot2017.subsystem.DistanceSensorSubsystem;
 import logger.Log;
 
-@SuppressWarnings({ "WeakerAccess" })
+@SuppressWarnings({ "WeakerAccess", "unused" })
 public final class Robot extends IterativeRobot
 {
-    static
-    {
-        /* I don't know why but this prevents problems. */
-        DRIVE_TRAIN_GEAR_SWITCH = new DriveTrainGearSwitchSubsystem();
-    }
-
     public static final DriveTrainSubsystem DRIVE_TRAIN = new DriveTrainSubsystem();
     public static final PressureSensorSubsystem PRESSURE_SENSOR = new PressureSensorSubsystem();
     public static final VisionSubsystem VISION = new VisionSubsystem();
@@ -30,7 +17,13 @@ public final class Robot extends IterativeRobot
     public static final ShooterSubsystem SHOOTER = new ShooterSubsystem();
     public static final DistanceSensorSubsystem DISTANCE_SENSOR = new DistanceSensorSubsystem();
     public static final ActiveIntakeSubsystem ACTIVE = new ActiveIntakeSubsystem();
-    public static DriveTrainGearSwitchSubsystem DRIVE_TRAIN_GEAR_SWITCH;
+    public static final DriveTrainTransmissionSubsystem DRIVE_TRAIN_GEAR_SWITCH;
+
+    static
+    {
+        /* I don't know why but this prevents problems. */
+        DRIVE_TRAIN_GEAR_SWITCH = new DriveTrainTransmissionSubsystem();
+    }
 
     /**
      * This function is run when the robot is first started up and should be
@@ -68,8 +61,7 @@ public final class Robot extends IterativeRobot
      */
     public void autonomousInit()
     {
-        AutonomousCommand.autonomousInit();
-        AutonomousCommand.startS();
+        Scheduler.getInstance().add(DashboardData.getAutonomous());
     }
 
     /**
@@ -87,7 +79,6 @@ public final class Robot extends IterativeRobot
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        AutonomousCommand.cancelS();
     }
 
     /**
