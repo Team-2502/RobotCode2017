@@ -18,13 +18,14 @@ public class AutoCommandV extends Command
 	public double leftSpeed;
 	public double rightSpeed;
     public boolean inFrontOfGear = false;
-    
+
 	public AutoCommandV() 
 	{
 		dt = new DriveTrainSubsystem();
 		leftSpeed = 0.5;
 		rightSpeed = -0.5;
 	}
+
 	
 	@Override
 	protected void initialize() {
@@ -38,6 +39,7 @@ public class AutoCommandV extends Command
 		// TODO Auto-generated method stub
 		
 	}
+
     	
     
 	@Override
@@ -76,9 +78,6 @@ public class AutoCommandV extends Command
 	 {
 		 dt.stop();
 	 }
-
-
-	
 }
 
 
