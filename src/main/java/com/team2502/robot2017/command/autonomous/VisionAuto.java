@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
 
-public class AutoCommandV extends Command
+public class VisionAuto extends Command
 {
 	public static DriveTrainSubsystem dt;
 	public double offset;
@@ -19,7 +19,7 @@ public class AutoCommandV extends Command
 	public double rightSpeed;
     public boolean inFrontOfGear = false;
 
-	public AutoCommandV() 
+	public VisionAuto() 
 	{
 		dt = new DriveTrainSubsystem();
 		leftSpeed = 0.5;

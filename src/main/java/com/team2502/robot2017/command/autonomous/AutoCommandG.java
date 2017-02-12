@@ -8,7 +8,7 @@ import com.team2502.robot2017.command.TurnCommand;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
-import com.team2502.robot2017.command.autonomous.AutoCommandV;
+import com.team2502.robot2017.command.autonomous.VisionAuto;
 
 public class AutoCommandG extends CommandGroup
 {
@@ -20,7 +20,7 @@ public class AutoCommandG extends CommandGroup
         addSequential(new TurnCommand(2D));        
 
         // addSequential(new DriveStraightCommand(1, 1));
-        addSequential(new AutoCommandV());
+        addSequential(new VisionAuto());
         //addSequential(new GearDrop());
 
     }
