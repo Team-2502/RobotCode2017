@@ -29,7 +29,7 @@ public class AutoCommandV extends Command
     {
 		while(true){
     		offset = VisionSubsystem.getOffset();
-    		if(!(offset == 1023)){
+    		if(!(offset == 1023) && (offset > 5 && offset < -5)){
     			offset = offset/100;
     			leftSpeed += offset;
     			rightSpeed += offset;
@@ -48,7 +48,7 @@ public class AutoCommandV extends Command
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
 		return false;
-	}	
+	}
 }
 
 
