@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  // TODO: Isaac, Implement this however you want.
  public class IsaacsSpecialSubsystem extends Subsystem
  {
-     private final Solenoid sol0;
-     private final Solenoid sol1;
-     private final Solenoid sol2;
+     private final Solenoid MoveTop;
+     private final Solenoid lever;
+     private final Solenoid pushGear;
      private final Solenoid sol3;
      
    
@@ -31,9 +31,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
      
      public IsaacsSpecialSubsystem()
      {
-         this.sol0 = new Solenoid(RobotMap.Solenoid.ISAACS_SPECIAL_SOLENOID0);
-         this.sol1 = new Solenoid(RobotMap.Solenoid.ISAACS_SPECIAL_SOLENOID1);
-         this.sol2 = new Solenoid(RobotMap.Solenoid.ISAACS_SPECIAL_SOLENOID2);
+         this.MoveTop = new Solenoid(RobotMap.Solenoid.ISAACS_SPECIAL_SOLENOID0);
+         this.lever = new Solenoid(RobotMap.Solenoid.ISAACS_SPECIAL_SOLENOID1);
+         this.pushGear = new Solenoid(RobotMap.Solenoid.ISAACS_SPECIAL_SOLENOID2);
          this.sol3 = new Solenoid(RobotMap.Solenoid.ISAACS_SPECIAL_SOLENOID3);
      }
  
@@ -50,8 +50,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
     	 }
     	 	buttonPressed0 = OI.JOYSTICK_DRIVE_RIGHT.getRawButton(4);
     		      	
-    	if(Mode0) { sol0.set(on); }
-       	else { sol0.set(off); }
+    	if(Mode0) { MoveTop.set(on); }
+       	else { MoveTop.set(off); }
     	
     	if(OI.JOYSTICK_DRIVE_RIGHT.getRawButton(3) && !buttonPressed1)
    	 	{
@@ -59,8 +59,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
    	 	}
    	 	buttonPressed1 = OI.JOYSTICK_DRIVE_RIGHT.getRawButton(3);
    		      	
-   	 	if(Mode1) { sol1.set(on); }
-      	else { sol1.set(off); } 
+   	 	if(Mode1) { lever.set(on); }
+      	else { lever.set(off); } 
       
    	 	if(OI.JOYSTICK_DRIVE_RIGHT.getRawButton(5) && !buttonPressed2)
    	 	{
@@ -68,9 +68,28 @@ import edu.wpi.first.wpilibj.command.Subsystem;
    	 	}
   	 	buttonPressed2 = OI.JOYSTICK_DRIVE_RIGHT.getRawButton(5);
   		      	
-  	 	if(Mode2) { sol2.set(on); }
-     	else { sol2.set(off); } 
+  	 	if(Mode2) { pushGear.set(on); }
+     	else { pushGear.set(off); } 
     }
      
+     public void pushGear()
+     {	
+    	 pushGear.set(on); 
+     }
+    
+     public void pullGear()
+     {
+    	 pushGear.set(off);
+     }
+     
+     public void leverOn()
+     {
+    	 lever.set(on);
+     }
+     
+     public void leverOff()
+     {
+    	 lever.set(off);
+     }
  }  
   
