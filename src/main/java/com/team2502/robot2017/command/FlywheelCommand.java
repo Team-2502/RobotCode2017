@@ -1,3 +1,4 @@
+
 package com.team2502.robot2017.command;
 
 import com.team2502.robot2017.Robot;
@@ -6,48 +7,62 @@ import com.team2502.robot2017.subsystem.FlywheelEncoderSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+@SuppressWarnings("WeakerAccess")
 public class FlywheelCommand extends Command
 {
-    private final FlywheelEncoderSubsystem flywheelEncoderSubsystem;
+    private FlywheelEncoderSubsystem flywheel;
+    private long runTime;
+    private long startTime;
 
-    public FlywheelCommand()
+    /**
+     * @param runTime Time to run for in milliseconds.
+     */
+    public FlywheelCommand(long runTime)
     {
         requires(Robot.ENCODER);
-        flywheelEncoderSubsystem = Robot.ENCODER;
+        flywheel = Robot.ENCODER;
+        this.runTime = runTime;
+    }
+
+    /**
+     * @param runTime Time to run for in seconds.
+     */
+    public FlywheelCommand(double runTime)
+    {
+        this((long) (runTime * 1000));
     }
 
     @Override
     protected void initialize()
     {
-        flywheelEncoderSubsystem.isActiveFlywheel = false;
-        flywheelEncoderSubsystem.isActiveFeeder = false;
+        startTime = System.currentTimeMillis();
+       flywheel.isActiveFlywheel = false;
+       flywheel.isActiveFeeder = false;
     }
 
     @Override
     protected void execute()
     {
-        flywheelEncoderSubsystem.flywheelDrive();
+        flywheel.flywheelDrive();
+//    	addSequential(new DriveTimeCommand(1.2));
+//        addSequential(new DriveTimeFlywheelCommand(2D));
     }
 
     @Override
     protected boolean isFinished()
     {
-        return false;
+        return System.currentTimeMillis() - startTime > runTime;
     }
 
     @Override
     protected void end()
     {
-        flywheelEncoderSubsystem.stop();
-        flywheelEncoderSubsystem.isActiveFlywheel = false;
-        flywheelEncoderSubsystem.isActiveFeeder = false;
+        flywheel.stop();
     }
 
     @Override
     protected void interrupted()
     {
-        flywheelEncoderSubsystem.stop();
-        flywheelEncoderSubsystem.isActiveFlywheel = false;
-        flywheelEncoderSubsystem.isActiveFeeder = false;
+        end();
     }
 }
