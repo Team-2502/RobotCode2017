@@ -5,19 +5,19 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 // TODO: Isaac, Implement this however you want.
-public class IsaacsSpecialSubsystem extends Subsystem
+public class GearBoxSubsystem extends Subsystem
 {
     private final Solenoid solenoid0;
     private final Solenoid solenoid1;
     private final Solenoid solenoid2;
     private final Solenoid solenoid3;
 
-    public IsaacsSpecialSubsystem()
+    public GearBoxSubsystem()
     {
-        this.solenoid0 = new Solenoid(RobotMap.Solenoid.ISAACS_SPECIAL_SOLENOID0);
-        this.solenoid1 = new Solenoid(RobotMap.Solenoid.ISAACS_SPECIAL_SOLENOID1);
-        this.solenoid2 = new Solenoid(RobotMap.Solenoid.ISAACS_SPECIAL_SOLENOID2);
-        this.solenoid3 = new Solenoid(RobotMap.Solenoid.ISAACS_SPECIAL_SOLENOID3);
+        this.solenoid0 = new Solenoid(RobotMap.Solenoid.GEARBOX_SOLENOID0);
+        this.solenoid1 = new Solenoid(RobotMap.Solenoid.GEARBOX_SOLENOID1);
+        this.solenoid2 = new Solenoid(RobotMap.Solenoid.GEARBOX_SOLENOID2);
+        this.solenoid3 = new Solenoid(RobotMap.Solenoid.GEARBOX_SOLENOID3);
     }
 
     @Override

@@ -51,11 +51,14 @@ public class RobotMap
 
     public static final class Solenoid
     {
-        public static final int GEAR_SWITCH = 0;
-        public static final int ISAACS_SPECIAL_SOLENOID0 = 0;
-        public static final int ISAACS_SPECIAL_SOLENOID1 = 0;
-        public static final int ISAACS_SPECIAL_SOLENOID2 = 0;
-        public static final int ISAACS_SPECIAL_SOLENOID3 = 0;
+    	// TRANSMISSION is for shifting drivetrain gear ratio.
+        public static final int TRANSMISSION_SWITCH = 0;
+        
+        // GEARBOX is for the actual box that carries gears.
+        public static final int GEARBOX_SOLENOID0 = 0;
+        public static final int GEARBOX_SOLENOID1 = 0;
+        public static final int GEARBOX_SOLENOID2 = 0;
+        public static final int GEARBOX_SOLENOID3 = 0;
 
         private Solenoid() {}
     }
