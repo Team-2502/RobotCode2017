@@ -16,6 +16,7 @@ import java.io.Serializable;
 /**
  * Example Implementation, Many changes needed.
  */
+@SuppressWarnings("FieldCanBeLocal")
 public class DriveTrainSubsystem extends Subsystem
 {
     private static final Pair<Double, Double> SPEED_CONTAINER = new Pair<Double, Double>();
@@ -40,24 +41,26 @@ public class DriveTrainSubsystem extends Subsystem
 
         drive = new RobotDrive(leftTalon0, leftTalon1, rightTalon0, rightTalon1);
         drive.setExpiration(0.1D);
+
+        setTalonSettings(leftTalon0);
+        setTalonSettings(leftTalon1);
+        setTalonSettings(rightTalon0);
+        setTalonSettings(rightTalon1);
+    }
+
+    private void setTalonSettings(CANTalon talon)
+    {
+        talon.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+        talon.configEncoderCodesPerRev(256);
+        talon.reverseSensor(false);
+        talon.configNominalOutputVoltage(0.0D, -0.0D);
+        talon.configPeakOutputVoltage(12.0D, -12.0D);
     }
 
     @Override
     protected void initDefaultCommand()
     {
         this.setDefaultCommand(new DriveCommand());
-
-        leftTalon0.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-        leftTalon0.configEncoderCodesPerRev(256);
-        leftTalon0.reverseSensor(false);
-        leftTalon0.configNominalOutputVoltage(0.0D, -0.0D);
-        leftTalon0.configPeakOutputVoltage(12.0D, -12.0D);
-
-        rightTalon0.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-        rightTalon0.configEncoderCodesPerRev(256);
-        rightTalon0.reverseSensor(false);
-        rightTalon0.configNominalOutputVoltage(0.0D, -0.0D);
-        rightTalon0.configPeakOutputVoltage(12.0D, -12.0D);
     }
 
     private static void debugSpeed(String format, Object... args)
@@ -84,10 +87,10 @@ public class DriveTrainSubsystem extends Subsystem
         if(xLevel > 0.0D) { leftSpeed -= xLevel; }
         else if(xLevel < 0.0D) { rightSpeed += xLevel; }
 
-        if(logCounter++ % 10 == 0 && false)
-        {
-            debugSpeed("X: %d&nY: %d%nL: %d%nR: %d%n%n", yLevel, xLevel, leftSpeed, rightSpeed);
-        }
+//        if(logCounter++ % 10 == 0 && false)
+//        {
+//            debugSpeed("X: %d&nY: %d%nL: %d%nR: %d%n%n", yLevel, xLevel, leftSpeed, rightSpeed);
+//        }
 
         // Sets the speed to 0 if the speed is less than 0.05 or larger than -0.05
         if(Math.abs(leftSpeed) < 0.05D) { leftSpeed = 0.0D; }
@@ -163,7 +166,7 @@ public class DriveTrainSubsystem extends Subsystem
     }
 
     @SuppressWarnings("WeakerAccess")
-    public static class Pair<L, R> implements Serializable
+    public static class Pair<L, R>
     {
         public L left;
         public R right;
