@@ -5,17 +5,13 @@ import org.jetbrains.annotations.Nullable;
 
 import java.io.*;
 
-@SuppressWarnings({ "WeakerAccess", "unused", "EmptyCatchBlock" })
-public class Log
+@SuppressWarnings({ "WeakerAccess", "unused", "EmptyCatchBlock", "SameParameterValue" })
+public final class Log
 {
     private static boolean debug = false;
-    private static boolean useLogFile = false;
 
     @Nullable
-    protected static BufferedWriter bw = null;
-
-    @Nullable
-    protected static PrintFormat pf = null;
+    private static PrintFormat pf = null;
 
     public static boolean isDebugMode() { return debug; }
 
@@ -26,56 +22,30 @@ public class Log
         if(tmp != debug) { Log.debug(new StringBuilder(28).append("Logger ").append(tmp ? "dis" : "en").append("abling debug mode.").toString()); }
     }
 
-    public static boolean usingLogFile() { return useLogFile; }
+    public static void createLogger() { createLogger(false, "[timestamp] [type] [caller_class]: msg", "hh:mm:ss"); }
 
-    public static void createLogger() { createLogger(false, ""); }
-
-    public static void createLogger(@NotNull("Passed a null value to parameter[0] at `logger.Log#createLogger(java.lang.String)`") String logDir) { createLogger(false, logDir); }
-
-    public static void createLogger(boolean debug) { createLogger(debug, ""); }
-
-    public static void createLogger(boolean debug, @NotNull("Passed a null value to parameter[1] at `logger.Log#createLogger(boolean, java.lang.String)`") String logDir) { createLogger(debug, logDir, "[timestamp] [type] [caller_class]: msg", "hh:mm:ss"); }
+    public static void createLogger(boolean debug) { createLogger(debug, "[timestamp] [type] [caller_class]: msg", "hh:mm:ss"); }
 
     public static void createLogger(boolean debug,
-                                    @NotNull("Passed a null value to parameter[1] at `logger.Log#createLogger(boolean, java.lang.String, java.lang.String, java.lang.String)`") String logDir,
                                     @NotNull("Passed a null value to parameter[2] at `logger.Log#createLogger(boolean, java.lang.String, java.lang.String, java.lang.String)`") String format,
                                     @NotNull("Passed a null value to parameter[3] at `logger.Log#createLogger(boolean, java.lang.String, java.lang.String, java.lang.String)`") String timeFormat)
     {
         pf = new PrintFormat(format, timeFormat);
-        try
-        {
-            if(!logDir.isEmpty())
-            {
-                File f = new File(logDir);
-                //noinspection ResultOfMethodCallIgnored
-                f.mkdirs();
-                f = new File(new StringBuilder(logDir.length() + 17).append(logDir).append((logDir.charAt(logDir.length() - 1) == '/') ? "" : "/").append("log_").append(System.currentTimeMillis() / 1000).append(".log").toString());
-                if(!f.createNewFile()) { throw new IOException(); }
-                bw = new BufferedWriter(new FileWriter(f));
-                useLogFile = true;
-            }
-        } catch(IOException e) { warn("Unable to create Log File."); }
         setDebugMode(debug || (System.getProperty("debug") != null));
     }
 
-    protected static void close()
-    {
-        try { bw.close(); } catch(NullPointerException | IOException e) {}
-    }
-
-    protected static <T> void log(@NotNull("Passed a null value to parameter[0] at `logger.<T>Log#log(logger.Log$LogType, T, int") LogType type,
+    public static <T> void log(@NotNull("Passed a null value to parameter[0] at `logger.<T>Log#log(logger.Log$LogType, T, int") LogType type,
                                   @NotNull("Passed a null value to parameter[1] at `logger.<T>Log#log(logger.Log.LogType, T, int") T msg, int depth)
     {
         if((type == LogType.DEBUG) && !debug) { return; }
         if(pf == null) { createLogger(); }
         String out = pf.getPrintString(type.toString(), ClassGetter.getCallerClassName(depth), msg);
-        try { if(useLogFile) { bw.write(out + '\n'); } } catch(NullPointerException | IOException e) { useLogFile = false; }
         if(type.output instanceof LoggerPrintStream) { ((LoggerPrintStream) type.output).outputln(out); }
         else { type.output.println(out); }
         type.output.flush();
     }
 
-    protected static <T> void log(@NotNull("Passed a null value to parameter[0] at `logger.<T>Log#log(logger.Log$LogType, T)") LogType type,
+    public static <T> void log(@NotNull("Passed a null value to parameter[0] at `logger.<T>Log#log(logger.Log$LogType, T)") LogType type,
                                   @NotNull("Passed a null value to parameter[1] at `logger.<T>Log#log(logger.Log.LogType, T)") T msg)
     { log(type, msg, 0); }
 
@@ -149,8 +119,9 @@ public class Log
 
     static
     {
-        Runtime.getRuntime().addShutdownHook(new Thread(Log::close));
         System.setOut(new LoggerPrintStream(System.out));
         System.setErr(new LoggerPrintStream(System.err));
     }
+
+    private Log() {}
 }
