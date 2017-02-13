@@ -1,19 +1,9 @@
 package com.team2502.robot2017;
 
-import com.team2502.robot2017.command.autonomous.AutoCommandG1;
-import com.team2502.robot2017.command.autonomous.AutoVCommand;
-import com.team2502.robot2017.command.autonomous.AutonomousCommand;
 import com.team2502.robot2017.command.DriveTimeFlywheelCommand;
 import com.team2502.robot2017.command.TurnRightCommand;
-import com.team2502.robot2017.subsystem.ActiveIntakeSubsystem;
-import com.team2502.robot2017.subsystem.DistanceSensorSubsystem;
-import com.team2502.robot2017.subsystem.DriveTrainGearSwitchSubsystem;
-import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
-import com.team2502.robot2017.subsystem.FlywheelEncoderSubsystem;
-import com.team2502.robot2017.subsystem.IsaacsSpecialSubsystem;
-import com.team2502.robot2017.subsystem.PressureSensorSubsystem;
-import com.team2502.robot2017.subsystem.VisionSubsystem;
-
+import com.team2502.robot2017.command.autonomous.AutoCommandG1;
+import com.team2502.robot2017.subsystem.*;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -38,7 +28,7 @@ public final class Robot extends IterativeRobot
     public static final DriveTimeFlywheelCommand DRIVETIMEFL = new DriveTimeFlywheelCommand(1.2);
     public static final AutoCommandG1 AUTO = new AutoCommandG1();
     public static final ActiveIntakeSubsystem ACTIVE = new ActiveIntakeSubsystem();
-    public static final IsaacsSpecialSubsystem GEAR = new IsaacsSpecialSubsystem();
+    public static final GearSubsystem GEAR = new GearSubsystem();
 
     public static DriveTrainGearSwitchSubsystem DRIVE_TRAIN_GEAR_SWITCH;
 
@@ -88,7 +78,7 @@ public final class Robot extends IterativeRobot
     {
 //        AutonomousCommand.autonomousInit();
 //        AutonomousCommand.startS();
-    	Scheduler.getInstance().add(new TurnRightCommand(1.2));
+        Scheduler.getInstance().add(new TurnRightCommand(1.2));
 //        Scheduler.getInstance().add(new AutoCommandG());
 
     }

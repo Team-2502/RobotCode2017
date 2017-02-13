@@ -3,7 +3,6 @@ package com.team2502.robot2017.subsystem;
 import com.team2502.robot2017.OI;
 import com.team2502.robot2017.RobotMap;
 import com.team2502.robot2017.command.FlywheelCommand;
-
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
@@ -82,7 +81,7 @@ public class FlywheelEncoderSubsystem extends Subsystem
     {
         double newError = getError();
 
-        if (newError > error)
+        if(newError > error)
         {
             error = newError;
         }
@@ -97,37 +96,39 @@ public class FlywheelEncoderSubsystem extends Subsystem
         // Determines if the flywheel is already active.
         // If active, turn off flywheel at button press.
         // Else, turn on flywheel at button press.
-        if (OI.JOYSTICK_FUNCTION.getRawButton(5))
+        if(OI.JOYSTICK_FUNCTION.getRawButton(5))
         {
 
-            if (isActiveFlywheel)
+            if(isActiveFlywheel)
             {
                 flywheelTalon.set(0);
                 isActiveFlywheel = false;
-            } else
+            }
+            else
             {
                 flywheelTalon.set(targetSpeed);
                 isActiveFlywheel = true;
             }
         }
 
-        if (OI.JOYSTICK_FUNCTION.getRawButton(12))
+        if(OI.JOYSTICK_FUNCTION.getRawButton(12))
         {
             targetSpeed = targetSpeed - 10;
 
         }
 
-        if (OI.JOYSTICK_FUNCTION.getRawButton(11))
+        if(OI.JOYSTICK_FUNCTION.getRawButton(11))
         {
             targetSpeed = targetSpeed + 10;
 
         }
 
-        if (OI.JOYSTICK_FUNCTION.getTrigger())
+        if(OI.JOYSTICK_FUNCTION.getTrigger())
         {
             feederTalon1.set(1);
             feederTalon2.set(-1);
-        } else
+        }
+        else
         {
             feederTalon1.set(0);
             feederTalon2.set(0);

@@ -1,9 +1,7 @@
 package com.team2502.robot2017;
 
 import com.team2502.robot2017.chooser.TypeSendableChooser;
-import com.team2502.robot2017.command.autonomous.AutonomousCommand;
 import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 @SuppressWarnings({ "WeakerAccess" })

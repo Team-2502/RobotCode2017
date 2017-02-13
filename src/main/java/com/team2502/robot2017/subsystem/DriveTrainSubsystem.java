@@ -1,17 +1,17 @@
 package com.team2502.robot2017.subsystem;
 
-import java.io.Serializable;
-
 import com.team2502.robot2017.DashboardData;
 import com.team2502.robot2017.OI;
-//import com.team2502.robot2017.Robot;
 import com.team2502.robot2017.RobotMap;
 import com.team2502.robot2017.command.DriveCommand;
-
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
+
+import java.io.Serializable;
+
+//import com.team2502.robot2017.Robot;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -74,15 +74,16 @@ public class DriveTrainSubsystem extends Subsystem
 
         // Should invert the left/right to be more intuitive while driving
         // backwards.
-        if (yLevel < 0)
+        if(yLevel < 0)
         {
             xLevel = -xLevel;
         }
 
-        if (xLevel > 0.0D)
+        if(xLevel > 0.0D)
         {
             leftSpeed -= xLevel;
-        } else if (xLevel < 0.0D)
+        }
+        else if(xLevel < 0.0D)
         {
             rightSpeed += xLevel;
         }
@@ -94,11 +95,11 @@ public class DriveTrainSubsystem extends Subsystem
 
         // Sets the speed to 0 if the speed is less than 0.05 or larger than
         // -0.05
-        if (Math.abs(leftSpeed) < 0.05D)
+        if(Math.abs(leftSpeed) < 0.05D)
         {
             leftSpeed = 0.0D;
         }
-        if (Math.abs(rightSpeed) < 0.05D)
+        if(Math.abs(rightSpeed) < 0.05D)
         {
             rightSpeed = 0.0D;
         }
@@ -109,8 +110,7 @@ public class DriveTrainSubsystem extends Subsystem
     /**
      * Used to gradually increase the speed of the robot.
      *
-     * @param isLeftSide
-     *            Whether or not it is the left joystick/side
+     * @param isLeftSide Whether or not it is the left joystick/side
      * @return the speed of the robot
      */
     private Pair<Double, Double> getSpeed()
@@ -121,10 +121,11 @@ public class DriveTrainSubsystem extends Subsystem
 
         // Only increase the speed by a small amount
         double diff = joystickLevel - lastLeft;
-        if (diff > 0.1D)
+        if(diff > 0.1D)
         {
             joystickLevel = lastLeft + 0.1D;
-        } else if (diff < 0.1D)
+        }
+        else if(diff < 0.1D)
         {
             joystickLevel = lastLeft - 0.1D;
         }
@@ -135,10 +136,11 @@ public class DriveTrainSubsystem extends Subsystem
         joystickLevel = -OI.JOYSTICK_DRIVE_RIGHT.getY();
 
         diff = joystickLevel - lastRight;
-        if (diff > 0.1D)
+        if(diff > 0.1D)
         {
             joystickLevel = lastRight + 0.1D;
-        } else if (diff < 0.1D)
+        }
+        else if(diff < 0.1D)
         {
             joystickLevel = lastRight - 0.1D;
         }
@@ -146,7 +148,7 @@ public class DriveTrainSubsystem extends Subsystem
 
         // Sets the speed to 0 if the speed is less than 0.05 or larger than
         // -0.05
-        if (Math.abs(joystickLevel) < 0.05D)
+        if(Math.abs(joystickLevel) < 0.05D)
         {
             joystickLevel = 0.0D;
         }
@@ -159,7 +161,7 @@ public class DriveTrainSubsystem extends Subsystem
     public void drive()
     {
         Pair<Double, Double> speed = DashboardData.getDriveType() == DriveTypes.DUAL_STICK ? getSpeed()
-                : getSpeedArcade();
+                                                                                           : getSpeedArcade();
         drive.tankDrive(speed.left, speed.right, true);
     }
 
@@ -222,8 +224,8 @@ public class DriveTrainSubsystem extends Subsystem
         public String toString()
         {
             return new StringBuilder(100 + nameL.length() + nameR.length()).append("Pair<").append(nameL).append(',')
-                    .append(nameR).append("> { \"left\": \"").append(left).append("\", \"right\": \"").append(right)
-                    .append("\" }").toString();
+                                                                           .append(nameR).append("> { \"left\": \"").append(left).append("\", \"right\": \"").append(right)
+                                                                           .append("\" }").toString();
         }
 
         @Override
@@ -235,12 +237,12 @@ public class DriveTrainSubsystem extends Subsystem
         @Override
         public boolean equals(Object o)
         {
-            if (this == o) { return true; }
-            if (o instanceof Pair)
+            if(this == o) { return true; }
+            if(o instanceof Pair)
             {
                 Pair pair = (Pair) o;
                 return (left != null ? left.equals(pair.left) : pair.left == null)
-                        && (left != null ? left.equals(pair.left) : pair.left == null);
+                       && (left != null ? left.equals(pair.left) : pair.left == null);
             }
             return false;
         }

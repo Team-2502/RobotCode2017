@@ -2,25 +2,23 @@ package com.team2502.robot2017.command.autonomous;
 
 import com.team2502.robot2017.command.DriveTimeCommand;
 import com.team2502.robot2017.command.FlywheelCommand;
-
-import edu.wpi.first.wpilibj.command.CommandGroup;
-
 import com.team2502.robot2017.command.TurnLeftCommand;
-import com.team2502.robot2017.command.autonomous.AutoVCommand;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class AutoCommandG1 extends CommandGroup
 {
     public AutoCommandG1()
     {
-//IThinkThatThisCLassIsVeryStuipdAndIWantToKillIt
-    	addSequential(new DriveTimeCommand(1D));
-        addSequential(new TurnLeftCommand(1D));
-        addSequential(new DriveTimeCommand(1D));
+        // I think that this cLass is very stupid and I want to kill it.
+        // Then why don't you?
+        addSequential(new DriveTimeCommand(1.0D));
+        addSequential(new TurnLeftCommand(1.0D));
+        addSequential(new DriveTimeCommand(1.0D));
         addSequential(new AutoVCommand());
-        addSequential(new GearCommandGON());
-        addSequential(new GearCommandGOFF());
+        addSequential(new GearCommandG(true));
+        addSequential(new GearCommandG(false));
         addSequential(new AutoVCommand());
         addSequential(new FlywheelCommand(1.2D));
-        
+
     }
 }

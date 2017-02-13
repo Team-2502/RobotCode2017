@@ -29,7 +29,7 @@ public class RobotMap
 
         public static final int PRESSURE_SENSOR = 0;
         public static final double ENC = 0;
-		public static final int DISTANCE_SENSOR = 1;
+        public static final int DISTANCE_SENSOR = 1;
     }
 
     public static final class Motor
@@ -41,8 +41,8 @@ public class RobotMap
         public static final int RIGHT_TALON_0 = 1;
         public static final int RIGHT_TALON_1 = 3;
         public static final int FLYWHEEL_TALON_0 = 5;
-        public static final int FEEDER_TALON_0 = 6; 
-        public static final int FEEDER_TALON_1 = 7; 
+        public static final int FEEDER_TALON_0 = 6;
+        public static final int FEEDER_TALON_1 = 7;
         public static final int ACTIVE_INTAKE = 8;
     }
 
@@ -51,10 +51,9 @@ public class RobotMap
 
         public static final int GEAR_SWITCH = 0;
         public static final int ISAACS_SPECIAL_SOLENOID0 = 0;
-        public static final int ISAACS_SPECIAL_SOLENOID1 = 0;
-        public static final int ISAACS_SPECIAL_SOLENOID2 = 0;
-        public static final int ISAACS_SPECIAL_SOLENOID3 = 0;
+        public static final int ISAACS_SPECIAL_SOLENOID1 = 1;
+        public static final int ISAACS_SPECIAL_SOLENOID2 = 2;
 
-         private Solenoid() {}
+        private Solenoid() {}
     }
 }

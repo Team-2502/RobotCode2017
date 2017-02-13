@@ -1,10 +1,7 @@
-
 package com.team2502.robot2017.command;
 
 import com.team2502.robot2017.Robot;
-import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
 import com.team2502.robot2017.subsystem.FlywheelEncoderSubsystem;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 @SuppressWarnings("WeakerAccess")
@@ -36,8 +33,8 @@ public class FlywheelCommand extends Command
     protected void initialize()
     {
         startTime = System.currentTimeMillis();
-       flywheel.isActiveFlywheel = false;
-       flywheel.isActiveFeeder = false;
+        flywheel.isActiveFlywheel = false;
+        flywheel.isActiveFeeder = false;
     }
 
     @Override
