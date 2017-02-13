@@ -18,7 +18,7 @@ import java.io.Serializable;
  */
 public class DriveTrainSubsystem extends Subsystem
 {
-    private static final Pair<Double, Double> SPEED_CONTAINER = new Pair<Double, Double>();
+    //private static final Pair<Double, Double> SPEED_CONTAINER = new Pair<Double, Double>();
 
     private final CANTalon leftTalon0;
     private final CANTalon leftTalon1;
@@ -84,10 +84,10 @@ public class DriveTrainSubsystem extends Subsystem
         if(xLevel > 0.0D) { leftSpeed -= xLevel; }
         else if(xLevel < 0.0D) { rightSpeed += xLevel; }
 
-        if(logCounter++ % 10 == 0 && false)
-        {
-            debugSpeed("X: %d&nY: %d%nL: %d%nR: %d%n%n", yLevel, xLevel, leftSpeed, rightSpeed);
-        }
+//        if(logCounter++ % 10 == 0 && false)
+//        {
+//            debugSpeed("X: %d&nY: %d%nL: %d%nR: %d%n%n", yLevel, xLevel, leftSpeed, rightSpeed);
+//        }
 
         // Sets the speed to 0 if the speed is less than 0.05 or larger than -0.05
         if(Math.abs(leftSpeed) < 0.05D) { leftSpeed = 0.0D; }
@@ -100,7 +100,7 @@ public class DriveTrainSubsystem extends Subsystem
 
     private Pair<Double, Double> getSpeedArcade()
     {
-        return getSpeedArcade(SPEED_CONTAINER);
+        return getSpeedArcade(new Pair<Double, Double>());
     }
 
     /**
@@ -139,7 +139,7 @@ public class DriveTrainSubsystem extends Subsystem
 
     private Pair<Double, Double> getSpeed()
     {
-        return getSpeed(SPEED_CONTAINER);
+        return getSpeed(new Pair<Double, Double>());
     }
 
     public void drive()
