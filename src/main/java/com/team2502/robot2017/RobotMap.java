@@ -42,18 +42,16 @@ public class RobotMap
         public static final int RIGHT_TALON_0 = 1;
         public static final int RIGHT_TALON_1 = 3;
         public static final int FLYWHEEL_TALON_0 = 5;
-        public static final int FEEDER_TALON_0 = 6;
-        public static final int FEEDER_TALON_1 = 7;
+        public static final int FEEDER_TALON_0 = 6; //coleson
+        public static final int FEEDER_TALON_1 = 7; //banebot
         public static final int ACTIVE_INTAKE = 8;
-
-        private Motor() {}
     }
 
     public static final class Solenoid
     {
     	// TRANSMISSION is for shifting drivetrain gear ratio.
         public static final int TRANSMISSION_SWITCH = 0;
-        
+
         // GEARBOX is for the actual box that carries gears.
         public static final int GEARBOX_SOLENOID0 = 0;
         public static final int GEARBOX_SOLENOID1 = 0;
