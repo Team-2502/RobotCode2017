@@ -42,10 +42,10 @@ public class ShooterSubsystem extends Subsystem
     	flywheelTalon.configPeakOutputVoltage(12.0D, -12.0D);
     	
     	flywheelTalon.setProfile(0);
-    	flywheelTalon.setF(0.21765900D);
-    	flywheelTalon.setP(0.21312500D);
-    	flywheelTalon.setI(0.000028D);
-    	flywheelTalon.setD(21D);
+    	flywheelTalon.setF(0.21765900);
+    	flywheelTalon.setP(0.41312500);
+    	flywheelTalon.setI(0.001);
+    	flywheelTalon.setD(0);
     }
 
     /**
