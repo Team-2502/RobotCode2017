@@ -43,8 +43,8 @@ public class VisionSubsystem extends Subsystem
     
     //offset will be negative if to left, positive if to right
     public static double getOffset(){ return visionTable.getNumber("offset", 1023.0); }
-    public static double getWidth(){ return visionTable.getNumber("dimensions-px-x", 1023.0); }
-    public static double getHeight(){ return visionTable.getNumber("dimensions-px-y", 1023.0); }
+//    public static double getWidth(){ return visionTable.getNumber("dimensions-px-x", 1023.0); }
+//    public static double getHeight(){ return visionTable.getNumber("dimensions-px-y", 1023.0); }
 
 	
 }

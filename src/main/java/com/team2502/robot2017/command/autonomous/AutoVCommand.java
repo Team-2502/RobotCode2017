@@ -8,10 +8,11 @@ import com.team2502.robot2017.subsystem.VisionSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
 
-public class AutoCommandV extends Command
+public class AutoVCommand extends Command
 {
 	public static DriveTrainSubsystem dt;
 	public double offset;
@@ -19,7 +20,7 @@ public class AutoCommandV extends Command
 	public double rightSpeed;
     public boolean inFrontOfGear = false;
 
-	public AutoCommandV() 
+	public AutoVCommand() 
 	{
 		dt = new DriveTrainSubsystem();
 		leftSpeed = 0.5;

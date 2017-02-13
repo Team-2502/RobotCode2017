@@ -6,7 +6,7 @@ import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
 import edu.wpi.first.wpilibj.command.Command;
 
 @SuppressWarnings("WeakerAccess")
-public class TurnCommand extends Command
+public class TurnLeftCommand extends Command
 {
     private DriveTrainSubsystem driveTrain;
     private long runTime;
@@ -15,7 +15,7 @@ public class TurnCommand extends Command
     /**
      * @param runTime Time to run for in milliseconds.
      */
-    public TurnCommand(long runTime)
+    public TurnLeftCommand(long runTime)
     {
         requires(Robot.DRIVE_TRAIN);
         driveTrain = Robot.DRIVE_TRAIN;
@@ -25,7 +25,7 @@ public class TurnCommand extends Command
     /**
      * @param runTime Time to run for in seconds.
      */
-    public TurnCommand(double runTime)
+    public TurnLeftCommand(double runTime)
     {
         this((long) (runTime * 1000));
     }
