@@ -14,7 +14,7 @@ public class DriveTrainTransmissionSubsystem extends Subsystem
 
     public DriveTrainTransmissionSubsystem()
     {
-        switcher = new Solenoid(RobotMap.Solenoid.GEAR_SWITCH);
+        switcher = new Solenoid(RobotMap.Solenoid.TRANSMISSION_SWITCH);
         highGear = false;
     }
 
