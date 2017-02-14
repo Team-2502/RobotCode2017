@@ -14,10 +14,10 @@ public class AutoCommandG1 extends CommandGroup
         addSequential(new DriveTimeCommand(1.0D));
         addSequential(new TurnLeftCommand(1.0D));
         addSequential(new DriveTimeCommand(1.0D));
-        addSequential(new AutoVCommand());
+        addSequential(new AutoVCommand(true));
         addSequential(new GearCommandG(true));
         addSequential(new GearCommandG(false));
-        addSequential(new AutoVCommand());
+        addSequential(new AutoVCommand(false));
         addSequential(new FlywheelCommand(1.2D));
 
     }

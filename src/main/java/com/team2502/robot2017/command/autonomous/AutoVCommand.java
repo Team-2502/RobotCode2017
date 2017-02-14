@@ -14,12 +14,14 @@ public class AutoVCommand extends Command
     public double leftSpeed;
     public double rightSpeed;
     public boolean inFrontOfGear = false;
+    public boolean Reverse;
 
-    public AutoVCommand()
+    public AutoVCommand(boolean RevorFor)
     {
         dt = new DriveTrainSubsystem();
         leftSpeed = 0.5;
         rightSpeed = -0.5;
+       
     }
 
     @Override
@@ -44,8 +46,17 @@ public class AutoVCommand extends Command
             if(!(offset == 1023) && ((offset > 5) || (offset < -5)))
             {
                 offset = offset / 100;
-                leftSpeed += offset;
-                rightSpeed += offset;
+             // if reverse then go backwards 
+                if (Reverse)
+                {
+                	leftSpeed += -offset;
+                	rightSpeed += -offset;
+                }
+                else 
+                {
+                	leftSpeed += offset;
+                	rightSpeed += offset;
+                }
                 dt.runMotors(leftSpeed, rightSpeed);
             }
             else if((offset > -5) || (offset < 5))
