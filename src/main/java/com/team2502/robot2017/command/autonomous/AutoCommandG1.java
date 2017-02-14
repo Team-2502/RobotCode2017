@@ -9,8 +9,6 @@ public class AutoCommandG1 extends CommandGroup
 {
     public AutoCommandG1()
     {
-        // I think that this cLass is very stupid and I want to kill it.
-        // Then why don't you?
         addSequential(new DriveTimeCommand(1.0D));
         addSequential(new TurnLeftCommand(1.0D));
         addSequential(new DriveTimeCommand(1.0D));
