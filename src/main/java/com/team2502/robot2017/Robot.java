@@ -4,6 +4,7 @@ import com.kauailabs.navx.frc.AHRS;
 import com.team2502.robot2017.subsystem.*;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import logger.Log;
@@ -19,7 +20,7 @@ public final class Robot extends IterativeRobot
     public static final DistanceSensorSubsystem DISTANCE_SENSOR = new DistanceSensorSubsystem();
     public static final ActiveIntakeSubsystem ACTIVE = new ActiveIntakeSubsystem();
     public static final DriveTrainTransmissionSubsystem DRIVE_TRAIN_GEAR_SWITCH;
-    public static final AHRS NAVX = new NavXSubsystem().ahrs;
+    public static final AHRS NAVX = new AHRS(SerialPort.Port.kMXP);
     
     static
     {
