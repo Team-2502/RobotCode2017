@@ -44,6 +44,8 @@ public class RobotMap
         public static final int FEEDER_TALON_0 = 6; //coleson
         public static final int FEEDER_TALON_1 = 7; //banebot
         public static final int ACTIVE_INTAKE = 8;
+      
+        //public static final int DISTANCE_SENSOR = 1;
     }
 
     public static final class Solenoid
