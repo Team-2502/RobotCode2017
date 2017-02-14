@@ -22,16 +22,4 @@ public class TypeSendableChooser<T> extends SendableChooser
     {
         return (T) getSelected();
     }
-
-    @Override
-    public void addObject(String name, Object object)
-    {
-        throw new UnsupportedOperationException("Use `com.team2502.robot2017.chooser.TypeSendableChooser#addObjectT");
-    }
-
-    @Override
-    public void addDefault(String name, Object object)
-    {
-        throw new UnsupportedOperationException("Use `com.team2502.robot2017.chooser.TypeSendableChooser#addDefaultT");
-    }
 }
