@@ -1,5 +1,6 @@
 package com.team2502.robot2017;
 
+import com.team2502.robot2017.command.autonomous.AutoCommandG1;
 import com.team2502.robot2017.subsystem.*;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -79,7 +80,7 @@ public final class Robot extends IterativeRobot
     @Override
     public void autonomousPeriodic()
     {
-        Scheduler.getInstance().run();
+    	Scheduler.getInstance().run();
         DashboardData.update();
     }
 
@@ -88,7 +89,7 @@ public final class Robot extends IterativeRobot
     {
     }
 
-    /**
+    /** 
      * This function is called periodically during operator control
      */
     @Override
