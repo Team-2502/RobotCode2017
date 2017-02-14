@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class DistanceSensorSubsystem extends Subsystem
 {
-    private static final double INPUT_VOLTAGE = 5.0D;
     private AnalogInput distanceSensor;
 
     public DistanceSensorSubsystem()

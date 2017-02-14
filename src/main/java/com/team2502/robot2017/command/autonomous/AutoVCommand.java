@@ -65,7 +65,7 @@ public class AutoVCommand extends Command
                 rightSpeed = -0.5;
                 dt.runMotors(leftSpeed, rightSpeed);
 
-                if(Robot.DISTANCE_SENSOR.getSensorDistance() < 0.1)
+                if(Robot.DISTANCE_SENSOR.getSensorDistance() < 6)
                 {
                     inFrontOfGear = true;
                 }
