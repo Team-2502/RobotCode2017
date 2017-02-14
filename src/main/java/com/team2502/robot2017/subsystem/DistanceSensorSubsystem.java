@@ -10,12 +10,16 @@ import edu.wpi.first.wpilibj.SPI;
 
 public class DistanceSensorSubsystem extends Subsystem
 {
+    private static final double INPUT_VOLTAGE = 5.0D;
     private AnalogInput distanceSensor;
     double scaleFactor = 6.49;
     
     
 
-    public DistanceSensorSubsystem() { distanceSensor = new AnalogInput(RobotMap.Electrical.DISTANCE_SENSOR); }
+    public DistanceSensorSubsystem()
+    {
+        distanceSensor = new AnalogInput(RobotMap.Electrical.DISTANCE_SENSOR);
+    }
 
 
     protected void initDefaultCommand() {}
@@ -28,7 +32,6 @@ public class DistanceSensorSubsystem extends Subsystem
     	double voltage = distanceSensor.getVoltage();
     	return voltage * scaleFactor;
     }
-    
 }
    
    

@@ -3,18 +3,20 @@ package com.team2502.robot2017;
 import com.team2502.robot2017.chooser.TypeSendableChooser;
 import com.team2502.robot2017.command.autonomous.AutonomousCommand;
 import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 @SuppressWarnings({ "WeakerAccess" })
 public final class DashboardData
 {
-    private DashboardData() {}
-
     public static final TypeSendableChooser<AutonomousCommand> AUTONOMOUS_SELECTOR = new TypeSendableChooser<AutonomousCommand>();
     public static final TypeSendableChooser<DriveTrainSubsystem.DriveTypes> DRIVE_CONTROL_SELECTOR = new TypeSendableChooser<DriveTrainSubsystem.DriveTypes>();
 
-    public static void update() { updatePressure(); }
+    private DashboardData() {}
+
+    public static void update()
+    {
+        updatePressure();
+    }
 
     public static void setup()
     {
@@ -46,11 +48,10 @@ public final class DashboardData
 
     private static void updatePressure()
     {
-        SmartDashboard.putNumber("FW: Current Flywheel Speed", Robot.ENCODER.getSpeed());
-        SmartDashboard.putNumber("FW: Target Speed", Robot.ENCODER.getTargetSpeed());
-        SmartDashboard.putNumber("FW: Loop Error", Robot.ENCODER.getError());
-        SmartDashboard.putNumber("FW: Highest Error Encountered", Robot.ENCODER.getTopError());
-        SmartDashboard.putNumber("FW: Motor Output", Robot.ENCODER.getMotorOutput());
+        SmartDashboard.putNumber("FW: Current Flywheel Speed", Robot.SHOOTER.getSpeed());
+        SmartDashboard.putNumber("FW: Target Speed", Robot.SHOOTER.getTargetSpeed());
+        SmartDashboard.putNumber("FW: Loop Error", Robot.SHOOTER.getError());
+        SmartDashboard.putNumber("FW: Motor Output", Robot.SHOOTER.getMotorOutput());
 
         SmartDashboard.putNumber("Current Dist Sensor Voltage", Robot.DISTANCE_SENSOR.getSensorVoltage());
       

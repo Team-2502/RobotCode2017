@@ -1,32 +1,30 @@
 package com.team2502.robot2017.command;
 
 import com.team2502.robot2017.Robot;
-import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
-import com.team2502.robot2017.subsystem.FlywheelEncoderSubsystem;
-
+import com.team2502.robot2017.subsystem.ShooterSubsystem;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class FlywheelCommand extends Command
 {
-    private final FlywheelEncoderSubsystem flywheelEncoderSubsystem;
+    private final ShooterSubsystem shooterSubsystem;
 
     public FlywheelCommand()
     {
-        requires(Robot.ENCODER);
-        flywheelEncoderSubsystem = Robot.ENCODER;
+        requires(Robot.SHOOTER);
+        shooterSubsystem = Robot.SHOOTER;
     }
 
     @Override
     protected void initialize()
     {
-        flywheelEncoderSubsystem.isActiveFlywheel = false;
-        flywheelEncoderSubsystem.isActiveFeeder = false;
+        shooterSubsystem.isFlywheelActive = false;
+        shooterSubsystem.isFeederActive = false;
     }
 
     @Override
     protected void execute()
     {
-        flywheelEncoderSubsystem.flywheelDrive();
+        shooterSubsystem.flywheelDrive();
     }
 
     @Override
@@ -38,16 +36,12 @@ public class FlywheelCommand extends Command
     @Override
     protected void end()
     {
-        flywheelEncoderSubsystem.stop();
-        flywheelEncoderSubsystem.isActiveFlywheel = false;
-        flywheelEncoderSubsystem.isActiveFeeder = false;
+        shooterSubsystem.stop();
     }
 
     @Override
     protected void interrupted()
     {
-        flywheelEncoderSubsystem.stop();
-        flywheelEncoderSubsystem.isActiveFlywheel = false;
-        flywheelEncoderSubsystem.isActiveFeeder = false;
+        shooterSubsystem.stop();
     }
 }
