@@ -29,7 +29,6 @@ public class RobotMap
     public static final class Electrical
     {
         public static final int PRESSURE_SENSOR = 0;
-        public static final double ENC = 0;
         public static final int DISTANCE_SENSOR = 1;
 
         private Electrical() {}
@@ -55,10 +54,10 @@ public class RobotMap
         public static final int TRANSMISSION_SWITCH = 0;
 
         // GEARBOX is for the actual box that carries gears.
-        public static final int GEARBOX_SOLENOID0 = 0;
-        public static final int GEARBOX_SOLENOID1 = 0;
-        public static final int GEARBOX_SOLENOID2 = 0;
-        public static final int GEARBOX_SOLENOID3 = 0;
+        public static final int GEARBOX_SOLENOID0 = 1;
+        public static final int GEARBOX_SOLENOID1 = 2;
+        public static final int GEARBOX_SOLENOID2 = 3;
+        public static final int GEARBOX_SOLENOID3 = 4;
 
         private Solenoid() {}
     }
