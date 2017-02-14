@@ -52,6 +52,12 @@ public final class DashboardData
         SmartDashboard.putNumber("FW: Target Speed", Robot.SHOOTER.getTargetSpeed());
         SmartDashboard.putNumber("FW: Loop Error", Robot.SHOOTER.getError());
         SmartDashboard.putNumber("FW: Motor Output", Robot.SHOOTER.getMotorOutput());
+        
+        SmartDashboard.putNumber("NavX: Pitch", Robot.NAVX.getPitch());
+        SmartDashboard.putNumber("NavX: Roll", Robot.NAVX.getRoll());
+        SmartDashboard.putNumber("NavX: Yaw", Robot.NAVX.getYaw());
+        SmartDashboard.putNumber("NavX: Raw Accel X", Robot.NAVX.getRawAccelX());
+
 
         SmartDashboard.putNumber("Current Dist Sensor Voltage", Robot.DISTANCE_SENSOR.getSensorVoltage());
       
