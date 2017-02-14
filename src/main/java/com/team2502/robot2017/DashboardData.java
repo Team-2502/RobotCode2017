@@ -50,7 +50,7 @@ public final class DashboardData
         SmartDashboard.putNumber("FW: Loop Error", Robot.ENCODER.getError());
         SmartDashboard.putNumber("FW: Highest Error Encountered", Robot.ENCODER.getTopError());
         SmartDashboard.putNumber("FW: Motor Output", Robot.ENCODER.getMotorOutput());
-        SmartDashboard.putNumber("Current Dist Sensor Voltage", Robot.DISTANCE_SENSOR.getSensorDistance());
+        SmartDashboard.putNumber("Current Dist Sensor Voltage", Robot.DISTANCE_SENSOR.getSensorDist());
 //        SmartDashboard.putNumber("Autonomous", Robot.AUTO.getTimerStraight());
 
         if(Enabler.PRESSURE.enabler[0])
