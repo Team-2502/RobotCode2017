@@ -24,8 +24,6 @@ public class DistanceSensorSubsystem extends Subsystem
 
     protected void initDefaultCommand() {}
 
-    private static final double INPUT_VOLTAGE = 5.0D;
-
     public double getSensorVoltage() { return distanceSensor.getVoltage(); }
     
     public double getSensorDist() { 
