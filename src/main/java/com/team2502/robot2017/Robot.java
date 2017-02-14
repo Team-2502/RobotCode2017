@@ -1,5 +1,6 @@
 package com.team2502.robot2017;
 
+import com.team2502.robot2017.command.autonomous.AutoCommandG1;
 import com.team2502.robot2017.subsystem.*;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -16,6 +17,7 @@ public final class Robot extends IterativeRobot
     public static final Compressor COMPRESSOR = new Compressor();
     public static final ShooterSubsystem SHOOTER = new ShooterSubsystem();
     public static final DistanceSensorSubsystem DISTANCE_SENSOR = new DistanceSensorSubsystem();
+
     public static final ActiveIntakeSubsystem ACTIVE = new ActiveIntakeSubsystem();
     public static final DriveTrainTransmissionSubsystem DRIVE_TRAIN_GEAR_SWITCH;
 
@@ -25,10 +27,12 @@ public final class Robot extends IterativeRobot
         DRIVE_TRAIN_GEAR_SWITCH = new DriveTrainTransmissionSubsystem();
     }
 
+
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
+    @Override
     public void robotInit()
     {
         Log.createLogger(true);
@@ -41,8 +45,12 @@ public final class Robot extends IterativeRobot
      * You can use it to reset any subsystem information you want to clear when
      * the robot is disabled.
      */
-    public void disabledInit() {}
+    @Override
+    public void disabledInit()
+    {
+    }
 
+    @Override
     public void disabledPeriodic()
     {
         Scheduler.getInstance().run();
@@ -51,35 +59,40 @@ public final class Robot extends IterativeRobot
     }
 
     /**
-     * This autonomous (along with the chooser code above) shows how to select between different autonomous modes
-     * using the dashboard. The sendable chooser code works with the Java SmartDashboard. If you prefer the LabVIEW
-     * Dashboard, remove all of the chooser code and uncomment the getString code to get the auto name from the text box
-     * below the Gyro
+     * This autonomous (along with the chooser code above) shows how to select
+     * between different autonomous modes using the dashboard. The sendable
+     * chooser code works with the Java SmartDashboard. If you prefer the
+     * LabVIEW Dashboard, remove all of the chooser code and uncomment the
+     * getString code to get the auto name from the text box below the Gyro
      * <p>
-     * You can add additional auto modes by adding additional commands to the chooser code above (like the commented example)
-     * or additional comparisons to the switch structure below with additional strings and commands.
+     * You can add additional auto modes by adding additional commands to the
+     * chooser code above (like the commented example) or additional comparisons
+     * to the switch structure below with additional strings and commands.
      */
+    @Override
     public void autonomousInit()
     {
         Scheduler.getInstance().add(DashboardData.getAutonomous());
     }
-
     /**
      * This function is called periodically during autonomous
      */
+    @Override
     public void autonomousPeriodic()
     {
-        Scheduler.getInstance().run();
+    	Scheduler.getInstance().run();
         DashboardData.update();
     }
 
+    @Override
     public void teleopInit()
     {
     }
 
-    /**
+    /** 
      * This function is called periodically during operator control
      */
+    @Override
     public void teleopPeriodic()
     {
         Scheduler.getInstance().run();
@@ -89,6 +102,7 @@ public final class Robot extends IterativeRobot
     /**
      * This function is called periodically during test mode
      */
+    @Override
     public void testPeriodic()
     {
         LiveWindow.run();

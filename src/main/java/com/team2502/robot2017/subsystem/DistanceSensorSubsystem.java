@@ -1,6 +1,3 @@
-
-   
-	
 package com.team2502.robot2017.subsystem;
 
 import com.team2502.robot2017.RobotMap;
