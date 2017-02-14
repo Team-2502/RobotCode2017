@@ -7,40 +7,37 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 //import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 @SuppressWarnings("WeakerAccess")
-public class DriveTrainGearSwitchSubsystem extends Subsystem
+public class DriveTrainTransmissionSubsystem extends Subsystem
 {
     private static Solenoid switcher;
 
     // TODO: Change name to `lowGear` if applicable.
     private static boolean highGear;
 
-    public DriveTrainGearSwitchSubsystem()
+    public DriveTrainTransmissionSubsystem()
     {
-        switcher = new Solenoid(RobotMap.Solenoid.GEAR_SWITCH);
+        switcher = new Solenoid(RobotMap.Solenoid.TRANSMISSION_SWITCH);
         highGear = false;
     }
 
     @Override
     protected void initDefaultCommand()
     {
+        /* NO-OP */
     }
 
     public void switchGear()
     {
-        // TODO: Stop transmission during gear switch if applicable.
-//        DriveTrainSubsystem#stop();
         setGear(highGear = !highGear);
-//        Timer.delay(0.1D);
-//        DriveTrainSubsystem#drive();
-    }
-
-    public static void setGear(boolean newHighGear)
-    {
-        switcher.set(highGear = newHighGear);
     }
 
     public boolean getGear()
     {
         return highGear;
+    }
+
+    public void setGear(boolean highGear)
+    {
+        switcher.set(this.highGear = highGear);
     }
 }

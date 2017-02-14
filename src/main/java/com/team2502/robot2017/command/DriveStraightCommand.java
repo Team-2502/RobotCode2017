@@ -4,6 +4,8 @@ import com.team2502.robot2017.Robot;
 import com.team2502.robot2017.RobotMap;
 import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
 import com.team2502.robot2017.subsystem.FlywheelEncoderSubsystem;
+import com.team2502.robot2017.subsystem.ShooterSubsystem;
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
@@ -38,7 +40,7 @@ public class DriveStraightCommand extends Command implements PIDOutput
     private double rotateToAngleRate;
     private double startTime;
 
-    private FlywheelEncoderSubsystem encoder;
+    private ShooterSubsystem encoder;
     private Encoder sensor;
     private double sensorLimit;
     private double speed = 1;
@@ -55,9 +57,9 @@ public class DriveStraightCommand extends Command implements PIDOutput
 
     public DriveStraightCommand(double angle, double speed)
     {
-        requires(Robot.ENCODER);
+        requires(Robot.SHOOTER);
         requires(Robot.DRIVE_TRAIN);
-        encoder = Robot.ENCODER;
+        encoder = Robot.SHOOTER;
         driveTrain = Robot.DRIVE_TRAIN;
         this.angle = angle;
         this.speed = speed;

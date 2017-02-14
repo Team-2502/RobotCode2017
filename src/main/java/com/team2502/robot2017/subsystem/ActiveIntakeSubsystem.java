@@ -24,8 +24,9 @@ public class ActiveIntakeSubsystem extends Subsystem
 
     public void activeDrive()
     {
-        if(OI.JOYSTICK_FUNCTION.getRawButton(4)) { activeTalon.set(1); }
-        else if(OI.JOYSTICK_FUNCTION.getRawButton(3)) { activeTalon.set(-1); }
+
+        if(OI.JOYSTICK_FUNCTION.getRawButton(3)) { activeTalon.set(1); }
+        else if(OI.JOYSTICK_FUNCTION.getRawButton(4)) { activeTalon.set(-1); }
         else { activeTalon.set(0); }
     }
 
@@ -34,3 +35,4 @@ public class ActiveIntakeSubsystem extends Subsystem
         activeTalon.set(0);
     }
 }
+

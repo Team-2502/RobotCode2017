@@ -1,8 +1,5 @@
 package com.team2502.robot2017;
 
-import com.team2502.robot2017.command.DriveTimeFlywheelCommand;
-import com.team2502.robot2017.command.TurnRightCommand;
-import com.team2502.robot2017.command.autonomous.AutoCommandG1;
 import com.team2502.robot2017.subsystem.*;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -10,27 +7,25 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import logger.Log;
 
-@SuppressWarnings({ "WeakerAccess" })
+@SuppressWarnings({ "WeakerAccess", "unused" })
 public final class Robot extends IterativeRobot
 {
-    static
-    {
-        /* I don't know why but this prevents problems. */
-        DRIVE_TRAIN_GEAR_SWITCH = new DriveTrainGearSwitchSubsystem();
-    }
-
     public static final DriveTrainSubsystem DRIVE_TRAIN = new DriveTrainSubsystem();
     public static final PressureSensorSubsystem PRESSURE_SENSOR = new PressureSensorSubsystem();
     public static final VisionSubsystem VISION = new VisionSubsystem();
     public static final Compressor COMPRESSOR = new Compressor();
-    public static final FlywheelEncoderSubsystem ENCODER = new FlywheelEncoderSubsystem();
+    public static final ShooterSubsystem SHOOTER = new ShooterSubsystem();
     public static final DistanceSensorSubsystem DISTANCE_SENSOR = new DistanceSensorSubsystem();
-    public static final DriveTimeFlywheelCommand DRIVETIMEFL = new DriveTimeFlywheelCommand(1.2);
-    public static final AutoCommandG1 AUTO = new AutoCommandG1();
-    public static final ActiveIntakeSubsystem ACTIVE = new ActiveIntakeSubsystem();
-    public static final GearSubsystem GEAR = new GearSubsystem();
 
-    public static DriveTrainGearSwitchSubsystem DRIVE_TRAIN_GEAR_SWITCH;
+    public static final ActiveIntakeSubsystem ACTIVE = new ActiveIntakeSubsystem();
+    public static final DriveTrainTransmissionSubsystem DRIVE_TRAIN_GEAR_SWITCH;
+
+    static
+    {
+        /* I don't know why but this prevents problems. */
+        DRIVE_TRAIN_GEAR_SWITCH = new DriveTrainTransmissionSubsystem();
+    }
+
 
     /**
      * This function is run when the robot is first started up and should be
@@ -76,13 +71,8 @@ public final class Robot extends IterativeRobot
     @Override
     public void autonomousInit()
     {
-//        AutonomousCommand.autonomousInit();
-//        AutonomousCommand.startS();
-        Scheduler.getInstance().add(new TurnRightCommand(1.2));
-//        Scheduler.getInstance().add(new AutoCommandG());
-
+        Scheduler.getInstance().add(DashboardData.getAutonomous());
     }
-
     /**
      * This function is called periodically during autonomous
      */
@@ -96,11 +86,6 @@ public final class Robot extends IterativeRobot
     @Override
     public void teleopInit()
     {
-        // This makes sure that the autonomous stops running when
-        // teleop starts running. If you want the autonomous to
-        // continue until interrupted by another command, remove
-        // this line or comment it out.
-//        AutonomousCommand.cancelS();
     }
 
     /**

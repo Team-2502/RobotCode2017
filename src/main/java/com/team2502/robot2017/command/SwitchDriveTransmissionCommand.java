@@ -1,19 +1,17 @@
 package com.team2502.robot2017.command;
 
 import com.team2502.robot2017.Robot;
-import com.team2502.robot2017.subsystem.DriveTrainGearSwitchSubsystem;
+import com.team2502.robot2017.subsystem.DriveTrainTransmissionSubsystem;
 import edu.wpi.first.wpilibj.command.Command;
 
-//import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
-
-public class SwitchDriveTrainGearCommand extends Command
+public class SwitchDriveTransmissionCommand extends Command
 {
-    private final DriveTrainGearSwitchSubsystem driveTrainGearSwitchSubsystem;
+    private final DriveTrainTransmissionSubsystem driveTrainTransmissionSubsystem;
 
-    public SwitchDriveTrainGearCommand()
+    public SwitchDriveTransmissionCommand()
     {
         requires(Robot.DRIVE_TRAIN_GEAR_SWITCH);
-        driveTrainGearSwitchSubsystem = Robot.DRIVE_TRAIN_GEAR_SWITCH;
+        driveTrainTransmissionSubsystem = Robot.DRIVE_TRAIN_GEAR_SWITCH;
     }
 
     @Override
@@ -25,7 +23,7 @@ public class SwitchDriveTrainGearCommand extends Command
     @Override
     protected void execute()
     {
-        driveTrainGearSwitchSubsystem.switchGear();
+        driveTrainTransmissionSubsystem.switchGear();
     }
 
     @Override

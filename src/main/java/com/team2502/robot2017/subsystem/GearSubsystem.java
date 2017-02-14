@@ -21,9 +21,9 @@ public class GearSubsystem extends Subsystem
 
     public GearSubsystem()
     {
-        this.moveTop = new Solenoid(RobotMap.Solenoid.ISAACS_SPECIAL_SOLENOID0);
-        this.lever = new Solenoid(RobotMap.Solenoid.ISAACS_SPECIAL_SOLENOID1);
-        this.pushGear = new Solenoid(RobotMap.Solenoid.ISAACS_SPECIAL_SOLENOID2);
+        this.moveTop = new Solenoid(RobotMap.Solenoid.GEARBOX_SOLENOID0);
+        this.lever = new Solenoid(RobotMap.Solenoid.GEARBOX_SOLENOID1);
+        this.pushGear = new Solenoid(RobotMap.Solenoid.GEARBOX_SOLENOID2);
     }
 
     @Override

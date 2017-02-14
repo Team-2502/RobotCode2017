@@ -1,23 +1,27 @@
 package com.team2502.robot2017.command;
 
 import com.team2502.robot2017.Robot;
-import com.team2502.robot2017.subsystem.FlywheelEncoderSubsystem;
+import com.team2502.robot2017.subsystem.ShooterSubsystem;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 @SuppressWarnings("WeakerAccess")
 public class FlywheelCommand extends Command
 {
-    private FlywheelEncoderSubsystem flywheel;
-    private long runTime;
-    private long startTime;
+
+    private final ShooterSubsystem shooterSubsystem;
+	private long runTime;
+	private long startTime;
+
 
     /**
      * @param runTime Time to run for in milliseconds.
      */
     public FlywheelCommand(long runTime)
     {
-        requires(Robot.ENCODER);
-        flywheel = Robot.ENCODER;
+
+        requires(Robot.SHOOTER);
+        shooterSubsystem = Robot.SHOOTER;
         this.runTime = runTime;
     }
 
@@ -33,16 +37,16 @@ public class FlywheelCommand extends Command
     protected void initialize()
     {
         startTime = System.currentTimeMillis();
-        flywheel.isActiveFlywheel = false;
-        flywheel.isActiveFeeder = false;
+
+        shooterSubsystem.isFlywheelActive = false;
+        shooterSubsystem.isFeederActive = false;
     }
 
     @Override
     protected void execute()
     {
-        flywheel.flywheelDrive();
-//    	addSequential(new DriveTimeCommand(1.2));
-//        addSequential(new DriveTimeFlywheelCommand(2D));
+
+        shooterSubsystem.flywheelDrive();
     }
 
     @Override
@@ -54,7 +58,7 @@ public class FlywheelCommand extends Command
     @Override
     protected void end()
     {
-        flywheel.stop();
+        shooterSubsystem.stop();
     }
 
     @Override
