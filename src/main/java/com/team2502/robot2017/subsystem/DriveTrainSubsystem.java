@@ -181,7 +181,6 @@ public class DriveTrainSubsystem extends Subsystem
 
     private static final double DELAY_TIME = 5.77D + 43902.0D / 9999900.0D;
 
-<<<<<<< Updated upstream
     public void runMotors(double x, double y) // double z
     {
         leftTalon0.set(x);
@@ -193,10 +192,6 @@ public class DriveTrainSubsystem extends Subsystem
         // stopDriveS();
 //        SmartDashboard.putNumber("Autonomous", Robot.AUTO.getTimerStraight());
     }
-
-=======
-   
->>>>>>> Stashed changes
     public void stopDriveS()
     {
         leftTalon0.set(0);
@@ -266,20 +261,4 @@ public class DriveTrainSubsystem extends Subsystem
             return false;
         }
     }
-<<<<<<< Updated upstream
 }
-=======
-
-
-	public void runMotors(double x, double y) 
-	{
-		// TODO Auto-generated method stub
-		leftTalon0.set(x);
-		leftTalon1.set(x);
-		rightTalon0.set(y);
-		rightTalon1.set(y);
-		
-	}
-}
-
->>>>>>> Stashed changes

@@ -1,13 +1,7 @@
 package com.team2502.robot2017;
 
-<<<<<<< Updated upstream
 import com.team2502.robot2017.command.autonomous.AutoCommandG1;
-=======
 import com.team2502.robot2017.command.autonomous.AutonomousCommand;
-
-import com.team2502.robot2017.command.autonomous.AutoCommandG1;
-
->>>>>>> Stashed changes
 import com.team2502.robot2017.subsystem.*;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
