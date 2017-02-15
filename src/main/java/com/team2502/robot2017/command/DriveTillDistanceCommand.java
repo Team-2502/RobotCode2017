@@ -31,7 +31,7 @@ public class DriveTillDistanceCommand extends Command
 		
 			if (Sensor.getSensorDistance() > 14)
 			{
-				driveTrain.runMotors(-5, .5);
+				driveTrain.runMotors(-.5, .5);
 			}
 			else 
 			{
