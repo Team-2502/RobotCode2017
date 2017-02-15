@@ -65,7 +65,11 @@ public class AutoVCommand extends Command
                 rightSpeed = -0.5;
                 dt.runMotors(leftSpeed, rightSpeed);
 
+<<<<<<< Updated upstream
                 if(Robot.DISTANCE_SENSOR.getSensorDist() < 12D)
+=======
+                if(Robot.DISTANCE_SENSOR.getSensorDistance() < 12D)
+>>>>>>> Stashed changes
                 {
                     inFrontOfGear = true;
                 }

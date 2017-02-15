@@ -8,6 +8,8 @@ public class DistanceSensorSubsystem extends Subsystem
 {
     private static final double INPUT_VOLTAGE = 5.0D;
     private AnalogInput distanceSensor;
+    private double ScaleFactor = 6.532189;
+  //6.532189 is a scale factor to convert voltage to distance
 
     public DistanceSensorSubsystem()
     {
@@ -21,9 +23,10 @@ public class DistanceSensorSubsystem extends Subsystem
     }
 
    
-    public double getSensorVoltage()
+    public double getSensorDistance()
     {
-        return(distanceSensor.getVoltage()*6.55);
+        return(distanceSensor.getVoltage()*ScaleFactor);
+        
     }
     
 }
