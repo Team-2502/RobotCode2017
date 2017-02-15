@@ -12,35 +12,36 @@ public class DriveTillDistanceCommand extends Command
 	private DriveTrainSubsystem driveTrain;
 	double Distance;
 	boolean Close = false;
+	double distanceR;
 	
-	public DriveTillDistanceCommand (double Distance)
+	public DriveTillDistanceCommand (double distance)
 	{
 		requires(Robot.DRIVE_TRAIN);
         driveTrain = Robot.DRIVE_TRAIN;
+        requires(Robot.DISTANCE_SENSOR);
+        Sensor = Robot.DISTANCE_SENSOR;
+        distance = distanceR;
 	}
 	@Override
-	protected void initialize() 
-	{	// TODO Auto-generated method stub
-	
-	}
+	protected void initialize() {}
 
 	@Override
 	protected void execute() 
 	{	// TODO Auto-generated method stub
-		if (!Close)
-		{
-			driveTrain.runMotors(1, 1);
-		}
-		if(Sensor.getSensorVoltage() == Distance)
-		{
-			Close = true;
-		}
+		
+			if (Sensor.getSensorDistance() > 14)
+			{
+				driveTrain.runMotors(-5, .5);
+			}
+			else 
+			{
+				driveTrain.runMotors(0, 0);
+			}
 	}
-
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return Close;
+		return false;
 	}
 
 	@Override

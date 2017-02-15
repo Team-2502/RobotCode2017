@@ -21,9 +21,18 @@ public class DistanceSensorSubsystem extends Subsystem
     }
 
    
-    public double getSensorVoltage()
-    {
-        return(distanceSensor.getVoltage()*6.55);
+    public double getSensorDistance()
+    {	if(distanceSensor.getVoltage()*6.532189 < 6)
+    	{
+    		return 20;
+    	}
+    	
+    	if(distanceSensor.getVoltage()*6.532189 > 18 )
+    	{
+    		return 0;
+    	}
+    	{
+        	return(distanceSensor.getVoltage()*6.532189);
+    	}
     }
-    
 }

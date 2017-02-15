@@ -58,7 +58,7 @@ public final class DashboardData
         SmartDashboard.putNumber("FW: Loop Error", Robot.SHOOTER.getError());
         SmartDashboard.putNumber("FW: Motor Output", Robot.SHOOTER.getMotorOutput());
       
-        SmartDashboard.putNumber ("DS:Current Distance (in)", Robot.DISTANCE_SENSOR.getSensorVoltage());
+        SmartDashboard.putNumber ("DS:Current Distance (in)", Robot.DISTANCE_SENSOR.getSensorDistance());
 
         if(Enabler.PRESSURE.enabler[0])
         {
