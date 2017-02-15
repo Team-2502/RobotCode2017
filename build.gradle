@@ -25,7 +25,7 @@ gradlerio.team = "2502"                                   //Your FRC team number
 
 dependencies {
     compile "org.jetbrains:annotations:15.0" // Provides useful annotations like @NotNull & @Nullable 
-    compile files('/Users/64009334/wpilib/user/java/lib/navx_frc.jar')
+    compile files('/Users/90304755/wpilib/user/java/lib/navx_frc.jar')
 }
 
 def robotManifest = {
