@@ -1,5 +1,4 @@
 import java.io.*;
-import java.nio.file.FileSystemException;
 
 public class Version
 {
@@ -15,7 +14,7 @@ public class Version
         {
             if(!versionFile.createNewFile())
             {
-                throw new FileSystemException("Cannot create version file.");
+                throw new Exception("Cannot create version file.");
             }
         }
 
@@ -59,11 +58,11 @@ public class Version
 
         if(!versionFile.delete())
         {
-            throw new FileSystemException("Cannot delete version file.");
+            throw new Exception("Cannot delete version file.");
         }
         if(!versionFile.createNewFile())
         {
-            throw new FileSystemException("Cannot create version file.");
+            throw new Exception("Cannot create version file.");
         }
         BufferedWriter bw = new BufferedWriter(new FileWriter(versionFile));
         bw.write(new StringBuilder(17).append("version=").append(major).append('.').append(minor).append('.').append(build).toString());
