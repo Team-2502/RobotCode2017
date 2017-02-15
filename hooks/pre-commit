@@ -1,7 +1,7 @@
 #!/bin/sh
 
+versionFile="../../version_$(git branch | sed -n -e 's/^\* \(.*\)/\1/p').properties"
 cd ".git/hooks"
 javac Version.java
-versionFile="../../version_$(git branch | sed -n -e 's/^\* \(.*\)/\1/p').properties"
 java -cp . Version "$versionFile" 0
 rm -rf Version.class
