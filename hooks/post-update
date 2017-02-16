@@ -1,4 +1,5 @@
 #!/bin/sh
+
 exec git update-index --skip-worktree gradlew
 exec git update-index --skip-worktree gradlew.bat
 exec git update-index --skip-worktree LICENSE

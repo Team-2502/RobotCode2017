@@ -4,6 +4,11 @@ import com.team2502.robot2017.chooser.TypeSendableChooser;
 import com.team2502.robot2017.command.autonomous.AutonomousCommand;
 import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import logger.Log;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 @SuppressWarnings({ "WeakerAccess" })
 public final class DashboardData
@@ -34,6 +39,23 @@ public final class DashboardData
         {
             SmartDashboard.putData("Drive Control Mode", DRIVE_CONTROL_SELECTOR);
         }
+
+        try
+        {
+            BufferedReader br = new BufferedReader(new InputStreamReader(DashboardData.class.getResourceAsStream("/version.properties")));
+            String line;
+            while((line = br.readLine()) != null)
+            {
+                if(line.startsWith("version="))
+                {
+                    String[] split = line.split("=");
+                    if((split.length < 2) || (split[1] == null) || split[1].isEmpty()) { throw new Exception(); }
+                    SmartDashboard.putString("Version", split[1]);
+                    break;
+                }
+            }
+            br.close();
+        } catch(Exception e) { Log.error("Could not get version."); }
     }
 
     public static AutonomousCommand getAutonomous()
@@ -54,7 +76,7 @@ public final class DashboardData
         SmartDashboard.putNumber("FW: Motor Output", Robot.SHOOTER.getMotorOutput());
 
         SmartDashboard.putNumber("Current Dist Sensor Voltage", Robot.DISTANCE_SENSOR.getSensorVoltage());
-      
+
 
         if(Enabler.PRESSURE.enabler[0])
         {
@@ -62,10 +84,10 @@ public final class DashboardData
             if(Enabler.PRESSURE.enabler[2]) { SmartDashboard.putBoolean("Is Compressor Enabled", Robot.COMPRESSOR.enabled()); }
             if(Enabler.PRESSURE.enabler[3]) { SmartDashboard.putBoolean("Is Compressor Low", Robot.COMPRESSOR.getPressureSwitchValue()); }
             if(Enabler.PRESSURE.enabler[4]) { SmartDashboard.putNumber("Current Air Compression Rate", Robot.COMPRESSOR.getCompressorCurrent()); }
-            
-            
+
+
         }
-        
+
     }
 
     private enum Enabler
