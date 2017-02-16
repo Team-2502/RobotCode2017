@@ -21,6 +21,7 @@ public final class DashboardData
     public static void update()
     {
         updatePressure();
+        updateNavX();
     }
 
     public static void setup()
@@ -66,6 +67,14 @@ public final class DashboardData
     public static DriveTrainSubsystem.DriveTypes getDriveType()
     {
         return DRIVE_CONTROL_SELECTOR.getSelectedT();
+    }
+    
+    private static void updateNavX()
+    {
+    	SmartDashboard.putNumber("NavX: Yaw", Robot.NAVX.getYaw());
+    	SmartDashboard.putNumber("NavX: Roll", Robot.NAVX.getRoll());
+    	SmartDashboard.putNumber("NavX: Pitch", Robot.NAVX.getPitch());
+    	SmartDashboard.putNumber("NavX: Angle", Robot.NAVX.getAngle());
     }
 
     private static void updatePressure()
