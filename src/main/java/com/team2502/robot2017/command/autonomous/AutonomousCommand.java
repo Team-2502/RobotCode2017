@@ -5,6 +5,7 @@ import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
 import com.team2502.robot2017.subsystem.ShooterSubsystem;
 import com.team2502.robot2017.subsystem.VisionSubsystem;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 public class AutonomousCommand extends Command
 {
@@ -24,7 +25,10 @@ public class AutonomousCommand extends Command
     }
 
     @Override
-    protected void initialize() {}
+    protected void initialize() 
+    {
+    	Scheduler.getInstance().add(new AutoCommandG2());
+    }
 
     @Override
     protected void execute() {}

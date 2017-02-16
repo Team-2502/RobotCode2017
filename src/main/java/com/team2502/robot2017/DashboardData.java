@@ -1,8 +1,10 @@
 package com.team2502.robot2017;
 
 import com.team2502.robot2017.chooser.TypeSendableChooser;
-import com.team2502.robot2017.command.autonomous.AutonomousCommand;
 import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
+import com.team2502.robot2017.command.autonomous.AutoCommandG1;
+import com.team2502.robot2017.command.autonomous.AutonomousCommand;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import logger.Log;
 
@@ -13,7 +15,9 @@ import java.io.InputStreamReader;
 @SuppressWarnings({ "WeakerAccess" })
 public final class DashboardData
 {
+
     public static final TypeSendableChooser<AutonomousCommand> AUTONOMOUS_SELECTOR = new TypeSendableChooser<AutonomousCommand>();
+    
     public static final TypeSendableChooser<DriveTrainSubsystem.DriveTypes> DRIVE_CONTROL_SELECTOR = new TypeSendableChooser<DriveTrainSubsystem.DriveTypes>();
 
     private DashboardData() {}
@@ -79,13 +83,13 @@ public final class DashboardData
 
     private static void updatePressure()
     {
+    	
         SmartDashboard.putNumber("FW: Current Flywheel Speed", Robot.SHOOTER.getSpeed());
         SmartDashboard.putNumber("FW: Target Speed", Robot.SHOOTER.getTargetSpeed());
         SmartDashboard.putNumber("FW: Loop Error", Robot.SHOOTER.getError());
         SmartDashboard.putNumber("FW: Motor Output", Robot.SHOOTER.getMotorOutput());
 
-        SmartDashboard.putNumber("Current Dist Sensor Voltage", Robot.DISTANCE_SENSOR.getSensorVoltage());
-
+        SmartDashboard.putNumber ("DS:Current Distance (in)", Robot.DISTANCE_SENSOR.getSensorDistance());
 
         if(Enabler.PRESSURE.enabler[0])
         {

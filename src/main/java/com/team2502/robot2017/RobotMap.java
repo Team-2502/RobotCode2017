@@ -3,6 +3,7 @@ package com.team2502.robot2017;
 @SuppressWarnings({ "WeakerAccess" })
 public class RobotMap
 {
+
     private static final int UNDEFINED = -1;
 
     private RobotMap() {}
@@ -28,10 +29,9 @@ public class RobotMap
 
     public static final class Electrical
     {
+    	  private Electrical() {}
         public static final int PRESSURE_SENSOR = 0;
         public static final int DISTANCE_SENSOR = 1;
-
-        private Electrical() {}
     }
 
     public static final class Motor
@@ -46,10 +46,12 @@ public class RobotMap
         public static final int ACTIVE_INTAKE = 8;
       
         private Motor() {}
+
     }
 
     public static final class Solenoid
     {
+
     	// TRANSMISSION is for shifting drivetrain gear ratio.
         public static final int TRANSMISSION_SWITCH = 0;
 
