@@ -4,12 +4,16 @@ import com.team2502.robot2017.subsystem.*;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import logger.Log;
+import com.kauailabs.navx.frc.AHRS;
+
 
 @SuppressWarnings({ "WeakerAccess", "unused" })
 public final class Robot extends IterativeRobot
 {
+	// Makes all the stuff
     public static final DriveTrainSubsystem DRIVE_TRAIN = new DriveTrainSubsystem();
     public static final PressureSensorSubsystem PRESSURE_SENSOR = new PressureSensorSubsystem();
     public static final VisionSubsystem VISION = new VisionSubsystem();
@@ -18,6 +22,9 @@ public final class Robot extends IterativeRobot
     public static final DistanceSensorSubsystem DISTANCE_SENSOR = new DistanceSensorSubsystem();
     public static final ActiveIntakeSubsystem ACTIVE = new ActiveIntakeSubsystem();
     public static final DriveTrainTransmissionSubsystem DRIVE_TRAIN_GEAR_SWITCH;
+    
+    // NavX Subsystem
+    public static final AHRS NAVX = new AHRS(SPI.Port.kMXP);
 
     static
     {
