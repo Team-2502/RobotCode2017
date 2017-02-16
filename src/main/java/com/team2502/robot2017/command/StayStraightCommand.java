@@ -27,9 +27,9 @@ public class StayStraightCommand extends Command{
 	protected void execute() {
 		double currentYaw = Robot.NAVX.getYaw();
 		if(currentYaw > yaw){
-			driveTrain.runMotors(driveTrain.leftSpeed*2, driveTrain.rightSpeed*0);
+			driveTrain.runMotors(driveTrain.leftSpeed*(currentYaw-yaw), driveTrain.rightSpeed*0);
 		} else if(currentYaw < yaw){
-			driveTrain.runMotors(driveTrain.leftSpeed*0, driveTrain.rightSpeed*2);
+			driveTrain.runMotors(driveTrain.leftSpeed*0, driveTrain.rightSpeed*(yaw-currentYaw));
 		}
 	}
 
