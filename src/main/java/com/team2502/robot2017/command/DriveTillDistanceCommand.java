@@ -28,10 +28,11 @@ public class DriveTillDistanceCommand extends Command
 	@Override
 	protected void execute() 
 	{	// TODO Auto-generated method stub
-		
-			if (Sensor.getSensorDistance() > 12)
+	driveTrain.leftSpeed = -0.5;
+			driveTrain.rightSpeed = 0.5;
+			if (Sensor.getSensorDistance() > 14)
 			{
-				driveTrain.runMotors(-.75, .75);
+			driveTrain.runMotors(driveTrain.leftSpeed, driveTrain.rightSpeed);
 			}
 			else 
 			{
