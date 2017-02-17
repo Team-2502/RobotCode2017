@@ -32,8 +32,8 @@ public final class DashboardData
     {
         AUTONOMOUS_SELECTOR.addDefaultT("Default Auto", new AutonomousCommand());
 
-        DRIVE_CONTROL_SELECTOR.addDefaultT("Arcade Drive Control", DriveTrainSubsystem.DriveTypes.ARCADE);
-        DRIVE_CONTROL_SELECTOR.addObjectT("Dual Stick Drive Control", DriveTrainSubsystem.DriveTypes.DUAL_STICK);
+        DRIVE_CONTROL_SELECTOR.addDefaultT("Arcade Drive Control", DriveTrainSubsystem.DriveTypes.DUAL_STICK);
+        DRIVE_CONTROL_SELECTOR.addObjectT("Dual Stick Drive Control", DriveTrainSubsystem.DriveTypes.ARCADE);
 
         if(Enabler.AUTONOMOUS.enabler[0])
         {
