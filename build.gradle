@@ -5,7 +5,6 @@ buildscript {
   		name = "GradleRIO"
   		url = "http://dev.imjac.in/maven"
   	}
-
   	flatDir name: 'navxDir', dirs: "${System.env.HOME}/wpilib/user/java/lib" 
 
   }
