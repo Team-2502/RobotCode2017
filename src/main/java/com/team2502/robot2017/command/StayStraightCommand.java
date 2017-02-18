@@ -14,37 +14,65 @@ public class StayStraightCommand extends Command{
 	private DriveTrainSubsystem driveTrain;
 	private AHRS navx;
 	private DistanceSensorSubsystem Sensor;
-	
-	public StayStraightCommand(double angle) {
+	public double currentYaw;
+	public boolean continuous;
+	private long runTime;
+	private long startTime;
+    public StayStraightCommand(long runTime) 
+    {
 		requires(Robot.DRIVE_TRAIN);
         driveTrain = Robot.DRIVE_TRAIN;
         navx = Robot.NAVX;
         requires(Robot.DISTANCE_SENSOR);
         Sensor = Robot.DISTANCE_SENSOR;
         
+		this.runTime = (long) runTime;
+	}
+	
+    public StayStraightCommand(double runTime )
+    {
+        this((long) (runTime * 1000));
+    }
+    
+    public StayStraightCommand(double angle, double runTime)
+    {
+    	if(angle == 0)
+        {
+        	continuous = true;
+        }
+        else if(angle != 0)
+        {
+        	continuous = false;
+        }
         navx.reset();
 		targetYaw = angle;
-	}
+		this.runTime = (long) runTime;
+    }
+ 
 
 	@Override
-	protected void initialize() {}
+	protected void initialize() 
+	{
+		navx.reset();
+		startTime = System.currentTimeMillis();
+	}
 
 	@Override
 	protected void execute() 
 	{
-		double currentYaw = Robot.NAVX.getYaw();
+		currentYaw = Robot.NAVX.getYaw();
 		SmartDashboard.putNumber("NavX: Target yaw", targetYaw);
 		if (Sensor.getSensorDistance() > 14)
 		{
-			if(Math.abs(currentYaw - targetYaw) > 2)
+			if(Math.abs(currentYaw - targetYaw) > 10)
 			{
 				if(currentYaw > targetYaw)
 				{
-					driveTrain.runMotors(-1, -0.5);
+					driveTrain.runMotors(-0.1, -0.5);
 				} 
 				else if(currentYaw < targetYaw)
 				{
-					driveTrain.runMotors(0.5, 1);
+					driveTrain.runMotors(0.5, 0.1);
 				}
 			}
 			else
@@ -61,7 +89,14 @@ public class StayStraightCommand extends Command{
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return false;
+		if(!continuous){
+			return (Math.abs(currentYaw - targetYaw) < 10);
+		}
+		else
+		{
+			return System.currentTimeMillis() - startTime > runTime;
+		}
+		
 	}
 
 	@Override
