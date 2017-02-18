@@ -10,7 +10,7 @@ public class AutoCommandG2 extends CommandGroup
     public AutoCommandG2()
     {
     	addSequential(new StayStraightCommand(90, 5D));
-    	addSequential(new StayStraightCommand(0,5D));
+    	addSequential(new StayStraightCommand(0, 5D));
 
     }
 }
