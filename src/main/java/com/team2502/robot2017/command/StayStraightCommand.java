@@ -14,19 +14,23 @@ public class StayStraightCommand extends Command{
 	private DriveTrainSubsystem driveTrain;
 	private AHRS navx;
 	private DistanceSensorSubsystem Sensor;
+
 	public double currentYaw;
 	public boolean continuous;
 	private long runTime;
 	private long startTime;
     public StayStraightCommand(long runTime) 
     {
+
 		requires(Robot.DRIVE_TRAIN);
         driveTrain = Robot.DRIVE_TRAIN;
         navx = Robot.NAVX;
         requires(Robot.DISTANCE_SENSOR);
         Sensor = Robot.DISTANCE_SENSOR;
         
+
 		this.runTime = (long) runTime;
+
 	}
 	
     public StayStraightCommand(double runTime )
@@ -60,6 +64,7 @@ public class StayStraightCommand extends Command{
 	@Override
 	protected void execute() 
 	{
+
 		currentYaw = Robot.NAVX.getYaw();
 		SmartDashboard.putNumber("NavX: Target yaw", targetYaw);
 		if (Sensor.getSensorDistance() > 14)
@@ -80,7 +85,7 @@ public class StayStraightCommand extends Command{
 				driveTrain.runMotors(-.5, .5);
 			}
 		}
-		else
+		if (Math.abs(currentYaw-targetYaw) <= 10)
 		{
 			driveTrain.runMotors(0, 0);
 		}

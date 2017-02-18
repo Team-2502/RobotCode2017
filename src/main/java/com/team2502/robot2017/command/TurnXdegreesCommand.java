@@ -2,31 +2,50 @@ package com.team2502.robot2017.command;
 
 import com.team2502.robot2017.Robot;
 import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
+import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class TurnXdegreesCommand extends Command
 {	
-	private DriveTrainSubsystem driveTrain;
-	double XDegrees;
+	private DriveTrainSubsystem driveTrain;	
+	double TargetDegrees;
+	private AHRS navx;
+    double currentDegrees;
 	
-	public void TurnXdegreesCommand(double  Xdegrees)
+	public TurnXdegreesCommand(double  Xdegrees)
 	{
 		requires(Robot.DRIVE_TRAIN);
         driveTrain = Robot.DRIVE_TRAIN;
-        Xdegrees = XDegrees; 
+        navx = Robot.NAVX;
+        Xdegrees = TargetDegrees; 
+
 	}
 	
 	@Override
-	protected void initialize() {
+	protected void initialize() 
+	{
 		// TODO Auto-generated method stub
-		
+		currentDegrees = navx.getAngle();
 	}
 
 	@Override
-	protected void execute() {
+	protected void execute() 
+	{
 		// TODO Auto-generated method stub
-		
+		currentDegrees = navx.getAngle();
+		if (currentDegrees == TargetDegrees)
+		{
+			driveTrain.runMotors(0, 0);
+		}
+		else if (currentDegrees < TargetDegrees)
+		{
+			driveTrain.runMotors(0, currentDegrees);
+		}
+		else 
+		{
+			driveTrain.runMotors(currentDegrees, 0);
+		}
 	}
 
 	@Override
