@@ -21,6 +21,7 @@ public class AutoVCommand extends Command
         dt = new DriveTrainSubsystem();
         leftSpeed = 0.5;
         rightSpeed = -0.5;
+        Reverse = RevorFor;
        
     }
 
