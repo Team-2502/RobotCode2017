@@ -73,16 +73,16 @@ public class NavxMoveCommand extends Command{
 			{
 				if(currentYaw > targetYaw)
 				{
-					driveTrain.runMotors(-0.1, -0.5);
+					driveTrain.runMotors(-0.1, 0.5);
 				} 
 				else if(currentYaw < targetYaw)
 				{
-					driveTrain.runMotors(0.5, 0.1);
+					driveTrain.runMotors(0.5, -0.1);
 				}
 			}
 			else
 			{
-				driveTrain.runMotors(-.5, .5);
+				driveTrain.runMotors(.5, .5);
 			}
 		}
 		if (Math.abs(currentYaw-targetYaw) <= 10)
