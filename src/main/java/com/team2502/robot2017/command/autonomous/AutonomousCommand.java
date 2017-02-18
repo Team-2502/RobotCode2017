@@ -35,7 +35,7 @@ public class AutonomousCommand extends Command
     protected void execute() {}
 
     @Override
-    protected boolean isFinished() { return System.currentTimeMillis() - startTime > 30000; }
+    protected boolean isFinished() { return System.currentTimeMillis() - startTime > 15000; }
 
     @Override
     protected void end()
