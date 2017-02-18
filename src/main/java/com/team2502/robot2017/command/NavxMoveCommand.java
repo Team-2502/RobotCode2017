@@ -28,14 +28,45 @@ public class NavxMoveCommand extends Command{
         requires(Robot.DISTANCE_SENSOR);
         Sensor = Robot.DISTANCE_SENSOR;
         
-
-		this.runTime = (long) runTime;
-
+    	if(runTime > 40)
+    	{
+    		long angle = 0;
+			runTime = angle;
+    		if(angle == 0)
+    		{
+        	continuous = true;
+    		}
+    		else if(angle != 0)
+    		{
+        	continuous = false;
+    		}
+    		navx.reset();
+    		targetYaw = angle;
+    	}
+    	else
+    	{
+   		this.runTime = (long) runTime;
+   		}
 	}
 	
     public NavxMoveCommand(double runTime )
-    {
-        this((long) (runTime * 1000));
+    {	
+    	this((long) (runTime * 1000));
+    	if(runTime > 40)
+    	{
+    		double angle = 0;
+			runTime = angle;
+    		if(angle == 0)
+    		{
+    		continuous = true;
+    		}
+    		else if(angle != 0)
+    		{
+        	continuous = false;
+    		}
+    		navx.reset();
+    		targetYaw = angle;
+    	}
     }
     
     public NavxMoveCommand(double angle, double runTime)
@@ -52,6 +83,7 @@ public class NavxMoveCommand extends Command{
 		targetYaw = angle;
 		this.runTime = (long) runTime;
     }
+
  
 
 	@Override

@@ -12,6 +12,7 @@ public class AutonomousCommand extends Command
     private final DriveTrainSubsystem driveTrainSubsystem;
     private final VisionSubsystem visionSubsystem;
     private final ShooterSubsystem shooterSubsystem;
+    private long startTime;
 
     public AutonomousCommand()
     {
@@ -26,7 +27,7 @@ public class AutonomousCommand extends Command
 
     @Override
     protected void initialize() 
-    {
+    {	startTime = System.currentTimeMillis();
     	Scheduler.getInstance().add(new AutoCommandG2());
     }
 
@@ -34,7 +35,7 @@ public class AutonomousCommand extends Command
     protected void execute() {}
 
     @Override
-    protected boolean isFinished() { return true; }
+    protected boolean isFinished() { return System.currentTimeMillis() - startTime > 30000; }
 
     @Override
     protected void end()
