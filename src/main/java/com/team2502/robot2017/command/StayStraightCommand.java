@@ -6,6 +6,7 @@ import com.team2502.robot2017.subsystem.DistanceSensorSubsystem;
 import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class StayStraightCommand extends Command{
 
@@ -14,35 +15,36 @@ public class StayStraightCommand extends Command{
 	private AHRS navx;
 	private DistanceSensorSubsystem Sensor;
 	
-	public StayStraightCommand() {
+	public StayStraightCommand(double angle) {
 		requires(Robot.DRIVE_TRAIN);
         driveTrain = Robot.DRIVE_TRAIN;
         navx = Robot.NAVX;
         requires(Robot.DISTANCE_SENSOR);
         Sensor = Robot.DISTANCE_SENSOR;
         
-		targetYaw = navx.getYaw();
+        navx.reset();
+		targetYaw = angle;
 	}
 
 	@Override
-	protected void initialize() {targetYaw = navx.getYaw();}
+	protected void initialize() {}
 
 	@Override
 	protected void execute() 
 	{
 		double currentYaw = Robot.NAVX.getYaw();
-	
+		SmartDashboard.putNumber("NavX: Target yaw", targetYaw);
 		if (Sensor.getSensorDistance() > 14)
 		{
-			if(Math.abs(currentYaw - targetYaw) > 5)
+			if(Math.abs(currentYaw - targetYaw) > 2)
 			{
 				if(currentYaw > targetYaw)
 				{
-					driveTrain.runMotors(driveTrain.leftSpeed*(currentYaw-targetYaw), driveTrain.rightSpeed*0);
+					driveTrain.runMotors(-1, -0.5);
 				} 
 				else if(currentYaw < targetYaw)
 				{
-					driveTrain.runMotors(driveTrain.leftSpeed*0, driveTrain.rightSpeed*(targetYaw-currentYaw));
+					driveTrain.runMotors(0.5, 1);
 				}
 			}
 			else
