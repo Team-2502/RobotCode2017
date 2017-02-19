@@ -40,6 +40,8 @@ public class FlywheelCommand extends Command
 
         shooterSubsystem.isFlywheelActive = false;
         shooterSubsystem.isFeederActive = false;
+        
+        shooterSubsystem.defaultShooter();
     }
 
     @Override

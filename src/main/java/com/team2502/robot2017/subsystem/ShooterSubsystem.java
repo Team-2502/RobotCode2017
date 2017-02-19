@@ -81,6 +81,11 @@ public class ShooterSubsystem extends Subsystem
 
         return error;
     }
+    
+    public void defaultShooter()
+    {
+    	shooterMode = false;
+    }
 	
 	public void flywheelDrive()
 	{	
@@ -99,11 +104,11 @@ public class ShooterSubsystem extends Subsystem
      	else { flywheelTalon.set(0); }
 
         // For changing the flywheel speed.
-        if(OI.JOYSTICK_FUNCTION.getRawButton(RobotMap.Joystick.Button.SHOOTER_INCREASE_SPEED))
+        if(OI.JOYSTICK_DRIVE_LEFT.getRawButton(RobotMap.Joystick.Button.SHOOTER_INCREASE_SPEED))
         {
             targetSpeed += 10;
         }
-        else if(OI.JOYSTICK_FUNCTION.getRawButton(RobotMap.Joystick.Button.SHOOTER_DECREASE_SPEED))
+        else if(OI.JOYSTICK_DRIVE_LEFT.getRawButton(RobotMap.Joystick.Button.SHOOTER_DECREASE_SPEED))
         {
             targetSpeed -= 10;
         }

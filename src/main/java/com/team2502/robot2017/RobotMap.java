@@ -20,8 +20,8 @@ public class RobotMap
         {
             public static final int SWITCH_DRIVE_TRANSMISSION = 1;
             public static final int SHOOTER_TOGGLE = 5;
-            public static final int SHOOTER_INCREASE_SPEED = 11;
-            public static final int SHOOTER_DECREASE_SPEED = 12;
+            public static final int SHOOTER_INCREASE_SPEED = 7;
+            public static final int SHOOTER_DECREASE_SPEED = 6;
 
             private Button() {}
         }
@@ -45,7 +45,7 @@ public class RobotMap
         public static final int FEEDER_TALON_1 = 7; //banebot
         public static final int ACTIVE_INTAKE = 8;
       
-      	private Motor() {}
+      	private Motor() {}	
     }
 
     public static final class Solenoid
@@ -59,6 +59,7 @@ public class RobotMap
         public static final int GEARBOX_SOLENOID1 = 2;
         public static final int GEARBOX_SOLENOID2 = 3;
         public static final int GEARBOX_SOLENOID3 = 4;
+        public static final int CLIMBER_SOLENOID = 5;
 
         private Solenoid() {}
     }

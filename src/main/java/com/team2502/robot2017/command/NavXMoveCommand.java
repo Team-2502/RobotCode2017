@@ -38,7 +38,7 @@ public class NavXMoveCommand extends Command{
         navx.reset();
         targetYaw = 0;
         forever = true;
-		this.runTime = (long)  1000000000;
+		this.runTime = (long)  5000;
 	}
 	
     public NavXMoveCommand(double runTime) 

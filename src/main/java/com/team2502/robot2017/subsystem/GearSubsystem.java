@@ -11,51 +11,73 @@ public class GearSubsystem extends Subsystem
     private final Solenoid moveTop;
     private final Solenoid lever;
     private final Solenoid pushGear;
+    private final Solenoid slideBox;
 
+    // States for debounce code. For moveTop Solenoid.
     private boolean buttonPressed0 = false;
     private boolean mode0 = false;
+    
+    // States for debounce code. For lever Solenoid.
     private boolean buttonPressed1 = false;
     private boolean mode1 = false;
+    
+    // States for debounce code. For pushGear Solenoid.
     private boolean buttonPressed2 = false;
     private boolean mode2 = false;
+    
+    // States for debounce code. For slideBox Solenoid.
+    private boolean buttonPressed3 = false;
+    private boolean mode3 = false;
 
+    
     public GearSubsystem()
     {
         this.moveTop = new Solenoid(RobotMap.Solenoid.GEARBOX_SOLENOID0);
         this.lever = new Solenoid(RobotMap.Solenoid.GEARBOX_SOLENOID1);
         this.pushGear = new Solenoid(RobotMap.Solenoid.GEARBOX_SOLENOID2);
+        this.slideBox = new Solenoid(RobotMap.Solenoid.GEARBOX_SOLENOID3);
     }
 
     @Override
-    protected void initDefaultCommand()
-    {
-    }
+    protected void initDefaultCommand() {}
 
     public void doStuff()
     {
-        if(OI.JOYSTICK_DRIVE_RIGHT.getRawButton(4) && !buttonPressed0)
+    	// If button 4 on right joystick, toggles solenoid
+        if(OI.JOYSTICK_FUNCTION.getRawButton(12) && !buttonPressed0)
         {
             mode0 = !mode0;
         }
-        buttonPressed0 = OI.JOYSTICK_DRIVE_RIGHT.getRawButton(4);
+        buttonPressed0 = OI.JOYSTICK_FUNCTION.getRawButton(4);
 
         moveTop.set(mode0);
 
-        if(OI.JOYSTICK_DRIVE_RIGHT.getRawButton(3) && !buttonPressed1)
+        // If button 3 on right joystick, toggles solenoid
+        if(OI.JOYSTICK_FUNCTION.getRawButton(9) && !buttonPressed1)
         {
             mode1 = !mode1;
         }
-        buttonPressed1 = OI.JOYSTICK_DRIVE_RIGHT.getRawButton(3);
+        buttonPressed1 = OI.JOYSTICK_FUNCTION.getRawButton(3);
 
         lever.set(mode1);
 
-        if(OI.JOYSTICK_DRIVE_RIGHT.getRawButton(5) && !buttonPressed2)
+        // If button 5 on right joystick, toggles solenoid
+        if(OI.JOYSTICK_FUNCTION.getRawButton(11) && !buttonPressed2)
         {
             mode2 = !mode2;
         }
-        buttonPressed2 = OI.JOYSTICK_DRIVE_RIGHT.getRawButton(5);
+        buttonPressed2 = OI.JOYSTICK_FUNCTION.getRawButton(5);
 
         pushGear.set(mode2);
+        
+        // If button 2 on right joystick, toggles solenoid
+        if(OI.JOYSTICK_FUNCTION.getRawButton(7) && !buttonPressed3)
+        {
+            mode3 = !mode3;
+        }
+        buttonPressed2 = OI.JOYSTICK_FUNCTION.getRawButton(2);
+
+        slideBox.set(mode3);
     }
 
     public void pushGear()
@@ -86,6 +108,16 @@ public class GearSubsystem extends Subsystem
     public void setLever(boolean on)
     {
         lever.set(on);
+    }
+    
+    public void slideBoxOff()
+    {
+    	slideBox.set(false);
+    }
+    
+    public void slideBoxOn()
+    {
+    	slideBox.set(true);
     }
 }
   
