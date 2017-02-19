@@ -1,5 +1,6 @@
 package com.team2502.robot2017.subsystem;
 
+<<<<<<< HEAD
 import com.team2502.robot2017.OI;
 import com.team2502.robot2017.RobotMap;
 import com.team2502.robot2017.command.ClimberCommand;
@@ -17,10 +18,25 @@ public class ClimberSubsystem extends Subsystem
     public ClimberSubsystem()
     {
         Climber = new CANTalon(RobotMap.Motor.CLIMBER);
+=======
+import com.team2502.robot2017.RobotMap;
+import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.command.Subsystem;
+
+// TODO: Isaac, Implement this however you want.
+public class ClimberSubsystem extends Subsystem
+{
+    private final Solenoid climber;
+	
+    public ClimberSubsystem()
+    {
+        this.climber = new Solenoid(RobotMap.Solenoid.CLIMBER_SOLENOID);
+>>>>>>> master
     }
 
     @Override
     protected void initDefaultCommand()
+<<<<<<< HEAD
     {	
     	Time = System.currentTimeMillis();
         this.setDefaultCommand(new ClimberCommand());
@@ -52,3 +68,14 @@ public class ClimberSubsystem extends Subsystem
     }
 }
 
+=======
+    {
+
+    }
+
+    public void doStuff()
+    {
+
+    }
+}
+>>>>>>> master

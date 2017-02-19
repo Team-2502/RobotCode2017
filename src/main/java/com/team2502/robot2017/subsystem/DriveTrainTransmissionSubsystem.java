@@ -4,13 +4,15 @@ import com.team2502.robot2017.RobotMap;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+//import edu.wpi.first.wpilibj.DoubleSolenoid;
+
 @SuppressWarnings("WeakerAccess")
 public class DriveTrainTransmissionSubsystem extends Subsystem
 {
-    private final Solenoid switcher;
+    private static Solenoid switcher;
 
     // TODO: Change name to `lowGear` if applicable.
-    private boolean highGear;
+    private static boolean highGear;
 
     public DriveTrainTransmissionSubsystem()
     {
