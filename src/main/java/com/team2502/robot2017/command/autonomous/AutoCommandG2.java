@@ -8,7 +8,8 @@ public class AutoCommandG2 extends CommandGroup
 {
     public AutoCommandG2()
     {
-    	addSequential(new NavxMoveCommand(90, 5D));
     	addSequential(new NavxMoveCommand(0,5D));
+//    	addSequential(new NavxMoveCommand(90, 5D));
+
     }
 }
