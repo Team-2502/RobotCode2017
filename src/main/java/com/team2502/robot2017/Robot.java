@@ -18,6 +18,7 @@ public final class Robot extends IterativeRobot
     public static final DistanceSensorSubsystem DISTANCE_SENSOR = new DistanceSensorSubsystem();
     public static final ActiveIntakeSubsystem ACTIVE = new ActiveIntakeSubsystem();
     public static final DriveTrainTransmissionSubsystem DRIVE_TRAIN_GEAR_SWITCH;
+    public static final ClimberSubsystem CLIMBER = new ClimberSubsystem();
 
     static
     {
