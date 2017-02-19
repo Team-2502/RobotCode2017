@@ -25,13 +25,25 @@ dependencies {
 }
 
 def robotManifest = {
-  attributes 'Main-Class': 'edu.wpi.first.wpilibj.RobotBase'
-  attributes 'Robot-Class': gradlerio.robotClass
+    attributes 'Main-Class': 'edu.wpi.first.wpilibj.RobotBase'
+    attributes 'Robot-Class': gradlerio.robotClass
+}
+
+task copyVersionFile(type: Exec) {
+    workingDir '.git/hooks'
+    commandLine './copyVersionFile.sh'
+}
+
+task copyHooks(type: Copy) {
+    from 'hooks/'
+    into '.git/hooks/'
 }
 
 jar {
-  from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
-  manifest robotManifest
+    dependsOn copyHooks
+    dependsOn copyVersionFile
+    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    manifest robotManifest
 }
 
 task genJavadoc(type: Jar, dependsOn: javadoc) {
