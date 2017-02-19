@@ -43,9 +43,9 @@ public class ShooterSubsystem extends Subsystem
     	
     	flywheelTalon.setProfile(0);
     	flywheelTalon.setF(0.21765900);
-    	flywheelTalon.setP(0.75312500);
+    	flywheelTalon.setP(1.71312500);
     	flywheelTalon.setI(0.0);
-    	flywheelTalon.setD(0);
+    	flywheelTalon.setD(0.0);
     }
 
     /**
