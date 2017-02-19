@@ -1,34 +1,30 @@
 package com.team2502.robot2017.command;
 
 import com.team2502.robot2017.Robot;
-import com.team2502.robot2017.subsystem.ShooterSubsystem;
-
+import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
 import edu.wpi.first.wpilibj.command.Command;
 
 @SuppressWarnings("WeakerAccess")
-public class FlywheelCommand extends Command
+public class TurnRightCommand extends Command
 {
-
-    private final ShooterSubsystem shooterSubsystem;
-	private long runTime;
-	private long startTime;
-
+    private DriveTrainSubsystem driveTrain;
+    private long runTime;
+    private long startTime;
 
     /**
      * @param runTime Time to run for in milliseconds.
      */
-    public FlywheelCommand(long runTime)
+    public TurnRightCommand(long runTime)
     {
-
-        requires(Robot.SHOOTER);
-        shooterSubsystem = Robot.SHOOTER;
+        requires(Robot.DRIVE_TRAIN);
+        driveTrain = Robot.DRIVE_TRAIN;
         this.runTime = runTime;
     }
 
     /**
      * @param runTime Time to run for in seconds.
      */
-    public FlywheelCommand(double runTime)
+    public TurnRightCommand(double runTime)
     {
         this((long) (runTime * 1000));
     }
@@ -37,16 +33,14 @@ public class FlywheelCommand extends Command
     protected void initialize()
     {
         startTime = System.currentTimeMillis();
-
-        shooterSubsystem.isFlywheelActive = false;
-        shooterSubsystem.isFeederActive = false;
     }
 
     @Override
     protected void execute()
     {
-
-        shooterSubsystem.flywheelDrive();
+        driveTrain.runMotors(1.0D, 1.0D);
+//    	addSequential(new DriveTimeCommand(1.2));
+//        addSequential(new DriveTimeFlywheelCommand(2D));
     }
 
     @Override
@@ -58,7 +52,7 @@ public class FlywheelCommand extends Command
     @Override
     protected void end()
     {
-        shooterSubsystem.stop();
+        driveTrain.stop();
     }
 
     @Override

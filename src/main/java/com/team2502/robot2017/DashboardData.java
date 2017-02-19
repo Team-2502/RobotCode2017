@@ -1,8 +1,10 @@
 package com.team2502.robot2017;
 
 import com.team2502.robot2017.chooser.TypeSendableChooser;
-import com.team2502.robot2017.command.autonomous.AutonomousCommand;
 import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
+import com.team2502.robot2017.command.autonomous.AutoCommandG1;
+import com.team2502.robot2017.command.autonomous.AutonomousCommand;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import logger.Log;
 
@@ -13,7 +15,9 @@ import java.io.InputStreamReader;
 @SuppressWarnings({ "WeakerAccess" })
 public final class DashboardData
 {
+
     public static final TypeSendableChooser<AutonomousCommand> AUTONOMOUS_SELECTOR = new TypeSendableChooser<AutonomousCommand>();
+    
     public static final TypeSendableChooser<DriveTrainSubsystem.DriveTypes> DRIVE_CONTROL_SELECTOR = new TypeSendableChooser<DriveTrainSubsystem.DriveTypes>();
 
     private DashboardData() {}
@@ -21,14 +25,15 @@ public final class DashboardData
     public static void update()
     {
         updatePressure();
+        updateNavX();
     }
 
     public static void setup()
     {
         AUTONOMOUS_SELECTOR.addDefaultT("Default Auto", new AutonomousCommand());
 
-        DRIVE_CONTROL_SELECTOR.addDefaultT("Arcade Drive Control", DriveTrainSubsystem.DriveTypes.ARCADE);
-        DRIVE_CONTROL_SELECTOR.addObjectT("Dual Stick Drive Control", DriveTrainSubsystem.DriveTypes.DUAL_STICK);
+        DRIVE_CONTROL_SELECTOR.addDefaultT("Arcade Drive Control", DriveTrainSubsystem.DriveTypes.DUAL_STICK);
+        DRIVE_CONTROL_SELECTOR.addObjectT("Dual Stick Drive Control", DriveTrainSubsystem.DriveTypes.ARCADE);
 
         if(Enabler.AUTONOMOUS.enabler[0])
         {
@@ -67,16 +72,30 @@ public final class DashboardData
     {
         return DRIVE_CONTROL_SELECTOR.getSelectedT();
     }
+    
+    private static void updateNavX()
+    {
+    	SmartDashboard.putNumber("NavX: Yaw", Robot.NAVX.getYaw());
+    	SmartDashboard.putNumber("NavX: Roll", Robot.NAVX.getRoll());
+    	SmartDashboard.putNumber("NavX: Pitch", Robot.NAVX.getPitch());
+    	SmartDashboard.putNumber("NavX: Angle", Robot.NAVX.getAngle());
+    }
 
     private static void updatePressure()
     {
+    	
         SmartDashboard.putNumber("FW: Current Flywheel Speed", Robot.SHOOTER.getSpeed());
         SmartDashboard.putNumber("FW: Target Speed", Robot.SHOOTER.getTargetSpeed());
         SmartDashboard.putNumber("FW: Loop Error", Robot.SHOOTER.getError());
         SmartDashboard.putNumber("FW: Motor Output", Robot.SHOOTER.getMotorOutput());
+        
+        SmartDashboard.putNumber("NavX: Pitch", Robot.NAVX.getPitch());
+        SmartDashboard.putNumber("NavX: Roll", Robot.NAVX.getRoll());
+        SmartDashboard.putNumber("NavX: Yaw", Robot.NAVX.getYaw());
+        SmartDashboard.putNumber("NavX: Raw Accel X", Robot.NAVX.getRawAccelX());
 
-        SmartDashboard.putNumber("Current Dist Sensor Voltage", Robot.DISTANCE_SENSOR.getSensorVoltage());
 
+        SmartDashboard.putNumber ("DS:Current Distance (in)", Robot.DISTANCE_SENSOR.getSensorDistance());
 
         if(Enabler.PRESSURE.enabler[0])
         {
