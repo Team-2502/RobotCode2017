@@ -9,7 +9,7 @@ public class GearCommandG extends CommandGroup
 {
     public GearCommandG(boolean on)
     {
-        addSequential(new LeverCommand(on));
-        addSequential(new GearCommand(on));
+        //addSequential(new LeverCommand(on));
+        //addSequential(new GearCommand(on));
     }
 }

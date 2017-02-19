@@ -22,6 +22,8 @@ public class RobotMap
             public static final int SHOOTER_TOGGLE = 5;
             public static final int SHOOTER_INCREASE_SPEED = 7;
             public static final int SHOOTER_DECREASE_SPEED = 6;
+            public static final int TOP_GEAR_BOX = 12;
+//            public static final int 
 
             private Button() {}
         }
@@ -41,7 +43,7 @@ public class RobotMap
         public static final int RIGHT_TALON_0 = 1;
         public static final int RIGHT_TALON_1 = 3;
         public static final int FLYWHEEL_TALON_0 = 5;
-        public static final int FEEDER_TALON_0 = 6; //coleson
+        public static final int FEEDER_TALON_0 = 6; //colson
         public static final int FEEDER_TALON_1 = 7; //banebot
         public static final int ACTIVE_INTAKE = 8;
       

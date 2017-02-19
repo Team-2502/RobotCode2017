@@ -23,6 +23,7 @@ public final class Robot extends IterativeRobot
     public static final ShooterSubsystem SHOOTER = new ShooterSubsystem();
     public static final DistanceSensorSubsystem DISTANCE_SENSOR = new DistanceSensorSubsystem();
     public static final ActiveIntakeSubsystem ACTIVE = new ActiveIntakeSubsystem();
+    public static final GearBoxSubsystem GEAR_BOX = new GearBoxSubsystem();
     public static final DriveTrainTransmissionSubsystem DRIVE_TRAIN_GEAR_SWITCH;
 
     // NavX Subsystem

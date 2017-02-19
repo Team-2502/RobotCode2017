@@ -2,26 +2,24 @@ package com.team2502.robot2017.command;
 
 import com.team2502.robot2017.Robot;
 import com.team2502.robot2017.subsystem.DriveTrainTransmissionSubsystem;
-import com.team2502.robot2017.subsystem.GearSubsystem;
+import com.team2502.robot2017.subsystem.GearBoxSubsystem;
 import edu.wpi.first.wpilibj.command.Command;
 
 @SuppressWarnings("WeakerAccess")
 public class GearCommand extends Command
 {
-    private final DriveTrainTransmissionSubsystem gear;
-    private final boolean on;
+    private final GearBoxSubsystem gear;
 
-    public GearCommand(boolean on)
+    public GearCommand()
     {
-        requires(Robot.DRIVE_TRAIN_GEAR_SWITCH);
-        gear = Robot.DRIVE_TRAIN_GEAR_SWITCH;
-        this.on = on;
+        requires(Robot.GEAR_BOX);
+        gear = Robot.GEAR_BOX;
     }
 
     @Override
     protected void execute()
     {
-        gear.setGear(on);
+        gear.doStuff();
     }
 
     @Override
@@ -31,10 +29,7 @@ public class GearCommand extends Command
     }
 
     @Override
-    protected boolean isFinished()
-    {
-        return true;
-    }
+    protected boolean isFinished() { return true; }
 
     @Override
     protected void end()
