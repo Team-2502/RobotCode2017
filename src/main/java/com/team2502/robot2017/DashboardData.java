@@ -1,7 +1,7 @@
 package com.team2502.robot2017;
 
 import com.team2502.robot2017.chooser.TypeSendableChooser;
-//import com.team2502.robot2017.command.autonomous.AutonomousCommand;
+import com.team2502.robot2017.command.autonomous.AutonomousCommand;
 import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
 //import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -11,21 +11,21 @@ public final class DashboardData
 {
     private DashboardData() {}
 
-//    public static final TypeSendableChooser<AutonomousCommand> AUTONOMOUS_SELECTOR = new TypeSendableChooser<AutonomousCommand>();
+    public static final TypeSendableChooser<AutonomousCommand> AUTONOMOUS_SELECTOR = new TypeSendableChooser<AutonomousCommand>();
     public static final TypeSendableChooser<DriveTrainSubsystem.DriveTypes> DRIVE_CONTROL_SELECTOR = new TypeSendableChooser<DriveTrainSubsystem.DriveTypes>();
 
     public static void update() { updatePressure(); }
 
     public static void setup()
     {
-//        AUTONOMOUS_SELECTOR.addDefaultT("Default Auto", new AutonomousCommand());
+        AUTONOMOUS_SELECTOR.addDefaultT("Default Auto", new AutonomousCommand());
 
         DRIVE_CONTROL_SELECTOR.addDefaultT("Arcade Drive Control", DriveTrainSubsystem.DriveTypes.ARCADE);
         DRIVE_CONTROL_SELECTOR.addObjectT("Dual Stick Drive Control", DriveTrainSubsystem.DriveTypes.DUAL_STICK);
 
         if(Enabler.AUTONOMOUS.enabler[0])
         {
-//            SmartDashboard.putData("Auto Mode", AUTONOMOUS_SELECTOR);
+            SmartDashboard.putData("Auto Mode", AUTONOMOUS_SELECTOR);
         }
 
         if(Enabler.DRIVE_CONTROL.enabler[0])
@@ -34,10 +34,10 @@ public final class DashboardData
         }
     }
 
-//    public static AutonomousCommand getAutonomous()
-//    {
-//        return AUTONOMOUS_SELECTOR.getSelectedT();
-//    }
+    public static AutonomousCommand getAutonomous()
+    {
+        return AUTONOMOUS_SELECTOR.getSelectedT();
+    }
 
     public static DriveTrainSubsystem.DriveTypes getDriveType()
     {
