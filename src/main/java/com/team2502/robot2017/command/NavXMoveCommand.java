@@ -153,8 +153,8 @@ public class NavXMoveCommand extends Command{
 		}
 		else
 		{
-//			return Math.pow(Math.E, (-1 * time / 10000));
-			return 4000/((time * time) + 4000);
+			return Math.pow(Math.E, (-1 * time / 10000));
+//			return 4000/((time * time) + 4000);
 		}
 	}
 
