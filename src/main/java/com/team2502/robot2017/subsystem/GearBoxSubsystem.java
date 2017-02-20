@@ -9,33 +9,31 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class GearBoxSubsystem extends Subsystem
 {
     private final Solenoid moveTop;
-    private final Solenoid lever;
+    private final Solenoid releaseGear;
     private final Solenoid pushGear;
-    private final Solenoid slideBox;
+    private final Solenoid pushBox;
 
     // States for debounce code. For moveTop Solenoid.
-    private boolean buttonPressed0 = false;
     private boolean topMoved = false;
     
     // States for debounce code. For lever Solenoid.
-    private boolean buttonPressed1 = false;
-    private boolean mode1 = false;
+    private boolean Released = false;
     
     // States for debounce code. For pushGear Solenoid.
     private boolean buttonPressed2 = false;
-    private boolean mode2 = false;
+    private boolean pushedGear = false;
     
     // States for debounce code. For slideBox Solenoid.
     private boolean buttonPressed3 = false;
-    private boolean mode3 = false;
+    private boolean pushedBox = false;
 
     
     public GearBoxSubsystem()
     {
-        this.moveTop = new Solenoid(RobotMap.Solenoid.GEARBOX_SOLENOID0);
-        this.lever = new Solenoid(RobotMap.Solenoid.GEARBOX_SOLENOID1);
-        this.pushGear = new Solenoid(RobotMap.Solenoid.GEARBOX_SOLENOID2);
-        this.slideBox = new Solenoid(RobotMap.Solenoid.GEARBOX_SOLENOID3);
+        this.moveTop = new Solenoid(RobotMap.Solenoid.GEARBOX_SOLENOID3);
+        this.releaseGear = new Solenoid(RobotMap.Solenoid.GEARBOX_SOLENOID1);
+        this.pushGear = new Solenoid(RobotMap.Solenoid.GEARBOX_SOLENOID0);
+        this.pushBox = new Solenoid(RobotMap.Solenoid.GEARBOX_SOLENOID2);
     }
 
     @Override
@@ -60,74 +58,74 @@ public class GearBoxSubsystem extends Subsystem
 //        	moveTop.set(RobotMap.Solenoid.GEARBOX_SOLENOID0 = !);
 //        }
 
-    	switchTop();
-    	
-        // If button 3 on right joystick, toggles solenoid
-        if(OI.JOYSTICK_FUNCTION.getRawButton(9) && !buttonPressed1)
-        {
-            mode1 = !mode1;
-        }
-        buttonPressed1 = OI.JOYSTICK_FUNCTION.getRawButton(3);
+//    	switchTop();
+//    	
+//        // If button 3 on right joystick, toggles solenoid
+//        if(OI.JOYSTICK_FUNCTION.getRawButton(9) && !buttonPressed1)
+//        {
+//            mode1 = !mode1;
+//        }
+//        buttonPressed1 = OI.JOYSTICK_FUNCTION.getRawButton(3);
+//
+//        releaseGear.set(mode1);
+//
+//        // If button 5 on right joystick, toggles solenoid
+//        if(OI.JOYSTICK_FUNCTION.getRawButton(11) && !buttonPressed2)
+//        {
+//            mode2 = !mode2;
+//        }
+//        buttonPressed2 = OI.JOYSTICK_FUNCTION.getRawButton(5);
+//
+//        pushGear.set(mode2);
+//        
+//        // If button 2 on right joystick, toggles solenoid
+//        if(OI.JOYSTICK_FUNCTION.getRawButton(7) && !buttonPressed3)
+//        {
+//            mode3 = !mode3;
+//        }
+//        buttonPressed2 = OI.JOYSTICK_FUNCTION.getRawButton(2);
+//
+//        pushBox.set(mode3);
+   }
 
-        lever.set(mode1);
-
-        // If button 5 on right joystick, toggles solenoid
-        if(OI.JOYSTICK_FUNCTION.getRawButton(11) && !buttonPressed2)
-        {
-            mode2 = !mode2;
-        }
-        buttonPressed2 = OI.JOYSTICK_FUNCTION.getRawButton(5);
-
-        pushGear.set(mode2);
-        
-        // If button 2 on right joystick, toggles solenoid
-        if(OI.JOYSTICK_FUNCTION.getRawButton(7) && !buttonPressed3)
-        {
-            mode3 = !mode3;
-        }
-        buttonPressed2 = OI.JOYSTICK_FUNCTION.getRawButton(2);
-
-        slideBox.set(mode3);
+    public void switchPushGear()
+    {
+        pushGear.set(pushedGear = !pushedGear);
     }
 
-    public void pushGear()
+//    public void pullGear()
+//    {
+//        pushGear.set(false);
+//    }
+
+    public void setGear(boolean pushedGear)
     {
-        pushGear.set(true);
+        pushGear.set(this.pushedGear = pushedGear);
     }
 
-    public void pullGear()
+    public void switchRelease()
     {
-        pushGear.set(false);
+        releaseGear.set(Released = !Released);
     }
 
-    public void setGear(boolean on)
-    {
-        pushGear.set(on);
-    }
+//    public void leverOff()
+//    {
+//        releaseGear.set(false);
+//    }
 
-    public void leverOn()
+    public void setRelease(boolean Released)
     {
-        lever.set(true);
-    }
-
-    public void leverOff()
-    {
-        lever.set(false);
-    }
-
-    public void setLever(boolean on)
-    {
-        lever.set(on);
-    }
-    
-    public void slideBoxOff()
-    {
-    	slideBox.set(false);
+        releaseGear.set(this.Released = Released);
     }
     
-    public void slideBoxOn()
+    public void switchPushBox()
     {
-    	slideBox.set(true);
+    	pushBox.set(pushedBox = !pushedBox);
+    }
+    
+    public void setBox(boolean pushedBox)
+    {
+    	pushBox.set(this.pushedBox = pushedBox);
     }
 }
   

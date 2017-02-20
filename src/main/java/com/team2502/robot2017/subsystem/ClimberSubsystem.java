@@ -16,6 +16,7 @@ public class ClimberSubsystem extends Subsystem
 
     @Override
     protected void initDefaultCommand()
+
     {
 
     }
@@ -25,3 +26,4 @@ public class ClimberSubsystem extends Subsystem
 
     }
 }
+
