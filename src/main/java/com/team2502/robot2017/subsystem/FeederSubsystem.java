@@ -15,7 +15,7 @@ public class FeederSubsystem extends Subsystem
 
     public FeederSubsystem()
     {
-        feederInBox = new CANTalon(RobotMap.Motor.FEEDERINBOX);
+        feederInBox = new CANTalon(RobotMap.Motor.FEEDER_TALON_2);
     }
 
     @Override

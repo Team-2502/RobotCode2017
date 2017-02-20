@@ -14,6 +14,7 @@ public class ShooterSubsystem extends Subsystem
     private final CANTalon flywheelTalon;
     private final CANTalon feederTalon0; //coleson
     private final CANTalon feederTalon1;  //banebot
+    private final CANTalon feederTalon2; //agitator
     
     double targetSpeed = 1670;
     int error = 0;
@@ -28,6 +29,7 @@ public class ShooterSubsystem extends Subsystem
     	 flywheelTalon = new CANTalon(RobotMap.Motor.FLYWHEEL_TALON_0);
          feederTalon0 = new CANTalon(RobotMap.Motor.FEEDER_TALON_0);
          feederTalon1 = new CANTalon(RobotMap.Motor.FEEDER_TALON_1);
+         feederTalon2 = new CANTalon(RobotMap.Motor.FEEDER_TALON_2);
     }
     
     @Override
@@ -120,6 +122,7 @@ public class ShooterSubsystem extends Subsystem
 		{	
 		    feederTalon0.set(1);
 		    feederTalon1.set(-1);
+		    feederTalon2.set(1);
 		}
 //		else if(OI.JOYSTICK_FUNCTION.getTrigger() /*&& (Math.abs(flywheelTalon.getEncVelocity()) < Math.abs(targetSpeed - 500))*/)
 //		{
@@ -130,6 +133,7 @@ public class ShooterSubsystem extends Subsystem
 		{
 			feederTalon0.set(0);
 			feederTalon1.set(0);
+			feederTalon2.set(0);
 		}
     }
 
@@ -138,6 +142,7 @@ public class ShooterSubsystem extends Subsystem
         flywheelTalon.set(0.0D);
         feederTalon0.set(0.0D);
         feederTalon1.set(0.0D);
+        feederTalon2.set(0);
 
         isFlywheelActive = false;
         isFeederActive = false;
