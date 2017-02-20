@@ -18,16 +18,13 @@ public final class OI
     public static final Joystick JOYSTICK_DRIVE_RIGHT = new Joystick(RobotMap.Joystick.JOYSTICK_DRIVE_RIGHT);
     public static final Joystick JOYSTICK_FUNCTION = new Joystick(RobotMap.Joystick.JOYSTICK_FUNCTION);
     
-<<<<<<< HEAD
     public static final Button TOGGLE_SHOOTER = new JoystickButton(JOYSTICK_FUNCTION, RobotMap.Joystick.Button.SHOOTER_TOGGLE);
     public static final Button SHOOTER_INCREASE_SPEED = new JoystickButton(JOYSTICK_FUNCTION, RobotMap.Joystick.Button.SHOOTER_INCREASE_SPEED);
     public static final Button SHOOTER_DECREASE_SPEED = new JoystickButton(JOYSTICK_FUNCTION, RobotMap.Joystick.Button.SHOOTER_DECREASE_SPEED);
     public static final Button FEEDER = new JoystickButton(JOYSTICK_FUNCTION, RobotMap.Joystick.Button.FEEDER);
     public static final Button ACTIVE_FORWARDS = new JoystickButton(JOYSTICK_FUNCTION, RobotMap.Joystick.Button.ACTIVE_FORWARDS);
     public static final Button ACTIVE_BACKWARDS = new JoystickButton(JOYSTICK_FUNCTION, RobotMap.Joystick.Button.ACTIVE_BACKWARDS);
-    
-=======
->>>>>>> master
+
     public static final Button SWITCH_DRIVE_TRANSMISSION = new JoystickButton(JOYSTICK_DRIVE_RIGHT, RobotMap.Joystick.Button.SWITCH_DRIVE_TRANSMISSION);
     public static final Button TOP_GEAR_BOX = new JoystickButton(JOYSTICK_FUNCTION, RobotMap.Joystick.Button.TOP_GEAR_BOX);
     public static final Button RELEASE_GEAR = new JoystickButton(JOYSTICK_FUNCTION, RobotMap.Joystick.Button.RELEASE_GEAR);
@@ -39,7 +36,6 @@ public final class OI
     {
         SWITCH_DRIVE_TRANSMISSION.whenPressed(new SwitchDriveTransmissionCommand());
         TOP_GEAR_BOX.whenPressed(new GearCommandTop());
-<<<<<<< HEAD
         RELEASE_GEAR.whenPressed(new GearLeverCommand());
         PUSH_BOX.whenPressed(new GearPushBoxCommand());
         PUSH_GEAR.whenPressed(new GearPushGearCommand());
@@ -48,11 +44,6 @@ public final class OI
         FEEDER.whileHeld(new ShooterCommand());
         SHOOTER_INCREASE_SPEED.whenPressed(new ShooterChangeSpeedCommand(10));
         SHOOTER_DECREASE_SPEED.whenPressed(new ShooterChangeSpeedCommand(-10));
-=======
-        RELEASE_GEAR.whenPressed(new GearCommandLever());
-        PUSH_BOX.whenPressed(new GearCommandPushBox());
-        PUSH_GEAR.whenPressed(new GearCommandPushGear());
->>>>>>> master
     }
 
     public static void init() {}

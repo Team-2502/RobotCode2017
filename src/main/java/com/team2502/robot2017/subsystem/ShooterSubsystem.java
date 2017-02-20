@@ -37,6 +37,8 @@ public class ShooterSubsystem extends Subsystem
     {
     	this.setDefaultCommand(new ShooterCommand(1));
     	
+    	flywheelTalon.changeControlMode(TalonControlMode.Speed);
+    	
     	flywheelTalon.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	flywheelTalon.configEncoderCodesPerRev(256);
     	flywheelTalon.reverseSensor(false);
@@ -89,32 +91,37 @@ public class ShooterSubsystem extends Subsystem
     {
     	targetSpeed += speedChange;
     }
+    
+    public void toggleFlywheel()
+    {
+    	shooterMode = !shooterMode;
+    	
+    	if(shooterMode) { flywheelTalon.set(targetSpeed); }
+    	else { flywheelTalon.set(0); }
+    }
 	
 	public void flywheelDrive()
 	{	
-		/* This line initializes the flywheel talon so that the speed 
-		   we give it is in RPM, not a scale of -1 to 1. */
-     	flywheelTalon.changeControlMode(TalonControlMode.Speed);
      	
      	// Toggle mode for flywheel. It is bound to button 5 on the Function stick.
-     	if(OI.JOYSTICK_FUNCTION.getRawButton(5) && !isTriggerPressed)
-     	{
-     		shooterMode = !shooterMode;
-     	}
-     	isTriggerPressed = OI.JOYSTICK_FUNCTION.getRawButton(5);
-     	
-     	if(shooterMode) { flywheelTalon.set(targetSpeed); }
-     	else { flywheelTalon.set(0); }
+//     	if(OI.JOYSTICK_FUNCTION.getRawButton(5) && !isTriggerPressed)
+//     	{
+//     		shooterMode = !shooterMode;
+//     	}
+//     	isTriggerPressed = OI.JOYSTICK_FUNCTION.getRawButton(5);
+//     	
+//     	if(shooterMode) { flywheelTalon.set(targetSpeed); }
+//     	else { flywheelTalon.set(0); }
 
         // For changing the flywheel speed.
-        if(OI.JOYSTICK_DRIVE_LEFT.getRawButton(3))
-        {
-            targetSpeed += 10;
-        }
-        else if(OI.JOYSTICK_DRIVE_LEFT.getRawButton(2))
-        {
-            targetSpeed -= 10;
-        }
+//        if(OI.JOYSTICK_DRIVE_LEFT.getRawButton(3))
+//        {
+//            targetSpeed += 10;
+//        }
+//        else if(OI.JOYSTICK_DRIVE_LEFT.getRawButton(2))
+//        {
+//            targetSpeed -= 10;
+//        }
 
 
         //Control for turning on/off the feeding mechanism.
