@@ -3,6 +3,10 @@ package com.team2502.robot2017;
 import com.team2502.robot2017.chooser.TypeSendableChooser;
 import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
 import com.team2502.robot2017.command.autonomous.AutoCommandG1;
+import com.team2502.robot2017.command.autonomous.AutoCommandG2;
+import com.team2502.robot2017.command.autonomous.AutoCommandG3;
+import com.team2502.robot2017.command.autonomous.AutoCommandG4;
+import com.team2502.robot2017.command.autonomous.AutoCommandG5;
 import com.team2502.robot2017.command.autonomous.AutonomousCommand;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -16,7 +20,7 @@ import java.io.InputStreamReader;
 public final class DashboardData
 {
 
-    public static final TypeSendableChooser<AutonomousCommand> AUTONOMOUS_SELECTOR = new TypeSendableChooser<AutonomousCommand>();
+    public static final TypeSendableChooser<AutonomousCommand.AutoGroup> AUTONOMOUS_SELECTOR = new TypeSendableChooser<AutonomousCommand.AutoGroup>();
     
     public static final TypeSendableChooser<DriveTrainSubsystem.DriveTypes> DRIVE_CONTROL_SELECTOR = new TypeSendableChooser<DriveTrainSubsystem.DriveTypes>();
 
@@ -30,7 +34,12 @@ public final class DashboardData
 
     public static void setup()
     {
-        AUTONOMOUS_SELECTOR.addDefaultT("Default Auto", new AutonomousCommand());
+        AUTONOMOUS_SELECTOR.addDefaultT("FULLBUTDOESNTWORK", AutonomousCommand.AutoGroup.AUTOCOMMANDG1);
+        AUTONOMOUS_SELECTOR.addDefaultT("TESTING", AutonomousCommand.AutoGroup.AUTOCOMMANDG2);
+        AUTONOMOUS_SELECTOR.addObjectT("Group1-StartCloserToBoiler", AutonomousCommand.AutoGroup.AUTOCOMMANDG3);
+        AUTONOMOUS_SELECTOR.addObjectT("Group2-StartMiddle", AutonomousCommand.AutoGroup.AUTOCOMMANDG4);
+        AUTONOMOUS_SELECTOR.addObjectT("Group3-StartAtFarEnd", AutonomousCommand.AutoGroup.AUTOCOMMANDG5);
+        
 
         DRIVE_CONTROL_SELECTOR.addDefaultT("Dual Stick Drive Control", DriveTrainSubsystem.DriveTypes.DUAL_STICK);
         DRIVE_CONTROL_SELECTOR.addObjectT("Arcade Drive Control", DriveTrainSubsystem.DriveTypes.ARCADE);
@@ -63,7 +72,7 @@ public final class DashboardData
         } catch(Exception e) { Log.error("Could not get version."); }
     }
 
-    public static AutonomousCommand getAutonomous()
+    public static AutonomousCommand.AutoGroup getAutonomous()
     {
         return AUTONOMOUS_SELECTOR.getSelectedT();
     }
