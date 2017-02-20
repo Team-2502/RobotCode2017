@@ -127,6 +127,18 @@ public class ShooterSubsystem extends Subsystem
 		}
     }
 
+	public void flywheelRun()
+	{
+		flywheelTalon.set(1);
+	}
+	
+	public void feederRun()
+	{
+		feederTalon0.set(1);
+		feederTalon1.set(-1);
+	}
+	
+	
     public void stop()
     {
         flywheelTalon.set(0.0D);

@@ -30,7 +30,9 @@ public class DriveTillDistanceCommand extends Command
 	{	// TODO Auto-generated method stub
 			driveTrain.leftSpeed = -0.5;
 			driveTrain.rightSpeed = 0.5;
-			if (Sensor.getSensorDistance() > 14)
+			
+			Distance = Sensor.getSensorDistance();
+			if (Distance > 14)
 			{
 				driveTrain.runMotors(driveTrain.leftSpeed, driveTrain.rightSpeed);
 			}
@@ -40,9 +42,10 @@ public class DriveTillDistanceCommand extends Command
 			}
 	}
 	@Override
-	protected boolean isFinished() {
+	protected boolean isFinished() 
+	{
 		// TODO Auto-generated method stub
-		return false;
+		return Distance < distanceR;
 	}
 
 	@Override
