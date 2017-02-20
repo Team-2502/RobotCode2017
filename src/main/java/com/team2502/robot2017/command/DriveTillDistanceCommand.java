@@ -7,23 +7,23 @@ import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveTillDistanceCommand extends Command
-{	
-	private DistanceSensorSubsystem Sensor;
-	private DriveTrainSubsystem driveTrain;
-	double Distance;
-	boolean Close = false;
-	double distanceR;
-	
-	public DriveTillDistanceCommand (double distance)
-	{
-		requires(Robot.DRIVE_TRAIN);
+{    
+    private DistanceSensorSubsystem Sensor;
+    private DriveTrainSubsystem driveTrain;
+    double Distance;
+    boolean Close = false;
+    double distanceR;
+    
+    public DriveTillDistanceCommand (double distance)
+    {
+        requires(Robot.DRIVE_TRAIN);
         driveTrain = Robot.DRIVE_TRAIN;
         requires(Robot.DISTANCE_SENSOR);
         Sensor = Robot.DISTANCE_SENSOR;
         distance = distanceR;
-	}
-	@Override
-	protected void initialize() {}
+    }
+    @Override
+    protected void initialize() {}
 
 	@Override
 	protected void execute() 
@@ -48,18 +48,18 @@ public class DriveTillDistanceCommand extends Command
 		return Distance < distanceR;
 	}
 
-	@Override
-	protected void end() 
-	{	// TODO Auto-generated method stub
-		 driveTrain.stop();
-	}
+    @Override
+    protected void end() 
+    {    // TODO Auto-generated method stub
+         driveTrain.stop();
+    }
 
-	@Override
-	protected void interrupted() 
-	{ // TODO Auto-generated method stub
-		end();
-		
-	}
-	
+    @Override
+    protected void interrupted() 
+    { // TODO Auto-generated method stub
+        end();
+        
+    }
+    
 
 }

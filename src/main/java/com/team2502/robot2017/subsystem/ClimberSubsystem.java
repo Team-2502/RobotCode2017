@@ -15,15 +15,8 @@ public class ClimberSubsystem extends Subsystem
     }
 
     @Override
-    protected void initDefaultCommand()
+    protected void initDefaultCommand() {}
 
-    {
-
-    }
-
-    public void doStuff()
-    {
-
-    }
+    public void doStuff() {}
 }
 

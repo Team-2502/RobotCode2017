@@ -28,22 +28,24 @@ public class NavXMoveCommand extends Command{
 //	private double targetYDisplace = 0;
 //	private double displaceDeadzone = 0.006;
 	
-	public NavXMoveCommand(){
+	public NavXMoveCommand()
+  {
 		requires(Robot.DRIVE_TRAIN);
-        driveTrain = Robot.DRIVE_TRAIN;
-        navx = Robot.NAVX;
-        requires(Robot.DISTANCE_SENSOR);
-        Sensor = Robot.DISTANCE_SENSOR;
+    driveTrain = Robot.DRIVE_TRAIN;
+    navx = Robot.NAVX;
+    requires(Robot.DISTANCE_SENSOR);
+    Sensor = Robot.DISTANCE_SENSOR;
         
-        navx.reset();
-        targetYaw = 0;
-        forever = true;
+    navx.reset();
+    targetYaw = 0;
+    forever = true;
+    
 		this.runTime = (long)  5000;
 	}
 	
     public NavXMoveCommand(double runTime) 
     {
-		requires(Robot.DRIVE_TRAIN);
+	    	requires(Robot.DRIVE_TRAIN);
         driveTrain = Robot.DRIVE_TRAIN;
         navx = Robot.NAVX;
         requires(Robot.DISTANCE_SENSOR);
@@ -51,20 +53,20 @@ public class NavXMoveCommand extends Command{
         
         navx.reset();
         targetYaw = 0;
-		this.runTime = (long) runTime*1000;
-	}
+		    this.runTime = (long) runTime*1000;
+	  }
     
     public NavXMoveCommand(double angle, double runTime)
     {
-    	requires(Robot.DRIVE_TRAIN);
+        requires(Robot.DRIVE_TRAIN);
         driveTrain = Robot.DRIVE_TRAIN;
         navx = Robot.NAVX;
         requires(Robot.DISTANCE_SENSOR);
         Sensor = Robot.DISTANCE_SENSOR;
     	
         navx.reset();
-		targetYaw = angle;
-		this.runTime = (long) runTime*1000;
+	    	targetYaw = angle;
+		    this.runTime = (long) runTime*1000;
     }
 //    public NavXMoveCommand(double angle, double targetXDisplace, double targetYDisplace){
 //    	targetXDisplace = targetXDisplace;
