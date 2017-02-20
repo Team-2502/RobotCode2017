@@ -27,8 +27,8 @@ public class AutonomousCommand extends Command
 
     @Override
     protected void initialize() 
-    {	startTime = System.currentTimeMillis();
-    	Scheduler.getInstance().add(new AutoCommandG2());
+    {
+    	Scheduler.getInstance().add(new AutoCommandG1());
     }
 
     @Override

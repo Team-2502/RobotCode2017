@@ -13,10 +13,11 @@ public class ShooterSubsystem extends Subsystem
     private final CANTalon flywheelTalon;
     private final CANTalon feederTalon0; //coleson
     private final CANTalon feederTalon1;  //banebot
+    private final CANTalon feederInBox;
     
     double targetSpeed = 1670;
     int error = 0;
-    
+   
     public boolean isFlywheelActive;
     public boolean isFeederActive;
     private boolean shooterMode = false;
@@ -27,6 +28,7 @@ public class ShooterSubsystem extends Subsystem
     	 flywheelTalon = new CANTalon(RobotMap.Motor.FLYWHEEL_TALON_0);
          feederTalon0 = new CANTalon(RobotMap.Motor.FEEDER_TALON_0);
          feederTalon1 = new CANTalon(RobotMap.Motor.FEEDER_TALON_1);
+         feederInBox = new CANTalon(RobotMap.Motor.FEEDERINBOX);
     }
     
     @Override
@@ -43,9 +45,9 @@ public class ShooterSubsystem extends Subsystem
     	
     	flywheelTalon.setProfile(0);
     	flywheelTalon.setF(0.21765900);
-    	flywheelTalon.setP(0.41312500);
-    	flywheelTalon.setI(0.001);
-    	flywheelTalon.setD(0);
+    	flywheelTalon.setP(1.71312500);
+    	flywheelTalon.setI(0.0);
+    	flywheelTalon.setD(0.0);
     }
 
     /**
@@ -87,6 +89,7 @@ public class ShooterSubsystem extends Subsystem
 		/* This line initializes the flywheel talon so that the speed 
 		   we give it is in RPM, not a scale of -1 to 1. */
      	flywheelTalon.changeControlMode(TalonControlMode.Speed);
+     	feederInBox.changeControlMode(TalonControlMode.Follower);
      	
      	// Toggle mode for flywheel. It is bound to button 5 on the Function stick.
      	if(OI.JOYSTICK_FUNCTION.getRawButton(5) && !isTriggerPressed)
@@ -99,27 +102,27 @@ public class ShooterSubsystem extends Subsystem
      	else { flywheelTalon.set(0); }
 
         // For changing the flywheel speed.
-        if(OI.JOYSTICK_FUNCTION.getRawButton(RobotMap.Joystick.Button.SHOOTER_INCREASE_SPEED))
+        if(OI.JOYSTICK_DRIVE_LEFT.getRawButton(3))
         {
             targetSpeed += 10;
         }
-        else if(OI.JOYSTICK_FUNCTION.getRawButton(RobotMap.Joystick.Button.SHOOTER_DECREASE_SPEED))
+        else if(OI.JOYSTICK_DRIVE_LEFT.getRawButton(2))
         {
             targetSpeed -= 10;
         }
 
 
         //Control for turning on/off the feeding mechanism.
-		if(OI.JOYSTICK_FUNCTION.getTrigger() && (Math.abs(flywheelTalon.getEncVelocity()) > 1650))
+		if(OI.JOYSTICK_FUNCTION.getTrigger() /*&& (Math.abs(flywheelTalon.getEncVelocity()) > Math.abs(targetSpeed - 500))*/)
 		{	
 		    feederTalon0.set(1);
 		    feederTalon1.set(-1);
 		}
-		else if(OI.JOYSTICK_FUNCTION.getTrigger() && !(Math.abs(flywheelTalon.getEncVelocity()) > 1650))
-		{
-			feederTalon0.set(1);
-			feederTalon1.set(0);
-		}
+//		else if(OI.JOYSTICK_FUNCTION.getTrigger() /*&& (Math.abs(flywheelTalon.getEncVelocity()) < Math.abs(targetSpeed - 500))*/)
+//		{
+//			feederTalon0.set(1);
+//			feederTalon1.set(0);
+//		}
 		else
 		{
 			feederTalon0.set(0);
@@ -127,6 +130,19 @@ public class ShooterSubsystem extends Subsystem
 		}
     }
 
+	public void flywheelRun()
+	{
+		flywheelTalon.set(targetSpeed);
+	}
+	
+	public void feederRun()
+	{
+		feederTalon0.set(1);
+		feederTalon1.set(-1);
+		feederInBox.set(feederTalon1.getDeviceID());
+	}
+	
+	
     public void stop()
     {
         flywheelTalon.set(0.0D);

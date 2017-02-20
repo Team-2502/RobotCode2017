@@ -6,7 +6,7 @@ import com.team2502.robot2017.subsystem.ShooterSubsystem;
 import edu.wpi.first.wpilibj.command.Command;
 
 @SuppressWarnings("WeakerAccess")
-public class FlywheelCommand extends Command
+public class ShootCommand extends Command
 {
 
     private final ShooterSubsystem shooterSubsystem;
@@ -17,7 +17,7 @@ public class FlywheelCommand extends Command
     /**
      * @param runTime Time to run for in milliseconds.
      */
-    public FlywheelCommand(long runTime)
+    public ShootCommand(long runTime)
     {
 
         requires(Robot.SHOOTER);
@@ -28,7 +28,7 @@ public class FlywheelCommand extends Command
     /**
      * @param runTime Time to run for in seconds.
      */
-    public FlywheelCommand(double runTime)
+    public ShootCommand(double runTime)
     {
         this((long) (runTime * 1000));
     }
@@ -48,7 +48,7 @@ public class FlywheelCommand extends Command
     protected void execute()
     {
 
-        shooterSubsystem.flywheelDrive();
+        shooterSubsystem.flywheelRun();
     }
 
     @Override

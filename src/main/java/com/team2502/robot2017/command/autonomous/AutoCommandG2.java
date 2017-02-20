@@ -9,8 +9,8 @@ public class AutoCommandG2 extends CommandGroup
 {
     public AutoCommandG2()
     {
-    	addSequential(new DriveTimeCommand(3D));
-    	addSequential(new NavXMoveCommand(90, 5D));
-
+    	addSequential(new DriveTimeCommand(3.0D));
+    	addSequential(new NavXMoveCommand(-90, 10));
+    	addSequential(new DriveTimeCommand(2.0D));
     }
 }
