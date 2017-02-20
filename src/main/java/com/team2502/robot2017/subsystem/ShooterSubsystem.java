@@ -2,7 +2,8 @@ package com.team2502.robot2017.subsystem;
 
 import com.team2502.robot2017.OI;
 import com.team2502.robot2017.RobotMap;
-import com.team2502.robot2017.command.FlywheelCommand;
+import com.team2502.robot2017.command.ShooterChangeSpeedCommand;
+import com.team2502.robot2017.command.ShooterCommand;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
@@ -32,7 +33,7 @@ public class ShooterSubsystem extends Subsystem
     @Override
     protected void initDefaultCommand()
     {
-    	this.setDefaultCommand(new FlywheelCommand(1));
+    	this.setDefaultCommand(new ShooterCommand(1));
     	
     	flywheelTalon.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	flywheelTalon.configEncoderCodesPerRev(256);
@@ -44,13 +45,8 @@ public class ShooterSubsystem extends Subsystem
     	flywheelTalon.setProfile(0);
     	flywheelTalon.setF(0.21765900);
     	flywheelTalon.setP(1.71312500);
-<<<<<<< HEAD
-    	flywheelTalon.setI(0);
-    	flywheelTalon.setD(0);
-=======
     	flywheelTalon.setI(0.0);
     	flywheelTalon.setD(0.0);
->>>>>>> master
     }
 
     /**
@@ -85,6 +81,11 @@ public class ShooterSubsystem extends Subsystem
         if(newError > error) { error = newError; }
 
         return error;
+    }
+    
+    public void setTargetSpeed(int speedChange)
+    {
+    	targetSpeed += speedChange;
     }
 	
 	public void flywheelDrive()
