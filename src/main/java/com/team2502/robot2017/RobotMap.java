@@ -23,6 +23,10 @@ public class RobotMap
             public static final int SHOOTER_INCREASE_SPEED = 7;
             public static final int SHOOTER_DECREASE_SPEED = 6;
             public static final int TOP_GEAR_BOX = 12;
+            public static final int PUSH_BOX = 7;
+            public static final int RELEASE_GEAR= 9;
+            public static final int PUSH_GEAR = 11;
+            
 //            public static final int 
 
             private Button() {}
