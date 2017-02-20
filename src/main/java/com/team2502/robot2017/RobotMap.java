@@ -26,6 +26,7 @@ public class RobotMap
             public static final int PUSH_BOX = 7;
             public static final int RELEASE_GEAR = 9;
             public static final int PUSH_GEAR = 11;
+            public static final int ONLY_AGITATOR = 6;
             
 //            public static final int 
 

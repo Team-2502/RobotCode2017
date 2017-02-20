@@ -13,7 +13,7 @@ public class ShooterSubsystem extends Subsystem
     private final CANTalon flywheelTalon;
     private final CANTalon feederTalon0; //coleson
     private final CANTalon feederTalon1;  //banebot
-    private final CANTalon feederTalon2; //agitator
+    public final CANTalon feederTalon2; //agitator
     
     double targetSpeed = 1670;
     int error = 0;
@@ -82,6 +82,11 @@ public class ShooterSubsystem extends Subsystem
         if(newError > error) { error = newError; }
 
         return error;
+    }
+    
+    public void onlySpinAgitator()
+    {
+    	feederTalon2.set(1);
     }
 	
 	public void flywheelDrive()
