@@ -10,7 +10,7 @@ public class AutoCommandG2 extends CommandGroup
     public AutoCommandG2()
     {
     	addSequential(new NavXMoveCommand(3D));
-    	addSequential(new NavXMoveCommand(-90, 10));
+    	addSequential(new NavXMoveCommand(-90));
     	addSequential(new NavXMoveCommand(3));
     	
     }
