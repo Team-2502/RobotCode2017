@@ -15,6 +15,7 @@ public final class OI
     public static final Joystick JOYSTICK_DRIVE_LEFT = new Joystick(RobotMap.Joystick.JOYSTICK_DRIVE_LEFT);
     public static final Joystick JOYSTICK_DRIVE_RIGHT = new Joystick(RobotMap.Joystick.JOYSTICK_DRIVE_RIGHT);
     public static final Joystick JOYSTICK_FUNCTION = new Joystick(RobotMap.Joystick.JOYSTICK_FUNCTION);
+    
     public static final Button SWITCH_DRIVE_TRANSMISSION = new JoystickButton(JOYSTICK_DRIVE_RIGHT, RobotMap.Joystick.Button.SWITCH_DRIVE_TRANSMISSION);
     public static final Button TOP_GEAR_BOX = new JoystickButton(JOYSTICK_FUNCTION, RobotMap.Joystick.Button.TOP_GEAR_BOX);
     public static final Button RELEASE_GEAR = new JoystickButton(JOYSTICK_FUNCTION, RobotMap.Joystick.Button.RELEASE_GEAR);
@@ -28,7 +29,6 @@ public final class OI
         RELEASE_GEAR.whenPressed(new GearCommandLever());
         PUSH_BOX.whenPressed(new GearCommandPushBox());
         PUSH_GEAR.whenPressed(new GearCommandPushGear());
-        
     }
 
     public static void init() {}
