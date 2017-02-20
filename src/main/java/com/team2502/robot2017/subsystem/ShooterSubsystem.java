@@ -32,7 +32,7 @@ public class ShooterSubsystem extends Subsystem
     @Override
     protected void initDefaultCommand()
     {
-    	this.setDefaultCommand(new FlywheelCommand());
+    	this.setDefaultCommand(new FlywheelCommand(1));
     	
     	flywheelTalon.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	flywheelTalon.configEncoderCodesPerRev(256);
@@ -44,8 +44,13 @@ public class ShooterSubsystem extends Subsystem
     	flywheelTalon.setProfile(0);
     	flywheelTalon.setF(0.21765900);
     	flywheelTalon.setP(1.71312500);
+<<<<<<< HEAD
     	flywheelTalon.setI(0);
     	flywheelTalon.setD(0);
+=======
+    	flywheelTalon.setI(0.0);
+    	flywheelTalon.setD(0.0);
+>>>>>>> master
     }
 
     /**
@@ -99,27 +104,27 @@ public class ShooterSubsystem extends Subsystem
      	else { flywheelTalon.set(0); }
 
         // For changing the flywheel speed.
-        if(OI.JOYSTICK_FUNCTION.getRawButton(RobotMap.Joystick.Button.SHOOTER_INCREASE_SPEED))
+        if(OI.JOYSTICK_DRIVE_LEFT.getRawButton(3))
         {
             targetSpeed += 10;
         }
-        else if(OI.JOYSTICK_FUNCTION.getRawButton(RobotMap.Joystick.Button.SHOOTER_DECREASE_SPEED))
+        else if(OI.JOYSTICK_DRIVE_LEFT.getRawButton(2))
         {
             targetSpeed -= 10;
         }
 
 
         //Control for turning on/off the feeding mechanism.
-		if(OI.JOYSTICK_FUNCTION.getTrigger() && (Math.abs(flywheelTalon.getEncVelocity()) > 1650))
+		if(OI.JOYSTICK_FUNCTION.getTrigger() /*&& (Math.abs(flywheelTalon.getEncVelocity()) > Math.abs(targetSpeed - 500))*/)
 		{	
 		    feederTalon0.set(1);
 		    feederTalon1.set(-1);
 		}
-		else if(OI.JOYSTICK_FUNCTION.getTrigger() && !(Math.abs(flywheelTalon.getEncVelocity()) > 1650))
-		{
-			feederTalon0.set(1);
-			feederTalon1.set(0);
-		}
+//		else if(OI.JOYSTICK_FUNCTION.getTrigger() /*&& (Math.abs(flywheelTalon.getEncVelocity()) < Math.abs(targetSpeed - 500))*/)
+//		{
+//			feederTalon0.set(1);
+//			feederTalon1.set(0);
+//		}
 		else
 		{
 			feederTalon0.set(0);
