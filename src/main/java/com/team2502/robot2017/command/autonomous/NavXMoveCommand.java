@@ -1,4 +1,4 @@
-package com.team2502.robot2017.command;
+package com.team2502.robot2017.command.autonomous;
 
 import com.kauailabs.navx.frc.AHRS;
 import com.team2502.robot2017.Robot;
