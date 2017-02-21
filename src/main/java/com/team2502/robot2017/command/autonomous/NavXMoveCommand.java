@@ -116,22 +116,22 @@ public class NavXMoveCommand extends Command{
 
 	@Override
 	protected boolean isFinished() {
-		// Will end if time elapsed while at targetYaw or at appropriate distance\
-//		if(forever)
-//		{
-//			return Math.abs(currentYaw - targetYaw) > deadZone;
-//		}
-//		else
-//		{
-//			if(Math.abs(currentYaw - targetYaw) > deadZone)
-//			{
-//				return System.currentTimeMillis() - startTime > runTime;
-//			}
-//			else
-//			{
+//		 Will end if time elapsed while at targetYaw or at appropriate distance
+		if(forever)
+		{
+			return Math.abs(currentYaw - targetYaw) > deadZone;
+		}
+		else
+		{
+			if(Math.abs(currentYaw - targetYaw) > deadZone)
+			{
+				return System.currentTimeMillis() - startTime > runTime;
+			}
+			else
+			{
 				return false;
-//			}
-//		}
+			}
+		}
 	}
 
 	@Override
