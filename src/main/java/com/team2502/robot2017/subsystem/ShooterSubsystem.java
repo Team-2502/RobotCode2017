@@ -87,7 +87,6 @@ public class ShooterSubsystem extends Subsystem
         return error;
     }
     
-<<<<<<< HEAD
     public void setTargetSpeed(int speedChange)
     {
     	targetSpeed += speedChange;
@@ -99,11 +98,11 @@ public class ShooterSubsystem extends Subsystem
     	
     	if(shooterMode) { flywheelTalon.set(targetSpeed); }
     	else { flywheelTalon.set(0); }
-=======
+    }
+    
     public void onlySpinAgitator()
     {
     	feederTalon2.set(1);
->>>>>>> master
     }
 	
 	public void flywheelDrive()
@@ -155,7 +154,7 @@ public class ShooterSubsystem extends Subsystem
         flywheelTalon.set(0.0D);
         feederTalon0.set(0.0D);
         feederTalon1.set(0.0D);
-        feederTalon2.set(0);
+        feederTalon2.set(0.0D);
 
         isFlywheelActive = false;
         isFeederActive = false;

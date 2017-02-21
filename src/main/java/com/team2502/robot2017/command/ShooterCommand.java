@@ -52,7 +52,7 @@ public class ShooterCommand extends Command
     @Override
     protected void execute()
     {
-        shooterSubsystem.flywheelDrive();
+        shooterSubsystem.toggleFlywheel();
     }
 
     @Override
