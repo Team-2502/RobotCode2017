@@ -50,9 +50,8 @@ public class RobotMap
         public static final int FEEDER_TALON_0 = 6; //colson
         public static final int FEEDER_TALON_1 = 7; //banebot
         public static final int ACTIVE_INTAKE = 8;
-		    public static final int CLIMBER = 9;
-        public static final int FEEDER_IN_BOX = 10;
-        public static final int CLIMBER = 9;
+        public static final int FEEDER_IN_BOX = 9;
+
       
       	private Motor() {}	
     }

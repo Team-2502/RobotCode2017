@@ -28,7 +28,7 @@ public class ShooterSubsystem extends Subsystem
     	 flywheelTalon = new CANTalon(RobotMap.Motor.FLYWHEEL_TALON_0);
          feederTalon0 = new CANTalon(RobotMap.Motor.FEEDER_TALON_0);
          feederTalon1 = new CANTalon(RobotMap.Motor.FEEDER_TALON_1);
-         feederInBox = new CANTalon(RobotMap.Motor.FEEDERINBOX);
+         feederInBox = new CANTalon(RobotMap.Motor.FEEDER_IN_BOX);
     }
     
     @Override
