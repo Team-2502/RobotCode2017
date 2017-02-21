@@ -13,7 +13,8 @@ public class ShooterSubsystem extends Subsystem
     private final CANTalon flywheelTalon;
     private final CANTalon feederTalon0; //coleson
     private final CANTalon feederTalon1;  //banebot
-    private final CANTalon feederInBox;
+    public final CANTalon feederTalon2; //agitator
+
     
     double targetSpeed = 1670;
     int error = 0;
@@ -28,7 +29,7 @@ public class ShooterSubsystem extends Subsystem
     	 flywheelTalon = new CANTalon(RobotMap.Motor.FLYWHEEL_TALON_0);
          feederTalon0 = new CANTalon(RobotMap.Motor.FEEDER_TALON_0);
          feederTalon1 = new CANTalon(RobotMap.Motor.FEEDER_TALON_1);
-         feederInBox = new CANTalon(RobotMap.Motor.FEEDER_IN_BOX);
+         feederTalon2 = new CANTalon(RobotMap.Motor.FEEDER_TALON_2);
     }
     
     @Override
@@ -83,13 +84,18 @@ public class ShooterSubsystem extends Subsystem
 
         return error;
     }
+    
+    public void onlySpinAgitator()
+    {
+    	feederTalon2.set(1);
+    }
 	
 	public void flywheelDrive()
 	{	
 		/* This line initializes the flywheel talon so that the speed 
 		   we give it is in RPM, not a scale of -1 to 1. */
      	flywheelTalon.changeControlMode(TalonControlMode.Speed);
-     	feederInBox.changeControlMode(TalonControlMode.Follower);
+     	feederTalon2.changeControlMode(TalonControlMode.Follower);
      	
      	// Toggle mode for flywheel. It is bound to button 5 on the Function stick.
      	if(OI.JOYSTICK_FUNCTION.getRawButton(5) && !isTriggerPressed)
@@ -117,6 +123,7 @@ public class ShooterSubsystem extends Subsystem
 		{	
 		    feederTalon0.set(1);
 		    feederTalon1.set(-1);
+		    feederTalon2.set(1);
 		}
 //		else if(OI.JOYSTICK_FUNCTION.getTrigger() /*&& (Math.abs(flywheelTalon.getEncVelocity()) < Math.abs(targetSpeed - 500))*/)
 //		{
@@ -127,6 +134,7 @@ public class ShooterSubsystem extends Subsystem
 		{
 			feederTalon0.set(0);
 			feederTalon1.set(0);
+			feederTalon2.set(0);
 		}
     }
 
@@ -139,7 +147,7 @@ public class ShooterSubsystem extends Subsystem
 	{
 		feederTalon0.set(1);
 		feederTalon1.set(-1);
-		feederInBox.set(feederTalon1.getDeviceID());
+		feederTalon2.set(feederTalon1.getDeviceID());
 	}
 	
 	
@@ -148,6 +156,7 @@ public class ShooterSubsystem extends Subsystem
         flywheelTalon.set(0.0D);
         feederTalon0.set(0.0D);
         feederTalon1.set(0.0D);
+        feederTalon2.set(0);
 
         isFlywheelActive = false;
         isFeederActive = false;
