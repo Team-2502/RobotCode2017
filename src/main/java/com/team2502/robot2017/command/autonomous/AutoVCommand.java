@@ -42,7 +42,7 @@ public class AutoVCommand extends Command
     {
         while(!inFrontOfGear)
         {
-            offset = VisionSubsystem.getOffset();
+            offset = VisionSubsystem.getOffsetCam1();
             if(!(offset == 1023) && ((offset > 5) || (offset < -5)))
             {
                 offset = offset / 100;

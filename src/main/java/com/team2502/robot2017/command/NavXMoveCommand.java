@@ -15,7 +15,7 @@ public class NavXMoveCommand extends Command{
 	private AHRS navx;
 	private DistanceSensorSubsystem Sensor;
 	public double currentYaw;
-	private boolean untilAngle = false;
+	private boolean forever = false;
 	public boolean done = false;;
 	private long runTime;
 	private long startTime;
@@ -23,11 +23,21 @@ public class NavXMoveCommand extends Command{
 	private double elapsedTime;
 	private double speed;
 	
-	private double targetXDisplace = 0;
-	private boolean displacementDrive = false;
-	private double targetYDisplace = 0;
-	private double displaceDeadzone = 0.006;
 	
+
+	public NavXMoveCommand(){
+		requires(Robot.DRIVE_TRAIN);
+        driveTrain = Robot.DRIVE_TRAIN;
+        navx = Robot.NAVX;
+        requires(Robot.DISTANCE_SENSOR);
+        Sensor = Robot.DISTANCE_SENSOR;
+        
+        navx.reset();
+        targetYaw = 0;
+        forever = true;
+		this.runTime = (long)  5000;
+	}
+
     public NavXMoveCommand(double angle) 
     {
 		requires(Robot.DRIVE_TRAIN);
@@ -38,7 +48,9 @@ public class NavXMoveCommand extends Command{
         
         navx.reset();
         targetYaw = angle;
-        untilAngle = true;
+
+		forever = true;
+
 	}
     
     public NavXMoveCommand(double angle, double runTime)
@@ -53,14 +65,7 @@ public class NavXMoveCommand extends Command{
 		targetYaw = angle;
 		this.runTime = (long) runTime*1000;
     }
-    public NavXMoveCommand(double angle, double targetXDisplace, double targetYDisplace){
-    	this.targetXDisplace = targetXDisplace;
-    	this.targetYDisplace = targetYDisplace;
-    	navx.resetDisplacement();
-    	navx.reset();
-    	targetYaw = Math.toDegrees(Math.atan(targetYDisplace/targetXDisplace));
-    }
- 
+
 
 	@Override
 	protected void initialize() 
@@ -77,33 +82,25 @@ public class NavXMoveCommand extends Command{
 		SmartDashboard.putNumber("NavX: Target yaw", targetYaw);
 //		if (Sensor.getSensorDistance() > 14)
 //		{ 
-			if(Math.abs(currentYaw - targetYaw) > deadZone)
-			{	
-				// right = pos
-				// left = neg
-				if(currentYaw > targetYaw)
-				{
-					driveTrain.runMotors(0, -1 * speed);
-				} 
-				else if(currentYaw < targetYaw)
-				{
-					driveTrain.runMotors(speed, 0);
-				}
+
+		if(Math.abs(currentYaw - targetYaw) > deadZone)
+		{	
+			// right = pos
+			// left = neg
+			if(currentYaw > targetYaw)
+			{
+				driveTrain.runMotors(-1*speed, -1 * speed);
+			} 
+			else if(currentYaw < targetYaw)
+			{
+				driveTrain.runMotors(speed, speed);
+
 			}
-			else
-			{	
-				if(displacementDrive){
-					if(Math.abs(navx.getDisplacementX() - targetXDisplace) <= displaceDeadzone && Math.abs(navx.getDisplacementY() - targetYDisplace) <= displaceDeadzone){
-						driveTrain.runMotors(0, 0);
-					}
-					else if(navx.getDisplacementX() < targetXDisplace && navx.getDisplacementY() < targetYDisplace){
-						driveTrain.runMotors(-0.5, 0.5);
-					}
-				}
-				else{
-					driveTrain.runMotors(0.5, -0.5);
-				}
-			}
+		}
+		else
+		{	
+			driveTrain.runMotors(0.5, -0.5);
+		}
 //		}
 //		else
 //		{
@@ -111,6 +108,7 @@ public class NavXMoveCommand extends Command{
 //		}
 //		
 	}
+	
 		
 				
 		
@@ -119,20 +117,21 @@ public class NavXMoveCommand extends Command{
 	@Override
 	protected boolean isFinished() {
 		// Will end if time elapsed while at targetYaw or at appropriate distance\
-		if(untilAngle){
-			return Math.abs(currentYaw - targetYaw) > deadZone;
-		}
-		else {
-			if(Math.abs(currentYaw - targetYaw) > deadZone)
-			{
-				return System.currentTimeMillis() - startTime > runTime;
-			}
-			else
-			{
+//		if(forever)
+//		{
+//			return Math.abs(currentYaw - targetYaw) > deadZone;
+//		}
+//		else
+//		{
+//			if(Math.abs(currentYaw - targetYaw) > deadZone)
+//			{
+//				return System.currentTimeMillis() - startTime > runTime;
+//			}
+//			else
+//			{
 				return false;
-			}		
-		}
-		
+//			}
+//		}
 	}
 
 	@Override
@@ -148,7 +147,7 @@ public class NavXMoveCommand extends Command{
 		else
 		{
 //			return Math.pow(Math.E, (-1 * time / 10000));
-			return 4000/((time * time) + 4000);
+			return 1/(1+Math.pow(Math.E, time/2500));
 		}
 	}
 
