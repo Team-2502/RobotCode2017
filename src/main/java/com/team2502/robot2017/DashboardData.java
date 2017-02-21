@@ -2,11 +2,6 @@ package com.team2502.robot2017;
 
 import com.team2502.robot2017.chooser.TypeSendableChooser;
 import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
-import com.team2502.robot2017.command.autonomous.AutoCommandG1;
-import com.team2502.robot2017.command.autonomous.AutoCommandG2;
-import com.team2502.robot2017.command.autonomous.AutoCommandG3;
-import com.team2502.robot2017.command.autonomous.AutoCommandG4;
-import com.team2502.robot2017.command.autonomous.AutoCommandG5;
 import com.team2502.robot2017.command.autonomous.AutonomousCommand;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -34,7 +29,7 @@ public final class DashboardData
 
     public static void setup()
     {
-        AUTONOMOUS_SELECTOR.addDefaultT("FULLBUTDOESNTWORK", AutonomousCommand.AutoGroup.AUTOCOMMANDG1);
+        AUTONOMOUS_SELECTOR.addObjectT("FULLBUTDOESNTWORK", AutonomousCommand.AutoGroup.AUTOCOMMANDG1);
         AUTONOMOUS_SELECTOR.addDefaultT("TESTING", AutonomousCommand.AutoGroup.AUTOCOMMANDG2);
         AUTONOMOUS_SELECTOR.addObjectT("Group1-StartCloserToBoiler", AutonomousCommand.AutoGroup.AUTOCOMMANDG3);
         AUTONOMOUS_SELECTOR.addObjectT("Group2-StartMiddle", AutonomousCommand.AutoGroup.AUTOCOMMANDG4);
