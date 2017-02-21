@@ -104,6 +104,20 @@ public class ShooterSubsystem extends Subsystem
     {
     	feederTalon2.set(1);
     }
+    
+    public void driveFeeder()
+    {
+        feederTalon0.set(1);
+        feederTalon1.set(-1);
+        feederTalon2.set(1);
+    }
+    
+    public void stopFeeder()
+    {
+    	feederTalon0.set(0);
+        feederTalon1.set(0);
+        feederTalon2.set(0);
+    }
 	
 	public void flywheelDrive()
 	{	

@@ -27,9 +27,8 @@ public class OnlyAgitatorCommand extends Command
     protected boolean isFinished() { return false; }
 
     @Override
-    protected void end() { ShooterSubsystem.stop(); }
+    protected void end() { ShooterSubsystem.stopFeeder(); }
 
     @Override
-    protected void interrupted() { ShooterSubsystem.stop(); }
+    protected void interrupted() { end(); }
 }
-

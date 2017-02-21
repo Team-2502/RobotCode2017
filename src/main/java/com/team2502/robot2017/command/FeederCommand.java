@@ -16,37 +16,18 @@ public class FeederCommand extends Command {
     }
 
 	@Override
-	protected void initialize() 
-	{
-
-	}
+	protected void initialize() {}
 
 	@Override
-	protected void execute() 
-	{
-		// TODO Auto-generated method stub
-
-	}
+	protected void execute() { shooterSubsystem.driveFeeder(); }
 
 	@Override
-	protected boolean isFinished() 
-	{
-		// TODO Auto-generated method stub
-		return false;
-	}
+	protected boolean isFinished() { return false; }
 
 	@Override
-	protected void end() 
-	{
-		// TODO Auto-generated method stub
-
-	}
+	protected void end() { shooterSubsystem.stopFeeder(); }
 
 	@Override
-	protected void interrupted() 
-	{
-		// TODO Auto-generated method stub
-
-	}
+	protected void interrupted() { end(); }
 
 }

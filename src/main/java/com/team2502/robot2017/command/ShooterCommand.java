@@ -62,14 +62,8 @@ public class ShooterCommand extends Command
     }
 
     @Override
-    protected void end()
-    {
-        shooterSubsystem.stop();
-    }
+    protected void end() {}
 
     @Override
-    protected void interrupted()
-    {
-        end();
-    }
+    protected void interrupted() {}
 }
