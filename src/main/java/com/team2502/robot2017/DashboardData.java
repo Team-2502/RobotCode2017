@@ -15,16 +15,18 @@ import java.io.InputStreamReader;
 public final class DashboardData
 {
 
-    public static final TypeSendableChooser<AutonomousCommand.AutoGroup> AUTONOMOUS_SELECTOR = new TypeSendableChooser<AutonomousCommand.AutoGroup>();
-    
+    public static final TypeSendableChooser<AutonomousCommand.AutoGroup> AUTONOMOUS_SELECTOR = new TypeSendableChooser<AutonomousCommand.AutoGroup>();    
     public static final TypeSendableChooser<DriveTrainSubsystem.DriveTypes> DRIVE_CONTROL_SELECTOR = new TypeSendableChooser<DriveTrainSubsystem.DriveTypes>();
-
+    public static String VERSION = "Unknown Version";
+    
     private DashboardData() {}
 
     public static void update()
     {
         updatePressure();
         updateNavX();
+        updateSelectors();
+        SmartDashboard.putString("Version", VERSION);
     }
 
     public static void setup()
@@ -39,16 +41,6 @@ public final class DashboardData
         DRIVE_CONTROL_SELECTOR.addDefaultT("Dual Stick Drive Control", DriveTrainSubsystem.DriveTypes.DUAL_STICK);
         DRIVE_CONTROL_SELECTOR.addObjectT("Arcade Drive Control", DriveTrainSubsystem.DriveTypes.ARCADE);
 
-        if(Enabler.AUTONOMOUS.enabler[0])
-        {
-            SmartDashboard.putData("Auto Mode", AUTONOMOUS_SELECTOR);
-        }
-
-        if(Enabler.DRIVE_CONTROL.enabler[0])
-        {
-            SmartDashboard.putData("Drive Control Mode", DRIVE_CONTROL_SELECTOR);
-        }
-
         try
         {
             BufferedReader br = new BufferedReader(new InputStreamReader(DashboardData.class.getResourceAsStream("/version.properties")));
@@ -59,7 +51,7 @@ public final class DashboardData
                 {
                     String[] split = line.split("=");
                     if((split.length < 2) || (split[1] == null) || split[1].isEmpty()) { throw new Exception(); }
-                    SmartDashboard.putString("Version", split[1]);
+                    VERSION = split[1];
                     break;
                 }
             }
@@ -111,6 +103,19 @@ public final class DashboardData
 
         }
 
+    }
+    
+    public static void updateSelectors()
+    {
+        if(Enabler.AUTONOMOUS.enabler[0])
+        {
+            SmartDashboard.putData("Auto Mode", AUTONOMOUS_SELECTOR);
+        }
+
+        if(Enabler.DRIVE_CONTROL.enabler[0])
+        {
+            SmartDashboard.putData("Drive Control Mode", DRIVE_CONTROL_SELECTOR);
+        }
     }
 
     private enum Enabler
