@@ -119,10 +119,10 @@ public class ShooterSubsystem extends Subsystem
         feederTalon2.set(0);
     }
 	
-	public void flywheelDrive()
-	{	
-     	
-     	// Toggle mode for flywheel. It is bound to button 5 on the Function stick.
+//	public void flywheelDrive()
+//	{	
+//     	
+//     	// Toggle mode for flywheel. It is bound to button 5 on the Function stick.
 //     	if(OI.JOYSTICK_FUNCTION.getRawButton(5) && !isTriggerPressed)
 //     	{
 //     		shooterMode = !shooterMode;
@@ -144,24 +144,24 @@ public class ShooterSubsystem extends Subsystem
 
 
         //Control for turning on/off the feeding mechanism.
-		if(OI.JOYSTICK_FUNCTION.getTrigger() /*&& (Math.abs(flywheelTalon.getEncVelocity()) > Math.abs(targetSpeed - 500))*/)
-		{	
-		    feederTalon0.set(1);
-		    feederTalon1.set(-1);
-		    feederTalon2.set(1);
-		}
+//		if(OI.JOYSTICK_FUNCTION.getTrigger() /*&& (Math.abs(flywheelTalon.getEncVelocity()) > Math.abs(targetSpeed - 500))*/)
+//		{	
+//		    feederTalon0.set(1);
+//		    feederTalon1.set(-1);
+//		    feederTalon2.set(1);
+//		}
 //		else if(OI.JOYSTICK_FUNCTION.getTrigger() /*&& (Math.abs(flywheelTalon.getEncVelocity()) < Math.abs(targetSpeed - 500))*/)
 //		{
 //			feederTalon0.set(1);
 //			feederTalon1.set(0);
 //		}
-		else
-		{
-			feederTalon0.set(0);
-			feederTalon1.set(0);
-			feederTalon2.set(0);
-		}
-    }
+//		else
+//		{
+//			feederTalon0.set(0);
+//			feederTalon1.set(0);
+//			feederTalon2.set(0);
+//		}
+//    }
 
     public void stop()
     {
