@@ -26,6 +26,8 @@ public final class DashboardData
         updatePressure();
         updateNavX();
         updateSelectors();
+        
+        
         SmartDashboard.putString("Version", VERSION);
     }
 
