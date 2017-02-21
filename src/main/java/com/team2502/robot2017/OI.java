@@ -4,6 +4,7 @@ import com.team2502.robot2017.command.GearLeverCommand;
 import com.team2502.robot2017.command.GearPushBoxCommand;
 import com.team2502.robot2017.command.GearPushGearCommand;
 import com.team2502.robot2017.command.ShooterChangeSpeedCommand;
+import com.team2502.robot2017.command.ActiveCommand;
 import com.team2502.robot2017.command.FeederCommand;
 import com.team2502.robot2017.command.GearCommandTop;
 import com.team2502.robot2017.command.ShooterCommand;
@@ -26,6 +27,7 @@ public final class OI
     public static final Button FEEDER = new JoystickButton(JOYSTICK_FUNCTION, RobotMap.Joystick.Button.FEEDER);
     public static final Button ACTIVE_FORWARDS = new JoystickButton(JOYSTICK_FUNCTION, RobotMap.Joystick.Button.ACTIVE_FORWARDS);
     public static final Button ACTIVE_BACKWARDS = new JoystickButton(JOYSTICK_FUNCTION, RobotMap.Joystick.Button.ACTIVE_BACKWARDS);
+    public static final Button ONLY_AGITATOR = new JoystickButton(JOYSTICK_FUNCTION, RobotMap.Joystick.Button.ONLY_AGITATOR);
 
     public static final Button SWITCH_DRIVE_TRANSMISSION = new JoystickButton(JOYSTICK_DRIVE_RIGHT, RobotMap.Joystick.Button.SWITCH_DRIVE_TRANSMISSION);
     public static final Button TOP_GEAR_BOX = new JoystickButton(JOYSTICK_FUNCTION, RobotMap.Joystick.Button.TOP_GEAR_BOX);
@@ -33,7 +35,6 @@ public final class OI
     public static final Button PUSH_BOX = new JoystickButton(JOYSTICK_FUNCTION, RobotMap.Joystick.Button.PUSH_BOX);
     public static final Button PUSH_GEAR = new JoystickButton(JOYSTICK_FUNCTION, RobotMap.Joystick.Button.PUSH_GEAR);
     public static final Button CLIMB = new JoystickButton(JOYSTICK_FUNCTION, RobotMap.Joystick.Button.CLIMB);
-    public static final Button ONLY_AGITATOR = new JoystickButton(JOYSTICK_FUNCTION, RobotMap.Joystick.Button.ONLY_AGITATOR);
 
     static
     {
@@ -48,6 +49,8 @@ public final class OI
         SHOOTER_INCREASE_SPEED.whenPressed(new ShooterChangeSpeedCommand(10));
         SHOOTER_DECREASE_SPEED.whenPressed(new ShooterChangeSpeedCommand(-10));
         ONLY_AGITATOR.whileHeld(new OnlyAgitatorCommand());
+        ACTIVE_FORWARDS.whileHeld(new ActiveCommand(1));
+        ACTIVE_BACKWARDS.whileHeld(new ActiveCommand(-1));
     }
 
     public static void init() {}

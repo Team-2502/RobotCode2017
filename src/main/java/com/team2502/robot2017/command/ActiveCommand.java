@@ -8,9 +8,12 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ActiveCommand extends Command
 {
     private final ActiveIntakeSubsystem activeIntakeSubsystem;
+    int direction;
 
-    public ActiveCommand()
+    public ActiveCommand(int dir)
     {
+    	direction = dir;
+    	
         requires(Robot.ACTIVE);
         activeIntakeSubsystem = Robot.ACTIVE;
     }
@@ -19,7 +22,7 @@ public class ActiveCommand extends Command
     protected void initialize() {}
 
     @Override
-    protected void execute() { activeIntakeSubsystem.activeDrive(); }
+    protected void execute() { activeIntakeSubsystem.activeDrive(direction); }
 
     @Override
     protected boolean isFinished() { return false; }

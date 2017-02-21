@@ -72,6 +72,9 @@ public class RobotMap
         public static final int GEARBOX_SOLENOID1 = 2;
         public static final int GEARBOX_SOLENOID2 = 3;
         public static final int GEARBOX_SOLENOID3 = 4;
+        
+        // CLIMBER shifts a gear into the drive station that 
+        // changes the drive CIMs into climb CIMs
         public static final int CLIMBER_SOLENOID = 5;
 
         private Solenoid() {}

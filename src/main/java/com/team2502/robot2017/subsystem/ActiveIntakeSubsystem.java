@@ -18,14 +18,16 @@ public class ActiveIntakeSubsystem extends Subsystem
     @Override
     protected void initDefaultCommand()
     {
-        this.setDefaultCommand(new ActiveCommand());
+//        this.setDefaultCommand(new ActiveCommand());
     }
 
-    public void activeDrive()
+    public void activeDrive(int direction)
     {
-        if(OI.JOYSTICK_FUNCTION.getRawButton(3)) { activeTalon.set(1); }
-        else if(OI.JOYSTICK_FUNCTION.getRawButton(4)) { activeTalon.set(-1); }
-        else { activeTalon.set(0); }
+    	activeTalon.set(direction);
+    	
+//        if(OI.JOYSTICK_FUNCTION.getRawButton(3)) { activeTalon.set(1); }
+//        else if(OI.JOYSTICK_FUNCTION.getRawButton(4)) { activeTalon.set(-1); }
+//        else { activeTalon.set(0); }
     }
 
     public void stop()
