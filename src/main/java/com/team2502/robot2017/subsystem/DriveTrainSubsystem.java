@@ -199,7 +199,6 @@ public class DriveTrainSubsystem extends Subsystem
         // stopDriveS();
 //        SmartDashboard.putNumber("Autonomous", Robot.AUTO.getTimerStraight());
     }
-
     public void stopDriveS()
     {
         leftTalon0.set(0);
