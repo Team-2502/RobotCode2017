@@ -91,10 +91,10 @@ public class ShooterSubsystem extends Subsystem
     
     public void toggleFlywheel()
     {
-    	shooterMode = !shooterMode;
-    	
     	if(shooterMode) { flywheelTalon.set(targetSpeed); }
     	else { flywheelTalon.set(0); }
+    	
+    	shooterMode = !shooterMode;
     }
     
     public void onlySpinAgitator()
