@@ -72,7 +72,8 @@ public final class Robot extends IterativeRobot
      */
     public void autonomousInit()
     {
-        Scheduler.getInstance().add(DashboardData.getAutonomous());
+        //Scheduler.getInstance().add(DashboardData.getAutonomous());
+        DashboardData.getAutonomous();
     }
 
     /**

@@ -1,5 +1,6 @@
 package com.team2502.robot2017.command.autonomous;
 
+import com.team2502.robot2017.DashboardData;
 import com.team2502.robot2017.Robot;
 import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
 import com.team2502.robot2017.subsystem.ShooterSubsystem;
@@ -24,11 +25,16 @@ public class AutonomousCommand extends Command
         visionSubsystem = Robot.VISION;
         shooterSubsystem = Robot.SHOOTER;
     }
-
+    
+    public enum AutoGroup
+    {
+        AUTOCOMMANDG1, AUTOCOMMANDG2, AUTOCOMMANDG3, AUTOCOMMANDG4, AUTOCOMMANDG5;
+    }
+    
     @Override
     protected void initialize() 
     {
-    	Scheduler.getInstance().add(new AutoCommandG1());
+    	
     }
 
     @Override
