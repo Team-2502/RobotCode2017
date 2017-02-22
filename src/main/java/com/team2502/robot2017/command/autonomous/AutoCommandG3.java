@@ -12,14 +12,14 @@ public class AutoCommandG3 extends CommandGroup
     public AutoCommandG3()
     {	
     	  //goesToHopper 
-          addSequential(new DriveTimeCommand((1/196.50)*114.3));
+          addSequential(new DriveTimeCommand(((1/196.50)*114.3)/2));
           addSequential(new NavXMoveCommand(-90, 3D));
           addSequential(new DriveTimeCommand((1/196.50)*78.5));
           
           //goesToGear
-		  addSequential(new DriveBackwardsCommand(((1/196.50)*114.3)/2));
+		  addSequential(new DriveBackwardsCommand((((1/196.50)*114.3)/2)/2));
 		  addSequential(new NavXMoveCommand(30,1D));
-		  addSequential(new DriveBackwardsCommand(((1/196.5)*114.3)/4));
+		  addSequential(new DriveBackwardsCommand((((1/196.5)*114.3)/4)/2));
 		  addSequential(new NavXMoveCommand(-30,1D));
 		  addSequential(new DriveTillDistanceCommand(14));
 		  
@@ -27,7 +27,7 @@ public class AutoCommandG3 extends CommandGroup
 		  addSequential(new GearCommandG());
 		  
 		  //goesToBoiler
-		  addSequential(new DriveTimeCommand((1/196.50)*114.3));
+		  addSequential(new DriveTimeCommand(((1/196.50)*114.3)/2));
 		  
 		  //shootsBalls
 		  addSequential(new FlywheelShootCommand(7)); 
