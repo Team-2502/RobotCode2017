@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class ShooterSubsystem extends Subsystem
 {
     private final CANTalon flywheelTalon;
-    private final CANTalon feederTalon0; //coleson
+    private final CANTalon feederTalon0; //colson
     private final CANTalon feederTalon1;  //banebot
     public final CANTalon feederTalon2; //agitator
     
