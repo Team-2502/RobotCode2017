@@ -97,6 +97,8 @@ public class ShooterSubsystem extends Subsystem
     	shooterMode = !shooterMode;
     }
     
+    public void stopFlywheel() { flywheelTalon.set(0); }
+    
     public void onlySpinAgitator()
     {
     	feederTalon2.set(1);
