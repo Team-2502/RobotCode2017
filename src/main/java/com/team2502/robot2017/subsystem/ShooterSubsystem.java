@@ -19,7 +19,7 @@ public class ShooterSubsystem extends Subsystem
     
     public boolean isFlywheelActive;
     public boolean isFeederActive;
-    private boolean shooterMode = false;
+    public boolean shooterMode = false;
     
     public ShooterSubsystem()
     {

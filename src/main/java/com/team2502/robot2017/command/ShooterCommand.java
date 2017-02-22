@@ -62,7 +62,11 @@ public class ShooterCommand extends Command
     }
 
     @Override
-    protected void end() { shooterSubsystem.stopFlywheel(); }
+    protected void end()
+    { 
+    	shooterSubsystem.stopFlywheel();
+    	shooterSubsystem.shooterMode = false;
+    }
 
     @Override
     protected void interrupted() { end(); }
