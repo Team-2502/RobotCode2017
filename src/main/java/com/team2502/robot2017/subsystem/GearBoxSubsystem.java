@@ -32,44 +32,20 @@ public class GearBoxSubsystem extends Subsystem
     @Override
     protected void initDefaultCommand() {}
 
-    public void switchTop()
-    {
-    	setTop(topMoved = !topMoved);
-    }
+    public void switchTop() { setTop(topMoved = !topMoved); }
     
-    public void setTop(boolean topMoved)
-    {
-    	moveTop.set(this.topMoved = topMoved);
-    }
+    public void setTop(boolean topMoved) { moveTop.set(this.topMoved = topMoved); }
 
-    public void switchPushGear()
-    {
-        pushGear.set(pushedGear = !pushedGear);
-    }
+    public void switchPushGear() { pushGear.set(pushedGear = !pushedGear); }
 
-    public void setGear(boolean pushedGear)
-    {
-        pushGear.set(this.pushedGear = pushedGear);
-    }
+    public void setGear(boolean pushedGear) { pushGear.set(this.pushedGear = pushedGear); }
 
-    public void switchRelease()
-    {
-        releaseGear.set(Released = !Released);
-    }
+    public void switchRelease() { releaseGear.set(Released = !Released); }
 
-    public void setRelease(boolean Released)
-    {
-        releaseGear.set(this.Released = Released);
-    }
+    public void setRelease(boolean Released) { releaseGear.set(this.Released = Released); }
     
-    public void switchPushBox()
-    {
-    	pushBox.set(pushedBox = !pushedBox);
-    }
+    public void switchPushBox() { pushBox.set(pushedBox = !pushedBox); }
     
-    public void setBox(boolean pushedBox)
-    {
-    	pushBox.set(this.pushedBox = pushedBox);
-    }
+    public void setBox(boolean pushedBox) { pushBox.set(this.pushedBox = pushedBox); }
 }
   

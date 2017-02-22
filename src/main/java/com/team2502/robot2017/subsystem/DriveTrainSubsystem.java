@@ -6,6 +6,7 @@ import com.team2502.robot2017.RobotMap;
 import com.team2502.robot2017.command.DriveCommand;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
+import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -52,19 +53,24 @@ public class DriveTrainSubsystem extends Subsystem
         drive = new RobotDrive(leftTalon0, leftTalon1, rightTalon0, rightTalon1);
         drive.setExpiration(0.1D);
 
-        setTalonSettings(leftTalon0);
-        setTalonSettings(leftTalon1);
-        setTalonSettings(rightTalon0);
-        setTalonSettings(rightTalon1);
     }
 
-    private void setTalonSettings(CANTalon talon)
+    public void setAutonSettings(CANTalon talon)
     {
         talon.setFeedbackDevice(FeedbackDevice.QuadEncoder);
         talon.configEncoderCodesPerRev(256);
         talon.reverseSensor(false);
         talon.configNominalOutputVoltage(0.0D, -0.0D);
         talon.configPeakOutputVoltage(12.0D, -12.0D);
+        talon.changeControlMode(TalonControlMode.MotionProfile);
+    }
+    
+    public void setTeleopSettings()
+    {
+        leftTalon0.changeControlMode(TalonControlMode.Voltage);
+        leftTalon1.changeControlMode(TalonControlMode.Voltage);
+        rightTalon0.changeControlMode(TalonControlMode.Voltage);
+        rightTalon1.changeControlMode(TalonControlMode.Voltage);
     }
 
     @Override

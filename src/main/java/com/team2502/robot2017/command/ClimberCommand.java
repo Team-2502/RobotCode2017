@@ -6,7 +6,8 @@
 //import edu.wpi.first.wpilibj.command.Command;
 //
 //// TODO: Add proper implementation
-//public class ClimberCommand extends Co
+//public class ClimberCommand extends Command
+//{
 //    private final ClimberSubsystem ClimberSubsystem;
 //
 //    public ClimberCommand()
