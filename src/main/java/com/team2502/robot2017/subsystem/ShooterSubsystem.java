@@ -91,10 +91,10 @@ public class ShooterSubsystem extends Subsystem
     
     public void toggleFlywheel()
     {
+    	shooterMode = !shooterMode;
+    	
     	if(shooterMode) { flywheelTalon.set(targetSpeed); }
     	else { flywheelTalon.set(0); }
-    	
-    	shooterMode = !shooterMode;
     }
     
     public void stopFlywheel() { flywheelTalon.set(0); }
@@ -167,8 +167,8 @@ public class ShooterSubsystem extends Subsystem
         feederTalon1.set(0.0D);
         feederTalon2.set(0.0D);
 
-        isFlywheelActive = false;
-        isFeederActive = false;
+//        isFlywheelActive = false;
+//        isFeederActive = false;
     }
 }
 
