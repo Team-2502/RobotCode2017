@@ -31,6 +31,8 @@ public class DriveTrainSubsystem extends Subsystem
     private final RobotDrive drive;
     private double lastLeft;
     private double lastRight;
+    public double leftSpeed;
+    public double rightSpeed;
 
     public int millisecondsToRunTL = 1000;
     public int millisecondsToRunTR = 1000;
@@ -176,13 +178,18 @@ public class DriveTrainSubsystem extends Subsystem
     {
         Pair<Double, Double> speed = DashboardData.getDriveType() == DriveTypes.DUAL_STICK ? getSpeed()
                                                                                            : getSpeedArcade();
+        
+        
         drive.tankDrive(speed.left, speed.right, true);
     }
 
     private static final double DELAY_TIME = 5.77D + 43902.0D / 9999900.0D;
 
     public void runMotors(double x, double y) // double z
-    {
+    {	
+
+    	leftSpeed = x;
+    	rightSpeed = y;
         leftTalon0.set(x);
         leftTalon1.set(x);
         rightTalon0.set(y);

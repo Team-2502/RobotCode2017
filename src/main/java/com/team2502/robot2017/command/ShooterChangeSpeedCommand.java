@@ -1,20 +1,19 @@
 package com.team2502.robot2017.command;
 
 import com.team2502.robot2017.Robot;
-import com.team2502.robot2017.subsystem.DriveTrainTransmissionSubsystem;
-import com.team2502.robot2017.subsystem.GearSubsystem;
+import com.team2502.robot2017.subsystem.ShooterSubsystem;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class LeverCommand extends Command
+public class ShooterChangeSpeedCommand extends Command
 {
-    private final DriveTrainTransmissionSubsystem gear;
-    private final boolean on;
+    private final ShooterSubsystem ShooterSubsystem;
+    int speedChange = 0;
 
-    public LeverCommand(boolean on)
+    public ShooterChangeSpeedCommand(int newSpeedChange)
     {
-        requires(Robot.DRIVE_TRAIN_GEAR_SWITCH);
-        gear = Robot.DRIVE_TRAIN_GEAR_SWITCH;
-        this.on = on;
+    	speedChange += newSpeedChange;
+        requires(Robot.SHOOTER);
+        ShooterSubsystem = Robot.SHOOTER;
     }
 
     @Override
@@ -26,7 +25,7 @@ public class LeverCommand extends Command
     @Override
     protected void execute()
     {
-        gear.setGear(on);
+        ShooterSubsystem.setTargetSpeed(speedChange);
     }
 
     @Override

@@ -24,21 +24,21 @@ public class VisionSubsystem extends Subsystem
 {
     static NetworkTable visionTable;
 
-    double offset;
-    double width;
-    double height;
+    double offset0;
+    double offset1;
 
     @Override
     public void initDefaultCommand()
     {
         NetworkTable.setServerMode();
         NetworkTable.shutdown();
-        visionTable = NetworkTable.getTable("vision");
+        visionTable = NetworkTable.getTable("PiVision");
 
     }
 
     //offset will be negative if to left, positive if to right
-    public static double getOffset() { return visionTable.getNumber("offset", 1023.0); }
+    public static double getOffsetCam1() { return visionTable.getNumber("offset1", 1023.0); }
+    public static double getOffsetCam2() { return visionTable.getNumber("offset2", 1023.0); }
 //    public static double getWidth(){ return visionTable.getNumber("dimensions-px-x", 1023.0); }
 //    public static double getHeight(){ return visionTable.getNumber("dimensions-px-y", 1023.0); }
 

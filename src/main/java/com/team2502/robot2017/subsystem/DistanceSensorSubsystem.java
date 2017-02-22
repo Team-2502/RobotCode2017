@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class DistanceSensorSubsystem extends Subsystem
 {
+	private double distScaleFactor = 6.5231750;
     private static final double INPUT_VOLTAGE = 5.0D;
     private AnalogInput distanceSensor;
     private double ScaleFactor = 6.532189;
@@ -25,8 +26,20 @@ public class DistanceSensorSubsystem extends Subsystem
    
     public double getSensorDistance()
     {
-        return(distanceSensor.getVoltage()*ScaleFactor);
-        
+    if(distanceSensor.getVoltage()*distScaleFactor < 6)
+    	{
+    		return 20;
+    	}
+    	
+    	else if(distanceSensor.getVoltage()*distScaleFactor > 18 )
+    	{
+    		return 0;
+    	}
+    	
+    	else
+    	{
+        	return(distanceSensor.getVoltage()*distScaleFactor);
+    	}
+
     }
-    
 }
