@@ -17,6 +17,7 @@ public class TypeSendableChooser<T> extends SendableChooser
         super.addDefault(name, object);
     }
 
+    @SuppressWarnings("unchecked")
     @Nullable
     public T getSelectedT()
     {

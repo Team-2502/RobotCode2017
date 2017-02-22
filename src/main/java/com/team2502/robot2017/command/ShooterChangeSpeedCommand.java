@@ -4,44 +4,45 @@ import com.team2502.robot2017.Robot;
 import com.team2502.robot2017.subsystem.ShooterSubsystem;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class FlywheelCommand extends Command
+public class ShooterChangeSpeedCommand extends Command
 {
-    private final ShooterSubsystem shooterSubsystem;
+    private final ShooterSubsystem ShooterSubsystem;
+    int speedChange = 0;
 
-    public FlywheelCommand()
+    public ShooterChangeSpeedCommand(int newSpeedChange)
     {
+    	speedChange += newSpeedChange;
         requires(Robot.SHOOTER);
-        shooterSubsystem = Robot.SHOOTER;
+        ShooterSubsystem = Robot.SHOOTER;
     }
 
     @Override
     protected void initialize()
     {
-        shooterSubsystem.isFlywheelActive = false;
-        shooterSubsystem.isFeederActive = false;
+
     }
 
     @Override
     protected void execute()
     {
-        shooterSubsystem.flywheelDrive();
+        ShooterSubsystem.setTargetSpeed(speedChange);
     }
 
     @Override
     protected boolean isFinished()
     {
-        return false;
+        return true;
     }
 
     @Override
     protected void end()
     {
-        shooterSubsystem.stop();
+
     }
 
     @Override
     protected void interrupted()
     {
-        shooterSubsystem.stop();
+
     }
 }
