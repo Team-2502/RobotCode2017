@@ -1,6 +1,7 @@
 package com.team2502.robot2017;
 
 import com.kauailabs.navx.frc.AHRS;
+import com.team2502.robot2017.command.autonomous.AutoCommandG2;
 import com.team2502.robot2017.subsystem.*;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -72,8 +73,8 @@ public final class Robot extends IterativeRobot
      */
     public void autonomousInit()
     {
-        //Scheduler.getInstance().add(DashboardData.getAutonomous());
-        DashboardData.getAutonomous();
+        Scheduler.getInstance().add(new AutoCommandG2());
+        
     }
 
     /**
