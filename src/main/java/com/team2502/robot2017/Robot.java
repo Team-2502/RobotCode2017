@@ -2,6 +2,7 @@ package com.team2502.robot2017;
 
 import com.kauailabs.navx.frc.AHRS;
 import com.team2502.robot2017.command.autonomous.AutoCommandG2;
+import com.team2502.robot2017.command.autonomous.AutoVCommand;
 import com.team2502.robot2017.subsystem.*;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -57,7 +58,6 @@ public final class Robot extends IterativeRobot
 
     public void disabledPeriodic()
     {
-        Scheduler.getInstance().run();
         DashboardData.update();
         DRIVE_TRAIN.stop();
     }
@@ -73,7 +73,7 @@ public final class Robot extends IterativeRobot
      */
     public void autonomousInit()
     {
-        Scheduler.getInstance().add(new AutoCommandG2());
+        Scheduler.getInstance().add(new AutoVCommand(true));
         
     }
 
