@@ -17,30 +17,21 @@ public class FlywheelCommand extends Command
     /**
      * @param runTime Time to run for in milliseconds.
      */
-    public FlywheelCommand(long runTime)
+    public FlywheelCommand()
     {
-
         requires(Robot.SHOOTER);
         shooterSubsystem = Robot.SHOOTER;
-        this.runTime = runTime;
     }
 
     /**
      * @param runTime Time to run for in seconds.
      */
-    public FlywheelCommand(double runTime)
-    {
-        this((long) (runTime * 1000));
-    }
-
     @Override
     protected void initialize()
     {
-        startTime = System.currentTimeMillis();
 
         shooterSubsystem.isFlywheelActive = false;
-        shooterSubsystem.isFeederActive = false;
-        
+        shooterSubsystem.isFeederActive = false;    
 //        shooterSubsystem.defaultShooter();
     }
 
@@ -54,7 +45,7 @@ public class FlywheelCommand extends Command
     @Override
     protected boolean isFinished()
     {
-        return System.currentTimeMillis() - startTime > runTime;
+        return false;
     }
 
     @Override

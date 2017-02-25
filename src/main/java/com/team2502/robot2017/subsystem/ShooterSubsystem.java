@@ -35,7 +35,7 @@ public class ShooterSubsystem extends Subsystem
     @Override
     protected void initDefaultCommand()
     {
-    	this.setDefaultCommand(new FlywheelCommand(1));
+    	this.setDefaultCommand(new FlywheelCommand());
     	
     	flywheelTalon.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	flywheelTalon.configEncoderCodesPerRev(256);
