@@ -1,6 +1,7 @@
 package com.team2502.robot2017;
 
 import com.kauailabs.navx.frc.AHRS;
+import com.team2502.robot2017.command.OnlyAgitatorCommand;
 import com.team2502.robot2017.subsystem.*;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -23,7 +24,9 @@ public final class Robot extends IterativeRobot
     public static final ShooterSubsystem SHOOTER = new ShooterSubsystem();
     public static final DistanceSensorSubsystem DISTANCE_SENSOR = new DistanceSensorSubsystem();
     public static final ActiveIntakeSubsystem ACTIVE = new ActiveIntakeSubsystem();
+    public static final GearBoxSubsystem GEAR_BOX = new GearBoxSubsystem();
     public static final DriveTrainTransmissionSubsystem DRIVE_TRAIN_GEAR_SWITCH;
+    public static final ClimberSubsystem CLIMBER = new ClimberSubsystem();
 
     // NavX Subsystem
     public static final AHRS NAVX = new AHRS(SPI.Port.kMXP);
