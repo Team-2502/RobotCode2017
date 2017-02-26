@@ -45,7 +45,6 @@ public class ShooterCommand extends Command
 
         shooterSubsystem.isFlywheelActive = false;
         shooterSubsystem.isFeederActive = false;
-        
 //        shooterSubsystem.defaultShooter();
     }
 
@@ -62,8 +61,12 @@ public class ShooterCommand extends Command
     }
 
     @Override
-    protected void end() {}
+    protected void end()
+    { 
+    	shooterSubsystem.stopFlywheel();
+    	shooterSubsystem.shooterMode = false;
+    }
 
     @Override
-    protected void interrupted() {}
+    protected void interrupted() { end(); }
 }

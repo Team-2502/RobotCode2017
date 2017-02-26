@@ -1,8 +1,6 @@
 package com.team2502.robot2017.subsystem;
 
-import com.team2502.robot2017.OI;
 import com.team2502.robot2017.RobotMap;
-import com.team2502.robot2017.command.ShooterChangeSpeedCommand;
 import com.team2502.robot2017.command.ShooterCommand;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
@@ -21,8 +19,7 @@ public class ShooterSubsystem extends Subsystem
     
     public boolean isFlywheelActive;
     public boolean isFeederActive;
-    private boolean shooterMode = false;
-    private boolean isTriggerPressed = false;
+    public boolean shooterMode = false;
     
     public ShooterSubsystem()
     {
@@ -100,6 +97,8 @@ public class ShooterSubsystem extends Subsystem
     	else { flywheelTalon.set(0); }
     }
     
+    public void stopFlywheel() { flywheelTalon.set(0); }
+    
     public void onlySpinAgitator()
     {
     	feederTalon2.set(1);
@@ -109,14 +108,12 @@ public class ShooterSubsystem extends Subsystem
     {
         feederTalon0.set(1);
         feederTalon1.set(-1);
-        feederTalon2.set(1);
     }
     
     public void stopFeeder()
     {
     	feederTalon0.set(0);
         feederTalon1.set(0);
-        feederTalon2.set(0);
     }
 	
 //	public void flywheelDrive()
@@ -170,8 +167,8 @@ public class ShooterSubsystem extends Subsystem
         feederTalon1.set(0.0D);
         feederTalon2.set(0.0D);
 
-        isFlywheelActive = false;
-        isFeederActive = false;
+//        isFlywheelActive = false;
+//        isFeederActive = false;
     }
 }
 
