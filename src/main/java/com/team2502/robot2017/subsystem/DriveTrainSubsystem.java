@@ -2,7 +2,6 @@ package com.team2502.robot2017.subsystem;
 
 import com.team2502.robot2017.DashboardData;
 import com.team2502.robot2017.OI;
-import com.team2502.robot2017.Robot;
 import com.team2502.robot2017.RobotMap;
 import com.team2502.robot2017.command.DriveCommand;
 import edu.wpi.first.wpilibj.CANTalon;
