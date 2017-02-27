@@ -172,19 +172,17 @@ public class DriveTrainSubsystem extends Subsystem
         return out;
     }
 
-    private Pair<Double, Double> getSpeed()
-    {
-        return getSpeed(SPEED_CONTAINER);
-    }
+    private Pair<Double, Double> getSpeed() { return getSpeed(SPEED_CONTAINER); }
     
-   public int  getPositionLeft()
+   public double getPositionLeft() { return leftTalon0.getPosition(); }
+   public double getPositionRight() { return rightTalon1.getPosition(); }
+   
+   public void resetEncPosition()
    {
-	  return leftTalon0.getAnalogInPosition();
+	   rightTalon1.setPosition(0);
+	   leftTalon0.setPosition(0);
    }
-   public int getPositionRight()
-   {
-	   return rightTalon0.getAnalogInPosition();
-   }
+   
    public void resetLeft()
    {
 	   leftTalon0.setAnalogPosition(0);

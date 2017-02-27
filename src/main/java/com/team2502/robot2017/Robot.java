@@ -75,7 +75,7 @@ public final class Robot extends IterativeRobot
      */
     public void autonomousInit()
     {
-        Scheduler.getInstance().add(new MoveXDistance(100));
+        Scheduler.getInstance().add(new MoveXDistance(10));
         
     }
 

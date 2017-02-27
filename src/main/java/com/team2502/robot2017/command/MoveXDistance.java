@@ -40,13 +40,15 @@ public class MoveXDistance extends Command
 		encDistanceLeft = driveTrain.getPositionLeft();
 		encDistanceRight = driveTrain.getPositionRight();
 		
-		if (encDistanceLeft < desiredDistance && encDistanceRight < desiredDistance) 
+		if (encDistanceLeft < desiredDistance ) 
 		{	
-			encDistanceLeft = driveTrain.getPositionLeft();
-			encDistanceRight = driveTrain.getPositionRight();
-			driveTrain.runMotors(.5, -.5);
-			
+			driveTrain.runMotors(.5, 0);
 		}
+		if (encDistanceRight < desiredDistance)
+		{
+			driveTrain.runMotors(0, -.5);
+		}
+		
 		else 
 		{
 			driveTrain.runMotors(0, 0);
