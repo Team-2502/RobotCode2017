@@ -31,7 +31,7 @@ public class DriveTillDistanceCommand extends Command
 			driveTrain.leftSpeed = -0.5;
 			driveTrain.rightSpeed = 0.5;
 			
-			Distance = Sensor.getSensorDistance();
+			Distance = (double) Sensor.getSensorDistance();
 			if (Distance > 14)
 			{
 				driveTrain.runMotors(driveTrain.leftSpeed, driveTrain.rightSpeed);

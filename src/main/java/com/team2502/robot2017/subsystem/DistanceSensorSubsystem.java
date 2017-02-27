@@ -6,9 +6,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class DistanceSensorSubsystem extends Subsystem
 {
-	private double distScaleFactor = 6.5231750;
+	public double distScaleFactor = 6.5231750;
     private static final double INPUT_VOLTAGE = 5.0D;
-    private AnalogInput distanceSensor;
+    public AnalogInput distanceSensor;
 
     public DistanceSensorSubsystem()
     {
@@ -20,17 +20,22 @@ public class DistanceSensorSubsystem extends Subsystem
     {
         /* NO-OP */
     }
-
-   
-    public double getSensorDistance()
+    public Object getSensorDistance()
     {	if(distanceSensor.getVoltage()*distScaleFactor < 6)
     	{
-    		return 0;
+//<<<<<<< HEAD
+//    		return 0;
+//=======
+    		return "The target is out of bounds";
     	}
     	
     	else if(distanceSensor.getVoltage()*distScaleFactor > 18 )
     	{
-    		return 20;
+//<<<<<<< HEAD
+//    		return 20;
+//=======
+    		return "The target is out of bounds";
+
     	}
     	
     	else
