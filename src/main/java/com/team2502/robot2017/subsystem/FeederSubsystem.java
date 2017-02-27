@@ -3,7 +3,6 @@ package com.team2502.robot2017.subsystem;
 import com.team2502.robot2017.OI;
 import com.team2502.robot2017.RobotMap;
 import com.team2502.robot2017.command.ActiveCommand;
-import com.team2502.robot2017.command.FeederInBoxCommand;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -21,7 +20,7 @@ public class FeederSubsystem extends Subsystem
     @Override
     protected void initDefaultCommand()
     {
-        this.setDefaultCommand(new FeederInBoxCommand());
+//        this.setDefaultCommand(new FeederInBoxCommand());
     }
 
     public void activeDrive()

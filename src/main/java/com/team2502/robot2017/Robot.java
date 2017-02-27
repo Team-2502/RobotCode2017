@@ -1,7 +1,8 @@
 package com.team2502.robot2017;
 
 import com.kauailabs.navx.frc.AHRS;
-import com.team2502.robot2017.command.FeederInBoxCommand;
+import com.team2502.robot2017.command.DriveTimeCommand;
+import com.team2502.robot2017.command.autonomous.AutoVCommand;
 import com.team2502.robot2017.subsystem.*;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -27,7 +28,6 @@ public final class Robot extends IterativeRobot
     public static final GearBoxSubsystem GEAR_BOX = new GearBoxSubsystem();
     public static final DriveTrainTransmissionSubsystem DRIVE_TRAIN_GEAR_SWITCH;
     public static final ClimberSubsystem CLIMBER = new ClimberSubsystem();
-    public static final FeederSubsystem FEEDERINBOX  = new FeederSubsystem();
 
     // NavX Subsystem
     public static final AHRS NAVX = new AHRS(SPI.Port.kMXP);
@@ -74,7 +74,9 @@ public final class Robot extends IterativeRobot
      */
     public void autonomousInit()
     {
-        Scheduler.getInstance().add(DashboardData.getAutonomous());
+        //Scheduler.getInstance().add(DashboardData.getAutonomous());
+//        Scheduler.getInstance().add(DashboardData.getAutonomous());
+        Scheduler.getInstance().add(new DriveTimeCommand(0.3D));
     }
 
     /**

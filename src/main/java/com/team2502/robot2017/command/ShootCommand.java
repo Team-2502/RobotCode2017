@@ -1,30 +1,34 @@
 package com.team2502.robot2017.command;
 
 import com.team2502.robot2017.Robot;
-import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
+import com.team2502.robot2017.subsystem.ShooterSubsystem;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 @SuppressWarnings("WeakerAccess")
-public class TurnLeftCommand extends Command
+public class ShootCommand extends Command
 {
-    private DriveTrainSubsystem driveTrain;
-    private long runTime;
-    private long startTime;
+
+    private final ShooterSubsystem shooterSubsystem;
+	private long runTime;
+	private long startTime;
+
 
     /**
      * @param runTime Time to run for in milliseconds.
      */
-    public TurnLeftCommand(long runTime)
+    public ShootCommand(long runTime)
     {
-        requires(Robot.DRIVE_TRAIN);
-        driveTrain = Robot.DRIVE_TRAIN;
+
+        requires(Robot.SHOOTER);
+        shooterSubsystem = Robot.SHOOTER;
         this.runTime = runTime;
     }
 
     /**
      * @param runTime Time to run for in seconds.
      */
-    public TurnLeftCommand(double runTime)
+    public ShootCommand(double runTime)
     {
         this((long) (runTime * 1000));
     }
@@ -33,14 +37,18 @@ public class TurnLeftCommand extends Command
     protected void initialize()
     {
         startTime = System.currentTimeMillis();
+
+        shooterSubsystem.isFlywheelActive = false;
+        shooterSubsystem.isFeederActive = false;
+        
+//        shooterSubsystem.defaultShooter();
     }
 
     @Override
     protected void execute()
     {
-        driveTrain.runMotors(-1.0D, 1.0D);
-//    	addSequential(new DriveTimeCommand(1.2));
-//        addSequential(new DriveTimeFlywheelCommand(2D));
+
+        shooterSubsystem.flywheelRun();
     }
 
     @Override
@@ -52,7 +60,7 @@ public class TurnLeftCommand extends Command
     @Override
     protected void end()
     {
-        driveTrain.stop();
+        shooterSubsystem.stop();
     }
 
     @Override

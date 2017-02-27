@@ -28,22 +28,24 @@ public class NavXMoveCommand extends Command{
 //	private double targetYDisplace = 0;
 //	private double displaceDeadzone = 0.006;
 	
-	public NavXMoveCommand(){
+	public NavXMoveCommand()
+  {
 		requires(Robot.DRIVE_TRAIN);
-        driveTrain = Robot.DRIVE_TRAIN;
-        navx = Robot.NAVX;
-        requires(Robot.DISTANCE_SENSOR);
-        Sensor = Robot.DISTANCE_SENSOR;
+    driveTrain = Robot.DRIVE_TRAIN;
+    navx = Robot.NAVX;
+    requires(Robot.DISTANCE_SENSOR);
+    Sensor = Robot.DISTANCE_SENSOR;
         
-        navx.reset();
-        targetYaw = 0;
-        forever = true;
+    navx.reset();
+    targetYaw = 0;
+    forever = true;
+    
 		this.runTime = (long)  5000;
 	}
 	
     public NavXMoveCommand(double runTime) 
     {
-		requires(Robot.DRIVE_TRAIN);
+	    	requires(Robot.DRIVE_TRAIN);
         driveTrain = Robot.DRIVE_TRAIN;
         navx = Robot.NAVX;
         requires(Robot.DISTANCE_SENSOR);
@@ -51,20 +53,20 @@ public class NavXMoveCommand extends Command{
         
         navx.reset();
         targetYaw = 0;
-		this.runTime = (long) runTime*1000;
-	}
+		    this.runTime = (long) runTime*1000;
+	  }
     
     public NavXMoveCommand(double angle, double runTime)
     {
-    	requires(Robot.DRIVE_TRAIN);
+        requires(Robot.DRIVE_TRAIN);
         driveTrain = Robot.DRIVE_TRAIN;
         navx = Robot.NAVX;
         requires(Robot.DISTANCE_SENSOR);
         Sensor = Robot.DISTANCE_SENSOR;
     	
         navx.reset();
-		targetYaw = angle;
-		this.runTime = (long) runTime*1000;
+	    	targetYaw = angle;
+		    this.runTime = (long) runTime*1000;
     }
 //    public NavXMoveCommand(double angle, double targetXDisplace, double targetYDisplace){
 //    	targetXDisplace = targetXDisplace;
@@ -105,17 +107,7 @@ public class NavXMoveCommand extends Command{
 		}
 		else
 		{	
-//			if(displacementDrive){
-//				if(Math.abs(navx.getDisplacementX() - targetXDisplace) <= displaceDeadzone && Math.abs(navx.getDisplacementY() - targetYDisplace) <= displaceDeadzone){
-//					driveTrain.runMotors(0, 0);
-//				}
-//				else if(navx.getDisplacementX() < targetXDisplace && navx.getDisplacementY() < targetYDisplace){
-//					driveTrain.runMotors(-0.5, 0.5);
-//				}
-//			}
-//			else{
 				driveTrain.runMotors(0.5, -0.5);
-//			}
 		}	
 	}
 	
@@ -131,13 +123,20 @@ public class NavXMoveCommand extends Command{
 	@Override
 	protected boolean isFinished() {
 		// Will end if time elapsed while at targetYaw or at appropriate distance\
-		if(Math.abs(currentYaw - targetYaw) > deadZone)
+		if(forever)
 		{
-			return System.currentTimeMillis() - startTime > runTime;
+			return Math.abs(currentYaw - targetYaw) > deadZone;
 		}
 		else
 		{
-			return false;
+		if(Math.abs(currentYaw - targetYaw) > deadZone)
+			{
+				return System.currentTimeMillis() - startTime > runTime;
+			}
+		else
+			{
+				return false;
+			}
 		}
 	}
 
@@ -153,8 +152,8 @@ public class NavXMoveCommand extends Command{
 		}
 		else
 		{
-//			return Math.pow(Math.E, (-1 * time / 10000));
-			return 4000/((time * time) + 4000);
+			return 1/(1+Math.pow(Math.E, time/2500));
+//			return 4000/((time * time) + 4000);
 		}
 	}
 

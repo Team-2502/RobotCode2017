@@ -14,10 +14,11 @@ public class ShooterSubsystem extends Subsystem
     private final CANTalon feederTalon0; //coleson
     private final CANTalon feederTalon1;  //banebot
     public final CANTalon feederTalon2; //agitator
+
     
     double targetSpeed = 1670;
     int error = 0;
-    
+   
     public boolean isFlywheelActive;
     public boolean isFeederActive;
     private boolean shooterMode = false;
@@ -94,6 +95,7 @@ public class ShooterSubsystem extends Subsystem
 		/* This line initializes the flywheel talon so that the speed 
 		   we give it is in RPM, not a scale of -1 to 1. */
      	flywheelTalon.changeControlMode(TalonControlMode.Speed);
+     	feederTalon2.changeControlMode(TalonControlMode.Follower);
      	
      	// Toggle mode for flywheel. It is bound to button 5 on the Function stick.
      	if(OI.JOYSTICK_FUNCTION.getRawButton(5) && !isTriggerPressed)
@@ -136,6 +138,19 @@ public class ShooterSubsystem extends Subsystem
 		}
     }
 
+	public void flywheelRun()
+	{
+		flywheelTalon.set(targetSpeed);
+	}
+	
+	public void feederRun()
+	{
+		feederTalon0.set(1);
+		feederTalon1.set(-1);
+		feederTalon2.set(feederTalon1.getDeviceID());
+	}
+	
+	
     public void stop()
     {
         flywheelTalon.set(0.0D);

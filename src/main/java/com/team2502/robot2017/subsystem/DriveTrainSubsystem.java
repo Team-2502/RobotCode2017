@@ -189,7 +189,7 @@ public class DriveTrainSubsystem extends Subsystem
     {	
 
     	leftSpeed = x;
-    	rightSpeed = y;
+    	rightSpeed = -y;
         leftTalon0.set(x);
         leftTalon1.set(x);
         rightTalon0.set(y);

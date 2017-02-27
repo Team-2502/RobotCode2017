@@ -52,6 +52,7 @@ public class RobotMap
         public static final int FEEDER_TALON_1 = 7; //banebot
         public static final int ACTIVE_INTAKE = 8;
 		public static final int FEEDER_TALON_2 = 9; //agitator
+
       
       	private Motor() {}	
     }
