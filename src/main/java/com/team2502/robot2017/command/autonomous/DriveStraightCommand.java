@@ -104,7 +104,8 @@ public class DriveStraightCommand extends Command implements PIDOutput
     @Override
     protected void execute()
     {
-        driveTrain.runMotors(realSpeed, -realSpeed);
+        driveTrain.runMotors(realSpeed, realSpeed);
+
         Log.debug("Normal Straight");
 
         realSpeed += .08;
@@ -151,8 +152,6 @@ public class DriveStraightCommand extends Command implements PIDOutput
         // return Sensors.ahrs.getFusedHeading() < 190 ||
         // Sensors.ahrs.getFusedHeading() > 170;
         Log.debug("Counter: " + counter);
-
-        // TODO: Fix Grammar - Issac
         /*
            Hear look here! Try uncommenting this line to test a safety to not run into
            a wall - uses short sensor, so not sure where this is going to be mounted, but hopefully

@@ -38,7 +38,7 @@ public class TurnRightCommand extends Command
     @Override
     protected void execute()
     {
-        driveTrain.runMotors(1.0D, 1.0D);
+        driveTrain.runMotors(1.0D, -1.0D);
 //    	addSequential(new DriveTimeCommand(1.2));
 //        addSequential(new DriveTimeFlywheelCommand(2D));
     }
