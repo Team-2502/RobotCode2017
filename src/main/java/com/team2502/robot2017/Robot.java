@@ -1,7 +1,9 @@
 package com.team2502.robot2017;
 
 import com.kauailabs.navx.frc.AHRS;
+import com.team2502.robot2017.command.MoveXDistance;
 import com.team2502.robot2017.command.autonomous.AutoCommandG2;
+import com.team2502.robot2017.command.autonomous.AutoCommandG3;
 import com.team2502.robot2017.command.autonomous.AutoVCommand;
 import com.team2502.robot2017.subsystem.*;
 import edu.wpi.first.wpilibj.Compressor;
@@ -73,11 +75,12 @@ public final class Robot extends IterativeRobot
      */
     public void autonomousInit()
     {
-        Scheduler.getInstance().add(new AutoVCommand(true));
+        Scheduler.getInstance().add(new MoveXDistance(100));
         
     }
 
     /**
+     * 
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic()

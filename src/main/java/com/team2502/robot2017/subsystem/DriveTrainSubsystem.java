@@ -22,7 +22,8 @@ import java.io.Serializable;
  */
 @SuppressWarnings("FieldCanBeLocal")
 public class DriveTrainSubsystem extends Subsystem
-{
+{	
+	
     private static final Pair<Double, Double> SPEED_CONTAINER = new Pair<Double, Double>();
 
     private final CANTalon leftTalon0;
@@ -175,6 +176,25 @@ public class DriveTrainSubsystem extends Subsystem
     {
         return getSpeed(SPEED_CONTAINER);
     }
+    
+   public int  getPositionLeft()
+   {
+	  return leftTalon0.getAnalogInPosition();
+   }
+   public int getPositionRight()
+   {
+	   return rightTalon0.getAnalogInPosition();
+   }
+   public void resetLeft()
+   {
+	   leftTalon0.setAnalogPosition(0);
+   }
+   public void resetRight()
+   {
+	   rightTalon0.setAnalogPosition(0);
+
+   }
+ 
 
     public void drive()
     {
