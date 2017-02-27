@@ -7,16 +7,16 @@ import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveTillDistanceCommand extends Command
-{    
-    private DistanceSensorSubsystem Sensor;
-    private DriveTrainSubsystem driveTrain;
-    double Distance;
-    boolean Close = false;
-    double distanceR;
-    
-    public DriveTillDistanceCommand (double distance)
-    {
-        requires(Robot.DRIVE_TRAIN);
+{	
+	private DistanceSensorSubsystem Sensor;
+	private DriveTrainSubsystem driveTrain;
+	double Distance;
+	boolean Close = false;
+	double distanceR;
+	
+	public DriveTillDistanceCommand (double distance)
+	{
+		requires(Robot.DRIVE_TRAIN);
         driveTrain = Robot.DRIVE_TRAIN;
         requires(Robot.DISTANCE_SENSOR);
         Sensor = Robot.DISTANCE_SENSOR;
@@ -58,6 +58,4 @@ public class DriveTillDistanceCommand extends Command
         end();
         
     }
-    
-
 }
