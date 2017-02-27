@@ -18,6 +18,9 @@ public class MoveXDistance extends Command
 	double encDistanceRight;
 	
 
+	
+	
+
 	public MoveXDistance(double DesiredDistance)
 	{
 		requires(Robot.DRIVE_TRAIN);
