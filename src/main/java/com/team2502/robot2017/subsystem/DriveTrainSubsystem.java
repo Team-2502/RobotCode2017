@@ -188,10 +188,12 @@ public class DriveTrainSubsystem extends Subsystem
    public void resetLeft()
    {
 	   leftTalon0.setAnalogPosition(0);
+	   leftTalon0.setEncPosition(0);
    }
    public void resetRight()
    {
 	   rightTalon0.setAnalogPosition(0);
+	   rightTalon0.setEncPosition(0);
 
    }
  

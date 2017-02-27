@@ -1,6 +1,7 @@
 package com.team2502.robot2017.command;
 
 
+import com.team2502.robot2017.Robot;
 import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -10,16 +11,19 @@ public class MoveXDistance extends Command
 {
 	public DriveTrainSubsystem driveTrain = new DriveTrainSubsystem();
 
-	
-	
+		
 	double desiredDistance = 1;
-	boolean stopped;
-	int rotations;
+	boolean stopped = false;
+	double encDistanceLeft;
+	double encDistanceRight;
 	
 
 	public MoveXDistance(double DesiredDistance)
 	{
+		requires(Robot.DRIVE_TRAIN);
+        driveTrain = Robot.DRIVE_TRAIN;
 		desiredDistance = DesiredDistance;
+		
 	}
 
 	@Override
@@ -33,17 +37,20 @@ public class MoveXDistance extends Command
 	@Override
 	protected void execute() 
 	{	// TODO Auto-generated method stubs
-		double encDistanceLeft = driveTrain.getPositionLeft();
-		double encDistanceRight = driveTrain.getPositionRight();
+		encDistanceLeft = driveTrain.getPositionLeft();
+		encDistanceRight = driveTrain.getPositionRight();
 		
-		if (encDistanceLeft > desiredDistance && encDistanceRight > desiredDistance && !stopped) 
-		{
-			driveTrain.runMotors(0, 0);
+		if (encDistanceLeft < desiredDistance && encDistanceRight < desiredDistance) 
+		{	
+			encDistanceLeft = driveTrain.getPositionLeft();
+			encDistanceRight = driveTrain.getPositionRight();
+			driveTrain.runMotors(.5, -.5);
 			
 		}
 		else 
 		{
-			driveTrain.runMotors(0.5, -0.5);
+			driveTrain.runMotors(0, 0);
+			stopped = true;
 		}
 	}
 
