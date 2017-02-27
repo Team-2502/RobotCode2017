@@ -10,7 +10,7 @@ public class AutoCommandG1 extends CommandGroup
     public AutoCommandG1()
     {
 //        addSequential(new DriveTimeCommand((1/196.50)*114.3));
-          addSequential(new NavXMoveCommand(-90, 3D));
+          addSequential(new NavXMoveCommand(3D, -90));
 //        addSequential(new DriveTimeCommand((1/196.50)*78.5);
 //        addSequential(new AutoVCommand(true));
 //        addSequential(new GearCommandG());

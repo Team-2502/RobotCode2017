@@ -76,6 +76,7 @@ public class ShooterSubsystem extends Subsystem
         return flywheelTalon.getClosedLoopError();
     }
 
+
     public int getTopError()
     {
         int newError = getError();

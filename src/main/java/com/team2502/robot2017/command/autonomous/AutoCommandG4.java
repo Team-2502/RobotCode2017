@@ -18,9 +18,9 @@ public class AutoCommandG4 extends CommandGroup
     	
     	//goes to boiler
     	addSequential(new DriveTimeCommand(((1/196.50)*114.3)/2));
-    	addSequential(new NavXMoveCommand(90,1D));
+    	addSequential(new NavXMoveCommand(90, 1D));
     	addSequential(new DriveTimeCommand(((1/196.50)*171.45)/(3/4)));
-    	addSequential(new NavXMoveCommand(-30,1D));
+    	addSequential(new NavXMoveCommand(-30, 1D));
     	addSequential(new DriveTimeCommand(((1/196.50)*171.45)/(1/4)));
     	
     	//shoots

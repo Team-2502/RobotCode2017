@@ -36,8 +36,8 @@ public final class DashboardData
     public static void setup()
     {
     	 AUTONOMOUS_SELECTOR.addObjectT("FULLBUTDOESNTWORK", new AutoCommandG1());
-         AUTONOMOUS_SELECTOR.addDefaultT("TESTING", new AutoCommandG2());
-         AUTONOMOUS_SELECTOR.addObjectT("Group1-StartCloserToBoiler", new AutoCommandG3());
+         AUTONOMOUS_SELECTOR.addObjectT("TESTING", new AutoCommandG2());
+         AUTONOMOUS_SELECTOR.addDefaultT("Group1-StartCloserToBoiler", new AutoCommandG3());
          AUTONOMOUS_SELECTOR.addObjectT("Group2-StartMiddle", new AutoCommandG4());
          AUTONOMOUS_SELECTOR.addObjectT("Group3-StartAtFarEnd", new AutoCommandG5());
         

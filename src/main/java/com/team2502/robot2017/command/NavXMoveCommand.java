@@ -65,8 +65,8 @@ public class NavXMoveCommand extends Command{
         Sensor = Robot.DISTANCE_SENSOR;
     	
         navx.reset();
-	    	targetYaw = angle;
-		    this.runTime = (long) runTime*1000;
+	    targetYaw = angle;
+	    this.runTime = (long) runTime*1000;
     }
 //    public NavXMoveCommand(double angle, double targetXDisplace, double targetYDisplace){
 //    	targetXDisplace = targetXDisplace;
