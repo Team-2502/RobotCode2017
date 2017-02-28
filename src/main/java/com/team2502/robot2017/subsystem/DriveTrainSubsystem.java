@@ -74,10 +74,6 @@ public class DriveTrainSubsystem extends Subsystem
         rightTalon0.changeControlMode(TalonControlMode.Voltage);
         rightTalon1.changeControlMode(TalonControlMode.Voltage);
     }
-    public int getPostition(CANTalon talon)
-    {
-    	return talon.getEncPosition();
-    }
 
     @Override
     protected void initDefaultCommand()

@@ -7,6 +7,6 @@ public class AutoCommandG2 extends CommandGroup
 {
     public AutoCommandG2()
     {
-    	addSequential(new EncDriveToDistanceCommand(4.6));
+    	addSequential(new EncDriveToDistanceCommand());
     }
 }
