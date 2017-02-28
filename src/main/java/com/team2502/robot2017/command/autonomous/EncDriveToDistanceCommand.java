@@ -1,27 +1,46 @@
 package com.team2502.robot2017.command.autonomous;
 
+import com.kauailabs.navx.frc.AHRS;
 import com.team2502.robot2017.Robot;
+import com.team2502.robot2017.subsystem.DistanceSensorSubsystem;
 import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import logger.Log;
 
 @SuppressWarnings("WeakerAccess")
 public class EncDriveToDistanceCommand extends Command
 {
-    private DriveTrainSubsystem driveTrain;
-    private long runTime;
-    private long startTime;
+	public double targetYaw;
+	private DriveTrainSubsystem driveTrain;
+	private AHRS navx;
+	private DistanceSensorSubsystem Sensor;
+	public double currentYaw;
+	private boolean forever = false;
+	public boolean done = false;;
+	private long runTime;
+	private long startTime;
+	private double deadZone = 2;
+	private double elapsedTime;
+	private double speed;
+	double targetDistance;
+	double currentDistanceLeft;
+	double currentDistanceRight;
 
     /**
      * @param runTime Time to run for in seconds.
      */
-    public EncDriveToDistanceCommand()
+    public EncDriveToDistanceCommand(double targetDistance)
     {
     	driveTrain = Robot.DRIVE_TRAIN;
     	requires(driveTrain);
-    }
-
-    @Override
+    	
+    	navx.resetDisplacement();
+    	navx.reset();
+    	targetYaw = 0;
+    	targetDistance = this.targetDistance;
+}
+    @Override	
     protected void initialize()
     {
         driveTrain.setAutonSettings(driveTrain.leftTalon0);
@@ -31,9 +50,49 @@ public class EncDriveToDistanceCommand extends Command
     @Override
     protected void execute()
     {
-    	driveTrain.leftTalon0.set(-4.6);
-        driveTrain.rightTalon1.set(4.6);
-    }
+        elapsedTime = System.currentTimeMillis() - startTime;
+    	speed = getSpeed(elapsedTime);
+    	currentYaw = Robot.NAVX.getYaw();
+    	SmartDashboard.putNumber("NavX: Target yaw", targetYaw);
+    	currentDistanceLeft = driveTrain.getPostition(driveTrain.leftTalon0);
+    	currentDistanceRight = driveTrain.getPostition(driveTrain.rightTalon1);
+    	
+//    	driveTrain.leftTalon0.set(-targetDistance);
+//        driveTrain.rightTalon1.set(targetDistance);
+    	
+    	if(Math.abs(currentYaw - targetYaw) > deadZone)
+		{	
+    		
+    		driveTrain.setTeleopSettings();
+			// right = pos
+			// left = neg
+			if(currentYaw > targetYaw)
+			{	
+				driveTrain.runMotors(0, -1 * speed);
+			} 
+			else if(currentYaw < targetYaw)
+			{
+				driveTrain.runMotors(speed, 0);
+			}
+		}
+//		else
+//		{	
+//
+//				driveTrain.runMotors(0.5, -0.5);
+//
+//		}	
+	}
+	
+	protected double getSpeed(double time) {
+		if(targetYaw == 0){
+			return 0.5;
+		}
+		else
+		{
+//			return Math.pow(Math.E, (-1 * time / 10000));
+			return 4000/((time * time) + 4000);
+		}
+	}
 
     @Override
     protected boolean isFinished()
