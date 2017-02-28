@@ -25,10 +25,10 @@ public class DriveTrainSubsystem extends Subsystem
 {
     private static final Pair<Double, Double> SPEED_CONTAINER = new Pair<Double, Double>();
 
-    private final CANTalon leftTalon0;
+    public final CANTalon leftTalon0; //ENCODER
     private final CANTalon leftTalon1;
-    private final CANTalon rightTalon0;
-    private final CANTalon rightTalon1;
+    private final CANTalon rightTalon0; 
+    public final CANTalon rightTalon1; //ENCODER
     private final RobotDrive drive;
     private double lastLeft;
     private double lastRight;
@@ -52,17 +52,19 @@ public class DriveTrainSubsystem extends Subsystem
 
         drive = new RobotDrive(leftTalon0, leftTalon1, rightTalon0, rightTalon1);
         drive.setExpiration(0.1D);
-
     }
 
     public void setAutonSettings(CANTalon talon)
     {
+    	talon.changeControlMode(TalonControlMode.Position);
         talon.setFeedbackDevice(FeedbackDevice.QuadEncoder);
         talon.configEncoderCodesPerRev(256);
         talon.reverseSensor(false);
         talon.configNominalOutputVoltage(0.0D, -0.0D);
         talon.configPeakOutputVoltage(12.0D, -12.0D);
-        talon.changeControlMode(TalonControlMode.MotionProfile);
+        talon.setPID(0.5, 0, 0);
+        talon.enableControl();
+        talon.setEncPosition(0);
     }
     
     public void setTeleopSettings()
@@ -71,6 +73,10 @@ public class DriveTrainSubsystem extends Subsystem
         leftTalon1.changeControlMode(TalonControlMode.Voltage);
         rightTalon0.changeControlMode(TalonControlMode.Voltage);
         rightTalon1.changeControlMode(TalonControlMode.Voltage);
+    }
+    public int getPostition(CANTalon talon)
+    {
+    	return talon.getEncPosition();
     }
 
     @Override

@@ -33,7 +33,7 @@ public class NavxMoveCommand extends Command{
 
 	}
 	
-    public NavxMoveCommand(double runTime )
+    public NavxMoveCommand(double runTime)
     {
         this((long) (runTime * 1000));
     }
