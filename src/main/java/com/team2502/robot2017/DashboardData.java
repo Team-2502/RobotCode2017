@@ -60,7 +60,11 @@ public final class DashboardData
                 }
             }
             br.close();
-        } catch(Exception e) { Log.error("Could not get version."); }
+        } catch(Exception e)
+          { 
+        	Log.error("Could not get version.");
+        	Log.error(e);
+          }
     }
 
     public static AutonomousCommand getAutonomous()

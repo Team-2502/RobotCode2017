@@ -73,6 +73,11 @@ public class DriveTrainSubsystem extends Subsystem
         leftTalon1.changeControlMode(TalonControlMode.Voltage);
         rightTalon0.changeControlMode(TalonControlMode.Voltage);
         rightTalon1.changeControlMode(TalonControlMode.Voltage);
+        leftTalon0.disableControl();
+        leftTalon1.disableControl();
+        rightTalon0.disableControl();
+        rightTalon1.disableControl();
+        
     }
     public int getPostition(CANTalon talon)
     {
@@ -192,10 +197,10 @@ public class DriveTrainSubsystem extends Subsystem
                                                                                            : getSpeedArcade();
         
         
-        drive.tankDrive(speed.left, speed.right, true);
+        drive.tankDrive(speed.left, speed.right, false);
     }
 
-    private static final double DELAY_TIME = 5.77D + 43902.0D / 9999900.0D;
+//    private static final double DELAY_TIME = 5.77D + 43902.0D / 9999900.0D;
 
     public void runMotors(double x, double y) // double z
     {	

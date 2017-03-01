@@ -13,7 +13,7 @@ public class EncDriveToDistanceCommand extends Command
 {
 	public double targetYaw;
 	private DriveTrainSubsystem driveTrain;
-	private AHRS navx;
+	private AHRS navx = Robot.NAVX;
 	private DistanceSensorSubsystem Sensor;
 	public double currentYaw;
 	private boolean forever = false;
@@ -26,65 +26,50 @@ public class EncDriveToDistanceCommand extends Command
 	double targetDistance;
 	double currentDistanceLeft;
 	double currentDistanceRight;
+	double currentDistance;
+	double distanceToAngle = 360*(Math.PI * 4);
 
     /**
      * @param runTime Time to run for in seconds.
      */
-    public EncDriveToDistanceCommand(double targetDistance)
+    public EncDriveToDistanceCommand()
     {
     	driveTrain = Robot.DRIVE_TRAIN;
     	requires(driveTrain);
     	
-    	navx.resetDisplacement();
-    	navx.reset();
-    	targetYaw = 0;
-    	targetDistance = this.targetDistance;
 }
     @Override	
     protected void initialize()
     {
         driveTrain.setAutonSettings(driveTrain.leftTalon0);
         driveTrain.setAutonSettings(driveTrain.rightTalon1);
+        targetDistance = 4.65;
+//    	navx.resetDisplacement();
+    	
     }
 
     @Override
     protected void execute()
     {
-        elapsedTime = System.currentTimeMillis() - startTime;
-    	speed = getSpeed(elapsedTime);
-    	currentYaw = Robot.NAVX.getYaw();
+//        elapsedTime = System.currentTimeMillis() - startTime;
+
     	SmartDashboard.putNumber("NavX: Target yaw", targetYaw);
-    	currentDistanceLeft = driveTrain.getPostition(driveTrain.leftTalon0);
-    	currentDistanceRight = driveTrain.getPostition(driveTrain.rightTalon1);
-    	
-//    	driveTrain.leftTalon0.set(-targetDistance);
-//        driveTrain.rightTalon1.set(targetDistance);
-    	
-    	if(Math.abs(currentYaw - targetYaw) > deadZone)
-		{	
-    		
-    		driveTrain.setTeleopSettings();
-			// right = pos
-			// left = neg
-			if(currentYaw > targetYaw)
-			{	
-				driveTrain.runMotors(0, -1 * speed);
-			} 
-			else if(currentYaw < targetYaw)
-			{
-				driveTrain.runMotors(speed, 0);
-			}
-		}
-//		else
-//		{	
-//
-//				driveTrain.runMotors(0.5, -0.5);
-//
-//		}	
+	   	currentDistanceLeft = driveTrain.getPostition(driveTrain.leftTalon0);
+	   	currentDistanceRight = driveTrain.getPostition(driveTrain.rightTalon1);
+	   	
+	    driveTrain.leftTalon0.set(-targetDistance);
+	    driveTrain.rightTalon1.set(targetDistance);
+	    
+	    currentDistance = (currentDistanceLeft + currentDistanceRight)/2;
+	    
+	    
+			
 	}
 	
-	protected double getSpeed(double time) {
-		if(targetYaw == 0){
+	protected double getSpeed(double time) 
+	{
+		if(targetYaw == 0)
+		{
 			return 0.5;
 		}
 		else
@@ -97,7 +82,11 @@ public class EncDriveToDistanceCommand extends Command
     @Override
     protected boolean isFinished()
     {
-        return false;
+        return targetDistance == currentDistance;
+    }
+    public double getEncYay()
+    {
+    	return currentYaw; 
     }
 
     @Override
