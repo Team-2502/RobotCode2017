@@ -9,6 +9,5 @@ public class AutoCommandG2 extends CommandGroup
     {
     	addSequential(new EncDriveToDistanceCommand(5D));
     	addSequential(new GearCommandG(false));
-
     }
 }

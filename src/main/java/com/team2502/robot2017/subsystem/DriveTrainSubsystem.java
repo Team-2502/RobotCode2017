@@ -52,6 +52,9 @@ public class DriveTrainSubsystem extends Subsystem
 
         drive = new RobotDrive(leftTalon0, leftTalon1, rightTalon0, rightTalon1);
         drive.setExpiration(0.1D);
+        
+        setTeleopSettings(leftTalon0);
+        setTeleopSettings(rightTalon1);
     }
 
     public void setAutonSettings(CANTalon talon)
@@ -67,21 +70,14 @@ public class DriveTrainSubsystem extends Subsystem
         talon.setEncPosition(0);
     }
     
-    public void setTeleopSettings()
+    public void setTeleopSettings(CANTalon talon)
     {
-        leftTalon0.changeControlMode(TalonControlMode.Voltage);
-        leftTalon1.changeControlMode(TalonControlMode.Voltage);
-        rightTalon0.changeControlMode(TalonControlMode.Voltage);
-        rightTalon1.changeControlMode(TalonControlMode.Voltage);
-        leftTalon0.disableControl();
-        leftTalon1.disableControl();
-        rightTalon0.disableControl();
-        rightTalon1.disableControl();
-        
+        talon.changeControlMode(TalonControlMode.Voltage);
+        talon.disableControl();        
     }
-    public int getPostition(CANTalon talon)
+    public double getPostition(CANTalon talon)
     {
-    	return talon.getEncPosition();
+        return talon.getPosition();
     }
 
     @Override

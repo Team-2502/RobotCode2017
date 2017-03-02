@@ -55,7 +55,8 @@ public class NavXMoveCommand extends Command{
         
 //        navx.reset();
         targetYaw = 0;
-        driveTrain.setTeleopSettings();
+        driveTrain.setTeleopSettings(driveTrain.leftTalon0);
+        driveTrain.setTeleopSettings(driveTrain.rightTalon1);
  
 		this.runTime = (long) runTime*1000;
 
@@ -86,7 +87,8 @@ public class NavXMoveCommand extends Command{
 	@Override
 	protected void initialize() 
 	{
-		driveTrain.setTeleopSettings();
+		driveTrain.setTeleopSettings(driveTrain.leftTalon0);
+		driveTrain.setTeleopSettings(driveTrain.rightTalon1);
 		startTime = System.currentTimeMillis();
 	}
 
