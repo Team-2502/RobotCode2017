@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 @SuppressWarnings("WeakerAccess")
 public class GearCommandG extends CommandGroup
 {
-    public GearCommandG(boolean on)
+    public GearCommandG()
     {
         addSequential(new GearLeverCommand());
         addSequential(new GearPushGearCommand());
