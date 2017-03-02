@@ -52,6 +52,9 @@ public class DriveTrainSubsystem extends Subsystem
 
         drive = new RobotDrive(leftTalon0, leftTalon1, rightTalon0, rightTalon1);
         drive.setExpiration(0.1D);
+        
+        setTeleopSettings(leftTalon0);
+        setTeleopSettings(rightTalon1);
     }
 
     public void setAutonSettings(CANTalon talon)
@@ -67,12 +70,10 @@ public class DriveTrainSubsystem extends Subsystem
         talon.setEncPosition(0);
     }
     
-    public void setTeleopSettings()
+    public void setTeleopSettings(CANTalon talon)
     {
-        leftTalon0.changeControlMode(TalonControlMode.Voltage);
-        leftTalon1.changeControlMode(TalonControlMode.Voltage);
-        rightTalon0.changeControlMode(TalonControlMode.Voltage);
-        rightTalon1.changeControlMode(TalonControlMode.Voltage);
+        talon.changeControlMode(TalonControlMode.Voltage);
+        talon.disableControl();
     }
 
     @Override
@@ -191,7 +192,7 @@ public class DriveTrainSubsystem extends Subsystem
         drive.tankDrive(speed.left, speed.right, true);
     }
 
-    private static final double DELAY_TIME = 5.77D + 43902.0D / 9999900.0D;
+//    private static final double DELAY_TIME = 5.77D + 43902.0D / 9999900.0D;
 
     public void runMotors(double x, double y) // double z
     {	
