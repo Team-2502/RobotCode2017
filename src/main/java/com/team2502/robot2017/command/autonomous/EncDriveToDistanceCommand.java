@@ -29,21 +29,31 @@ public class EncDriveToDistanceCommand extends Command
 	double currentDistance;
 	double distanceToAngle = 360*(Math.PI * 4);
 
-    /**
-     * @param runTime Time to run for in seconds.
-     */
-    public EncDriveToDistanceCommand()
+	    /**
+	     * @param runTime Time to run for in milliseconds.
+	     */
+	public EncDriveToDistanceCommand(long runTime)
     {
-    	driveTrain = Robot.DRIVE_TRAIN;
-    	requires(driveTrain);
-    	
-}
+		requires(Robot.DRIVE_TRAIN);
+        driveTrain = Robot.DRIVE_TRAIN;
+        this.runTime = runTime;
+	}
+
+	    /**
+	     * @param runTime Time to run for in seconds.
+	     */
+	public EncDriveToDistanceCommand(double runTime)
+    {
+		this((long) (runTime * 1000));
+	}
+
     @Override	
     protected void initialize()
     {
         driveTrain.setAutonSettings(driveTrain.leftTalon0);
         driveTrain.setAutonSettings(driveTrain.rightTalon1);
         targetDistance = 4.65;
+        startTime = System.currentTimeMillis();
 //    	navx.resetDisplacement();
     	
     }
@@ -82,7 +92,15 @@ public class EncDriveToDistanceCommand extends Command
     @Override
     protected boolean isFinished()
     {
-        return targetDistance == currentDistance;
+      if(targetDistance == currentDistance)
+      {
+    	  return true;
+      }
+      else
+      {
+    	 return System.currentTimeMillis() - startTime > runTime; 
+      }
+      
     }
     public double getEncYay()
     {
