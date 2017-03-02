@@ -12,8 +12,8 @@ public class AutoCommandG1 extends CommandGroup
         addSequential(new TurnLeftCommand(1.0D));
         addSequential(new DriveTimeCommand(1.0D));
         addSequential(new AutoVCommand(true));
-        addSequential(new GearCommandG(true));
-        addSequential(new GearCommandG(false));
+        addSequential(new GearCommandG());
+        addSequential(new GearCommandG());
         addSequential(new AutoVCommand(false));
         addSequential(new ShooterCommand(1.2D));
 
