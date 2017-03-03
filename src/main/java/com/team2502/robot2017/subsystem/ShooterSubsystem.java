@@ -1,10 +1,9 @@
 package com.team2502.robot2017.subsystem;
 
+import com.ctre.CANTalon;
+import com.team2502.robot2017.OI;
 import com.team2502.robot2017.RobotMap;
-import com.team2502.robot2017.command.ShooterCommand;
-import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
-import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
+import com.team2502.robot2017.command.FlywheelCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class ShooterSubsystem extends Subsystem
@@ -16,38 +15,37 @@ public class ShooterSubsystem extends Subsystem
     
     double targetSpeed = 1670;
     int error = 0;
-    
+
     public boolean isFlywheelActive;
     public boolean isFeederActive;
-    public boolean shooterMode = false;
-    
+    private boolean shooterMode = false;
+    private boolean isTriggerPressed = false;
+
     public ShooterSubsystem()
     {
-    	 flywheelTalon = new CANTalon(RobotMap.Motor.FLYWHEEL_TALON_0);
-         feederTalon0 = new CANTalon(RobotMap.Motor.FEEDER_TALON_0);
-         feederTalon1 = new CANTalon(RobotMap.Motor.FEEDER_TALON_1);
-         feederTalon2 = new CANTalon(RobotMap.Motor.FEEDER_TALON_2);
+        flywheelTalon = new CANTalon(RobotMap.Motor.FLYWHEEL_TALON_0);
+        feederTalon0 = new CANTalon(RobotMap.Motor.FEEDER_TALON_0);
+        feederTalon1 = new CANTalon(RobotMap.Motor.FEEDER_TALON_1);
+        feederTalon2 = new CANTalon(RobotMap.Motor.FEEDER_TALON_2);
     }
-    
+
     @Override
     protected void initDefaultCommand()
     {
-    	this.setDefaultCommand(new ShooterCommand(1));
-    	
-    	flywheelTalon.changeControlMode(TalonControlMode.Speed);
-    	
-    	flywheelTalon.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-    	flywheelTalon.configEncoderCodesPerRev(256);
-    	flywheelTalon.reverseSensor(false);
-    	
-    	flywheelTalon.configNominalOutputVoltage(0.0D, -0.0D);
-    	flywheelTalon.configPeakOutputVoltage(12.0D, -12.0D);
-    	
-    	flywheelTalon.setProfile(0);
-    	flywheelTalon.setF(0.21765900);
-    	flywheelTalon.setP(1.71312500);
-    	flywheelTalon.setI(0.0);
-    	flywheelTalon.setD(0.0);
+        this.setDefaultCommand(new FlywheelCommand(1));
+
+        flywheelTalon.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+        flywheelTalon.configEncoderCodesPerRev(256);
+        flywheelTalon.reverseSensor(false);
+
+        flywheelTalon.configNominalOutputVoltage(0.0D, -0.0D);
+        flywheelTalon.configPeakOutputVoltage(12.0D, -12.0D);
+
+        flywheelTalon.setProfile(0);
+        flywheelTalon.setF(0.21765900);
+        flywheelTalon.setP(1.71312500);
+        flywheelTalon.setI(0.0);
+        flywheelTalon.setD(0.0);
     }
 
     /**
@@ -152,6 +150,7 @@ public class ShooterSubsystem extends Subsystem
 //			feederTalon0.set(1);
 //			feederTalon1.set(0);
 //		}
+
 //		else
 //		{
 //			feederTalon0.set(0);

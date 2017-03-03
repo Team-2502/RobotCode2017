@@ -65,7 +65,7 @@ public class RobotMap
     {
 
     	// TRANSMISSION is for shifting drivetrain gear ratio.
-        public static final int TRANSMISSION_SWITCH = 0;
+        public static final int TRANSMISSION_SWITCH = 4;
 
         // GEARBOX is for the actual box that carries gears.
         public static final int GEARBOX_SOLENOID0 = 1;

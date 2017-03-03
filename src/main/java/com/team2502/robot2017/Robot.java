@@ -5,18 +5,16 @@ import com.team2502.robot2017.command.OnlyAgitatorCommand;
 import com.team2502.robot2017.subsystem.*;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.SerialPort;
-import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import logger.Log;
-import com.kauailabs.navx.frc.AHRS;
 
 
 @SuppressWarnings({ "WeakerAccess", "unused" })
 public final class Robot extends IterativeRobot
 {
-	// Makes all the stuff
+    // Makes all the stuff
     public static final DriveTrainSubsystem DRIVE_TRAIN = new DriveTrainSubsystem();
     public static final PressureSensorSubsystem PRESSURE_SENSOR = new PressureSensorSubsystem();
     public static final VisionSubsystem VISION = new VisionSubsystem();
