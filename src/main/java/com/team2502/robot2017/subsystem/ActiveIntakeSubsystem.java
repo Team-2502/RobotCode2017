@@ -1,9 +1,9 @@
 package com.team2502.robot2017.subsystem;
 
+import com.ctre.CANTalon;
 import com.team2502.robot2017.OI;
 import com.team2502.robot2017.RobotMap;
 import com.team2502.robot2017.command.ActiveCommand;
-import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 // TODO: Add proper implementation

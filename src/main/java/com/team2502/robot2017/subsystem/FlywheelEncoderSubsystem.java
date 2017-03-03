@@ -1,11 +1,9 @@
 package com.team2502.robot2017.subsystem;
 
+import com.ctre.CANTalon;
 import com.team2502.robot2017.OI;
 import com.team2502.robot2017.RobotMap;
 import com.team2502.robot2017.command.FlywheelCommand;
-import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
-import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class FlywheelEncoderSubsystem extends Subsystem
@@ -25,7 +23,7 @@ public class FlywheelEncoderSubsystem extends Subsystem
     {
         setDefaultCommand(new FlywheelCommand(1.2D));
 
-        flywheelTalon.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+        flywheelTalon.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
         flywheelTalon.configEncoderCodesPerRev(256);
         flywheelTalon.reverseSensor(false);
 
@@ -91,7 +89,7 @@ public class FlywheelEncoderSubsystem extends Subsystem
 
     public void flywheelDrive()
     {
-        flywheelTalon.changeControlMode(TalonControlMode.Speed);
+        flywheelTalon.changeControlMode(CANTalon.TalonControlMode.Speed);
 
         // Determines if the flywheel is already active.
         // If active, turn off flywheel at button press.

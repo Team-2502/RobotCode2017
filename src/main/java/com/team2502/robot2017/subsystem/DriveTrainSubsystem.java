@@ -1,20 +1,14 @@
 package com.team2502.robot2017.subsystem;
 
+import com.ctre.CANTalon;
 import com.team2502.robot2017.DashboardData;
 import com.team2502.robot2017.OI;
 import com.team2502.robot2017.RobotMap;
 import com.team2502.robot2017.command.DriveCommand;
-import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import logger.Log;
-
-import java.io.Serializable;
-
-//import com.team2502.robot2017.Robot;
-//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Example Implementation, Many changes needed.
@@ -60,7 +54,7 @@ public class DriveTrainSubsystem extends Subsystem
 
     private void setTalonSettings(CANTalon talon)
     {
-        talon.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+        talon.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
         talon.configEncoderCodesPerRev(256);
         talon.reverseSensor(false);
         talon.configNominalOutputVoltage(0.0D, -0.0D);
