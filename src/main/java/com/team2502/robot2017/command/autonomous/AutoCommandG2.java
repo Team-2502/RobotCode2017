@@ -7,7 +7,7 @@ public class AutoCommandG2 extends CommandGroup
 {
     public AutoCommandG2()
     {
-    	addSequential(new MoveXDistance(10));
+    	addSequential(new MoveXDistance((1/22.2)*114.3));
 
     }
 }

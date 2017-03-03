@@ -3,6 +3,7 @@ package com.team2502.robot2017;
 import com.kauailabs.navx.frc.AHRS;
 
 import com.team2502.robot2017.command.DriveTimeCommand;
+import com.team2502.robot2017.command.MoveXDistance;
 import com.team2502.robot2017.command.autonomous.AutoVCommand;
 import com.team2502.robot2017.subsystem.*;
 import edu.wpi.first.wpilibj.Compressor;
@@ -45,9 +46,12 @@ public final class Robot extends IterativeRobot
      */
     public void robotInit()
     {
-        Log.createLogger(true);
+        Log.createLogger(!true);
+        Log.debug("d0");
         DashboardData.setup();
+        Log.debug("d1");
         OI.init();
+        Log.debug("d2");
     }
 
     /**
@@ -59,8 +63,13 @@ public final class Robot extends IterativeRobot
 
     public void disabledPeriodic()
     {
+        Log.debug("d3");
+        Scheduler.getInstance().run();
+        Log.debug("d4");
         DashboardData.update();
+        Log.debug("d5");
         DRIVE_TRAIN.stop();
+        Log.debug("d6");
     }
 
     /**
@@ -74,24 +83,26 @@ public final class Robot extends IterativeRobot
      */
     public void autonomousInit()
     {
-        //Scheduler.getInstance().add(DashboardData.getAutonomous());
-//        Scheduler.getInstance().add(DashboardData.getAutonomous());
-        Scheduler.getInstance().add(new DriveTimeCommand(0.3D));
-
+        Log.debug("d7");
+        Scheduler.getInstance().add(DashboardData.getAutonomous());
+        Log.debug("d8");
     }
 
     /**
-     * 
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic()
     {
+        Log.debug("d9");
         Scheduler.getInstance().run();
+        Log.debug("da");
         DashboardData.update();
+        Log.debug("db");
     }
 
     public void teleopInit()
     {
+        Log.debug("ddc");
     }
 
     /**
@@ -99,8 +110,11 @@ public final class Robot extends IterativeRobot
      */
     public void teleopPeriodic()
     {
+        Log.debug("dd");
         Scheduler.getInstance().run();
+        Log.debug("de");
         DashboardData.update();
+        Log.debug("df");
     }
 
     /**
@@ -108,7 +122,10 @@ public final class Robot extends IterativeRobot
      */
     public void testPeriodic()
     {
+        Log.debug("d01");
         LiveWindow.run();
+        Log.debug("d02");
         DashboardData.update();
+        Log.debug("d03");
     }
 }

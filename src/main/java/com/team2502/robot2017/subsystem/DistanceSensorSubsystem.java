@@ -20,22 +20,17 @@ public class DistanceSensorSubsystem extends Subsystem
     {
         /* NO-OP */
     }
-    public Object getSensorDistance()
+    public double getSensorDistance()
     {	if(distanceSensor.getVoltage()*distScaleFactor < 6)
     	{
-//<<<<<<< HEAD
-//    		return 0;
-//=======
-    		return "The target is out of bounds";
+
+    		return 0;
+
     	}
     	
     	else if(distanceSensor.getVoltage()*distScaleFactor > 18 )
     	{
-//<<<<<<< HEAD
-//    		return 20;
-//=======
-    		return "The target is out of bounds";
-
+    		return 20;
     	}
     	
     	else

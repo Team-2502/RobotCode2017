@@ -72,9 +72,9 @@ public class DriveTrainSubsystem extends Subsystem
     @Override
     protected void initDefaultCommand()
     {
-    	this.setDefaultCommand(new DriveCommand());
+        this.setDefaultCommand(new DriveCommand());
     }
-
+    
     private static void debugSpeed(String format, Object... args)
     {
         Log.debug(String.format(format, args));

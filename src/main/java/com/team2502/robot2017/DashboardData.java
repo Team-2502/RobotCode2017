@@ -7,12 +7,6 @@ import com.team2502.robot2017.command.autonomous.AutoCommandG2;
 import com.team2502.robot2017.command.autonomous.AutoCommandG3;
 import com.team2502.robot2017.command.autonomous.AutoCommandG4;
 import com.team2502.robot2017.command.autonomous.AutoCommandG5;
-import com.team2502.robot2017.command.autonomous.AutonomousCommand;
-import com.team2502.robot2017.command.autonomous.AutoCommandG1;
-import com.team2502.robot2017.command.autonomous.AutoCommandG2;
-import com.team2502.robot2017.command.autonomous.AutoCommandG3;
-import com.team2502.robot2017.command.autonomous.AutoCommandG4;
-import com.team2502.robot2017.command.autonomous.AutoCommandG5;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -46,8 +40,8 @@ public final class DashboardData
     public static void setup()
     {
 
-        AUTONOMOUS_SELECTOR.addObjectT("FULLBUTDOESNTWORK", new AutoCommandG1());
         AUTONOMOUS_SELECTOR.addDefaultT("TESTING", new AutoCommandG2());
+        AUTONOMOUS_SELECTOR.addObjectT("FULLBUTDOESNTWORK", new AutoCommandG1());
         AUTONOMOUS_SELECTOR.addObjectT("Group1-StartCloserToBoiler", new AutoCommandG3());
         AUTONOMOUS_SELECTOR.addObjectT("Group2-StartMiddle", new AutoCommandG4());
         AUTONOMOUS_SELECTOR.addObjectT("Group3-StartAtFarEnd", new AutoCommandG5());
@@ -107,9 +101,10 @@ public final class DashboardData
         SmartDashboard.putNumber("NavX: Raw Accel X", Robot.NAVX.getRawAccelX());
 
 
+        SmartDashboard.putNumber("Left Pos", Robot.DRIVE_TRAIN.getPositionLeft());
+        SmartDashboard.putNumber("Right Pos", Robot.DRIVE_TRAIN.getPositionRight());
 
-
-        SmartDashboard.putNumber ("DS:Current Distance (in)", (double) Robot.DISTANCE_SENSOR.getSensorDistance());
+        SmartDashboard.putNumber ("DS:Current Distance (in)",  Robot.DISTANCE_SENSOR.getSensorDistance());
 
 
         if(Enabler.PRESSURE.enabler[0])
