@@ -15,32 +15,21 @@ public class DriveCommand extends Command
     }
 
     @Override
-    protected void initialize()
-    {
-
+    protected void initialize() 
+    { 
+    	driveTrainSubsystem.setTeleopSettings(driveTrainSubsystem.leftTalon0);
+    	driveTrainSubsystem.setTeleopSettings(driveTrainSubsystem.rightTalon1); 
     }
 
     @Override
-    protected void execute()
-    {
-        driveTrainSubsystem.drive();
-    }
+    protected void execute() { driveTrainSubsystem.drive(); }
 
     @Override
-    protected boolean isFinished()
-    {
-        return false;
-    }
+    protected boolean isFinished() { return false; }
 
     @Override
-    protected void end()
-    {
-        driveTrainSubsystem.stop();
-    }
+    protected void end() { driveTrainSubsystem.stop(); }
 
     @Override
-    protected void interrupted()
-    {
-        driveTrainSubsystem.stop();
-    }
+    protected void interrupted() { driveTrainSubsystem.stop(); }
 }

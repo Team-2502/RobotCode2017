@@ -18,10 +18,10 @@ public class DriveTrainSubsystem extends Subsystem
 {
     private static final Pair<Double, Double> SPEED_CONTAINER = new Pair<Double, Double>();
 
-    private final CANTalon leftTalon0;
+    public final CANTalon leftTalon0; //ENCODER
     private final CANTalon leftTalon1;
-    private final CANTalon rightTalon0;
-    private final CANTalon rightTalon1;
+    private final CANTalon rightTalon0; 
+    public final CANTalon rightTalon1; //ENCODER
     private final RobotDrive drive;
     private double lastLeft;
     private double lastRight;
@@ -45,20 +45,32 @@ public class DriveTrainSubsystem extends Subsystem
 
         drive = new RobotDrive(leftTalon0, leftTalon1, rightTalon0, rightTalon1);
         drive.setExpiration(0.1D);
-
-        setTalonSettings(leftTalon0);
-        setTalonSettings(leftTalon1);
-        setTalonSettings(rightTalon0);
-        setTalonSettings(rightTalon1);
+        
+        setTeleopSettings(leftTalon0);
+        setTeleopSettings(rightTalon1);
     }
 
-    private void setTalonSettings(CANTalon talon)
+    public void setAutonSettings(CANTalon talon)
     {
+    	talon.changeControlMode(TalonControlMode.Position);
         talon.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
         talon.configEncoderCodesPerRev(256);
         talon.reverseSensor(false);
         talon.configNominalOutputVoltage(0.0D, -0.0D);
         talon.configPeakOutputVoltage(12.0D, -12.0D);
+        talon.setPID(0.5, 0, 0);
+        talon.enableControl();
+        talon.setEncPosition(0);
+    }
+    
+    public void setTeleopSettings(CANTalon talon)
+    {
+        talon.changeControlMode(TalonControlMode.Voltage);
+        talon.disableControl();        
+    }
+    public double getPostition(CANTalon talon)
+    {
+        return talon.getPosition();
     }
 
     @Override
@@ -112,11 +124,8 @@ public class DriveTrainSubsystem extends Subsystem
     /**
      * Used to gradually increase the speed of the robot.
      *
-<<<<<<< HEAD
      * @param isLeftSide Whether or not it is the left joystick/side
-=======
      * @param out The object to store the data in
->>>>>>> master
      * @return the speed of the robot
      */
     private Pair<Double, Double> getSpeed(Pair<Double, Double> out)
@@ -174,16 +183,16 @@ public class DriveTrainSubsystem extends Subsystem
                                                                                            : getSpeedArcade();
         
         
-        drive.tankDrive(speed.left, speed.right, true);
+        drive.tankDrive(speed.left, speed.right, false);
     }
 
-    private static final double DELAY_TIME = 5.77D + 43902.0D / 9999900.0D;
+//    private static final double DELAY_TIME = 5.77D + 43902.0D / 9999900.0D;
 
     public void runMotors(double x, double y) // double z
     {	
 
     	leftSpeed = x;
-    	rightSpeed = y;
+    	rightSpeed = -y;
         leftTalon0.set(x);
         leftTalon1.set(x);
         rightTalon0.set(y);

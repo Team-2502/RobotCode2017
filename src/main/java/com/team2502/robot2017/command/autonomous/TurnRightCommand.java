@@ -1,4 +1,4 @@
-package com.team2502.robot2017.command;
+package com.team2502.robot2017.command.autonomous;
 
 import com.team2502.robot2017.Robot;
 import com.team2502.robot2017.subsystem.DriveTrainSubsystem;
@@ -38,7 +38,7 @@ public class TurnRightCommand extends Command
     @Override
     protected void execute()
     {
-        driveTrain.runMotors(1.0D, 1.0D);
+        driveTrain.runMotors(1.0D, -1.0D);
 //    	addSequential(new DriveTimeCommand(1.2));
 //        addSequential(new DriveTimeFlywheelCommand(2D));
     }

@@ -6,7 +6,7 @@ import com.team2502.robot2017.subsystem.ShooterSubsystem;
 import edu.wpi.first.wpilibj.command.Command;
 
 @SuppressWarnings("WeakerAccess")
-public class FlywheelCommand extends Command
+public class ShooterCommand extends Command
 {
 
     private final ShooterSubsystem shooterSubsystem;
@@ -17,9 +17,8 @@ public class FlywheelCommand extends Command
     /**
      * @param runTime Time to run for in milliseconds.
      */
-    public FlywheelCommand(long runTime)
+    public ShooterCommand(long runTime)
     {
-
         requires(Robot.SHOOTER);
         shooterSubsystem = Robot.SHOOTER;
         this.runTime = runTime;
@@ -28,9 +27,15 @@ public class FlywheelCommand extends Command
     /**
      * @param runTime Time to run for in seconds.
      */
-    public FlywheelCommand(double runTime)
+    public ShooterCommand(double runTime)
     {
         this((long) (runTime * 1000));
+    }
+    
+    public ShooterCommand()
+    {
+    	requires(Robot.SHOOTER);
+        shooterSubsystem = Robot.SHOOTER;
     }
 
     @Override
@@ -40,15 +45,13 @@ public class FlywheelCommand extends Command
 
         shooterSubsystem.isFlywheelActive = false;
         shooterSubsystem.isFeederActive = false;
-        
 //        shooterSubsystem.defaultShooter();
     }
 
     @Override
     protected void execute()
     {
-
-        shooterSubsystem.flywheelDrive();
+        shooterSubsystem.toggleFlywheel();
     }
 
     @Override
@@ -59,13 +62,11 @@ public class FlywheelCommand extends Command
 
     @Override
     protected void end()
-    {
-        shooterSubsystem.stop();
+    { 
+    	shooterSubsystem.stopFlywheel();
+    	shooterSubsystem.shooterMode = false;
     }
 
     @Override
-    protected void interrupted()
-    {
-        end();
-    }
+    protected void interrupted() { end(); }
 }

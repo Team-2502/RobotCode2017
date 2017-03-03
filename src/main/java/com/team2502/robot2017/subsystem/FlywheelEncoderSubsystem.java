@@ -21,7 +21,7 @@ public class FlywheelEncoderSubsystem extends Subsystem
     @Override
     protected void initDefaultCommand()
     {
-        setDefaultCommand(new FlywheelCommand(1.2D));
+        setDefaultCommand(new ShooterCommand(1.2D));
 
         flywheelTalon.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
         flywheelTalon.configEncoderCodesPerRev(256);
