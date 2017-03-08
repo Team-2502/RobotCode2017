@@ -1,17 +1,19 @@
 package com.team2502.robot2017.command;
 
 import com.team2502.robot2017.Robot;
-import com.team2502.robot2017.subsystem.GearBoxSubsystem;
+import com.team2502.robot2017.subsystem.ShooterSubsystem;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class GearCommandPushBox extends Command
+public class ShooterChangeSpeedCommand extends Command
 {
-    private final GearBoxSubsystem GearBoxSubsystem;
+    private final ShooterSubsystem ShooterSubsystem;
+    int speedChange = 0;
 
-    public GearCommandPushBox()
+    public ShooterChangeSpeedCommand(int newSpeedChange)
     {
-        requires(Robot.GEAR_BOX);
-        GearBoxSubsystem = Robot.GEAR_BOX;
+    	speedChange += newSpeedChange;
+        requires(Robot.SHOOTER);
+        ShooterSubsystem = Robot.SHOOTER;
     }
 
     @Override
@@ -23,7 +25,7 @@ public class GearCommandPushBox extends Command
     @Override
     protected void execute()
     {
-        GearBoxSubsystem.switchPushBox();
+        ShooterSubsystem.setTargetSpeed(speedChange);
     }
 
     @Override

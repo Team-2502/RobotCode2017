@@ -143,6 +143,8 @@ public class DriveTrainSubsystem extends Subsystem
         lastLeft = joystickLevel;
 
         out.left = joystickLevel;
+        
+        // same for right
 
         joystickLevel = -OI.JOYSTICK_DRIVE_RIGHT.getY();
 
@@ -199,7 +201,6 @@ public class DriveTrainSubsystem extends Subsystem
         // stopDriveS();
 //        SmartDashboard.putNumber("Autonomous", Robot.AUTO.getTimerStraight());
     }
-
     public void stopDriveS()
     {
         leftTalon0.set(0);

@@ -18,18 +18,23 @@ public class RobotMap
 
         public static final class Button
         {
+        	// Buttons for Solenoids
             public static final int SWITCH_DRIVE_TRANSMISSION = 1;
+            public static final int TOP_GEAR_BOX = 10;
+            public static final int PUSH_BOX = 11;
+            public static final int RELEASE_GEAR = 9;
+            public static final int PUSH_GEAR = 12;
+            public static final int CLIMB = 8;
+            
+            // Buttons for Shooter/Feeder/Active
             public static final int SHOOTER_TOGGLE = 5;
             public static final int SHOOTER_INCREASE_SPEED = 7;
             public static final int SHOOTER_DECREASE_SPEED = 6;
-            public static final int TOP_GEAR_BOX = 12;
-            public static final int PUSH_BOX = 7;
-            public static final int RELEASE_GEAR = 9;
-            public static final int PUSH_GEAR = 11;
+            public static final int FEEDER = 1;
+            public static final int ACTIVE_FORWARDS = 3;
+            public static final int ACTIVE_BACKWARDS = 4;
             public static final int ONLY_AGITATOR = 6;
             
-//            public static final int 
-
             private Button() {}
         }
     }

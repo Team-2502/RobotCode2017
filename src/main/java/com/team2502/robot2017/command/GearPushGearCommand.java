@@ -4,11 +4,11 @@ import com.team2502.robot2017.Robot;
 import com.team2502.robot2017.subsystem.GearBoxSubsystem;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class GearCommandPushGear extends Command
+public class GearPushGearCommand extends Command
 {
     private final GearBoxSubsystem GearBoxSubsystem;
 
-    public GearCommandPushGear()
+    public GearPushGearCommand()
     {
         requires(Robot.GEAR_BOX);
         GearBoxSubsystem = Robot.GEAR_BOX;
