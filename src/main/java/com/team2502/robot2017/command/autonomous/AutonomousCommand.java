@@ -50,7 +50,7 @@ public class AutonomousCommand extends Command
     protected void end()
     {
         driveTrainSubsystem.stop();
-        shooterSubsystem.stop();
+        shooterSubsystem.stop();''
     }
 
     @Override

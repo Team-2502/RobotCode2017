@@ -104,7 +104,7 @@ public final class DashboardData
         SmartDashboard.putNumber("Left Pos", Robot.DRIVE_TRAIN.getPositionLeft());
         SmartDashboard.putNumber("Right Pos", Robot.DRIVE_TRAIN.getPositionRight());
 
-        SmartDashboard.putNumber ("DS:Current Distance (in)",  Robot.DISTANCE_SENSOR.getSensorDistance());
+        SmartDashboard.putNumber ("DS:Current Distance (in)",  (double) Robot.DISTANCE_SENSOR.getSensorDistance());
 
 
         if(Enabler.PRESSURE.enabler[0])
